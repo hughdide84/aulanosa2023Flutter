@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, annotate_overrides, prefer_const_constructors, prefer_typing_uninitialized_variables, use_key_in_widget_constructors, unnecessary_import
+
 import 'package:aulanosa_app/screens/menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,21 +1,26 @@
+// ignore_for_file: constant_identifier_names, prefer_const_constructors
+
 import 'package:aulanosa_app/screens/menu_item.dart';
 import 'package:flutter/material.dart';
 
-
-
 //definimos todas las opciones accesibles desde el drawer
 class MenuItems{
-
-  static const payment = MenuItemm('pagacabron', Icons.monetization_on);
-  static const mimadre = MenuItemm('mimamasita', Icons.woman);
-  static const piedad = MenuItemm('piedad', Icons.church);
-
+  static const main_alumno = MenuItemm('Pagina principal', Icons.church);
+  static const calendario_alumno = MenuItemm('Calendario', Icons.monetization_on);
+  static const notas_alumno = MenuItemm('Notas', Icons.woman);
+  static const empresa_alumno = MenuItemm('Empresa', Icons.church);
+  static const mensajes_alumno = MenuItemm('Mensajes', Icons.church);
+  static const proyecto_alumno = MenuItemm('Proyecto final', Icons.church);
+  
+ //Los almacenamos en una lista para poder acceder a cada uno los items
   static const all = <MenuItemm>[
-    payment,
-    mimadre,
-    piedad
+    main_alumno,
+    calendario_alumno,
+    notas_alumno,
+    empresa_alumno,
+    mensajes_alumno,
+    proyecto_alumno,
   ];
-
 }
 
 //La clase Menu es el cuerpo del Drawer en si, lo que vemos al pulsar el botón de la esquina superior izquierda
@@ -66,8 +71,6 @@ class Menu extends StatelessWidget {
       onTap: () => onSelectedItem(item),
     ),
   );
-
-
 }
 
 

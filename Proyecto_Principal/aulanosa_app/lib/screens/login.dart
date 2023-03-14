@@ -1,3 +1,4 @@
+import 'package:aulanosa_app/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +67,7 @@ class Login2 extends State<Login>{
 
                     InkWell(
                       onTap: () {
-                        
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                       },
                       child: Container(
                         alignment: Alignment.center,
