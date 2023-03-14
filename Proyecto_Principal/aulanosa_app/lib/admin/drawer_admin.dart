@@ -6,14 +6,24 @@ import 'package:flutter/material.dart';
 //definimos todas las opciones accesibles desde el drawer
 class MenuItems{
 
-  static const payment = MenuItemm('pagacabron', Icons.monetization_on);
-  static const mimadre = MenuItemm('mimamasita', Icons.woman);
-  static const piedad = MenuItemm('piedad', Icons.church);
+  static const adminPrincipal = MenuItemm('Principal', Icons.home);
+  static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
+  static const adminEmpresa = MenuItemm('Empresas', Icons.business_center);
+  static const adminAlumnos = MenuItemm('Alumnos', Icons.group);
+  static const adminProductos = MenuItemm('Productos', Icons.shopping_cart_rounded);
+  static const adminProyectos = MenuItemm('Proyectos', Icons.assignment_rounded);
+  static const adminAlumnosExternos = MenuItemm('Alumnos Externos', Icons.groups);
+  static const adminCursos = MenuItemm('Cursos', Icons.grading_outlined);
 
   static const all = <MenuItemm>[
-    payment,
-    mimadre,
-    piedad
+    adminPrincipal,
+    adminCrearUsuario,
+    adminEmpresa,
+    adminAlumnos,
+    adminProductos,
+    adminProyectos,
+    adminAlumnosExternos,
+    adminCursos
   ];
 
 }
