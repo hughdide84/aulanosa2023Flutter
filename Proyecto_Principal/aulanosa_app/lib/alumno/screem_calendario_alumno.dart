@@ -23,25 +23,45 @@ class Calendario_alumno2 extends State<Calendario_alumno> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    backgroundColor: Color.fromARGB(255, 72, 122, 216),
     appBar: AppBar(
       backgroundColor: Colors.blue,
       title: Text('Calendario alumno'),
       leading: MenuWidget(),
     ),
+    body: calendario(),
   );
 
   Widget calendario(){
     return Padding(padding: const EdgeInsets.all(20.0), 
     child: Column(children: [
-      Text("Dia seleccionado = " + hoy.toString().split(" ")[0]),  
+      Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.black),
+         borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(10),
+        topRight: Radius.circular(10)
+      )
+        ),
+      child:
       TableCalendar(focusedDay: hoy, 
-      firstDay: DateTime.utc(2023, 03, 15), 
+      firstDay: DateTime.utc(2010, 01, 1), 
       lastDay: DateTime.utc(2040, 12, 31), 
-      headerStyle: HeaderStyle(formatButtonVisible: false, titleCentered: true),
+      headerStyle: HeaderStyle(formatButtonVisible: false, titleCentered: true, 
+      titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
+      decoration: BoxDecoration(color: Colors.blue,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(10),
+        topRight: Radius.circular(10)
+      )),
+      leftChevronIcon: Icon(Icons.chevron_left, color: Color.fromARGB(255, 72, 122, 216),),
+      rightChevronIcon: ),
+      
+      
       availableGestures: AvailableGestures.all,
       selectedDayPredicate: (dia) => isSameDay(dia, hoy),
-      onDaySelected: dia_seleccionado)
-    ]));
+      onDaySelected: dia_seleccionado),
+      
+    )]));
   }
-  
+  //Fechas de examenes, entregas de proyecto, evaluacion
 }
