@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+
+//Pagina para editar/mostrar productos
 class Productos extends StatefulWidget {
   const Productos({super.key});
 

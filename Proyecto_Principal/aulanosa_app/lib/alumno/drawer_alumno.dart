@@ -66,8 +66,8 @@ class Menu extends StatelessWidget {
       selectedTileColor: Colors.black26,
       selected: currentItem == item,
       minLeadingWidth: 20,
-      leading: Icon(item.icon),
-      title: Text(item.title),
+      leading: Icon(item.icono),
+      title: Text(item.titulo),
       onTap: () => onSelectedItem(item),
     ),
   );

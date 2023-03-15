@@ -9,7 +9,10 @@ class Main extends StatefulWidget {
   Main2 createState() => Main2();
 }
 
+//CLASE DE PRUEBA, PLACEHOLDER, NO REPRESENTA NADA //
+
 class Main2 extends State<Main> {
+  //tamaño de pantalla, ancho y alto
   var size, heightA, widthA;
 
   @override

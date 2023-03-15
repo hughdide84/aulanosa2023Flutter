@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget{
 
 class HomePageState extends State<MyApp>{
   //pantalla actual de entre todas las existentes
-  MenuItemm currentItem = MenuItems.main_alumno;
+  MenuItemm itemActual = MenuItems.main_alumno;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,11 @@ class HomePageState extends State<MyApp>{
         //menuScreen es el cuerpo del drawer
         menuScreen: Builder(
           builder: (context) => Menu(
-            currentItem: currentItem,
+            currentItem: itemActual,
             //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
             onSelectedItem: (item) {
               setState(() {
-                currentItem = item;
+                itemActual = item;
               });
               ZoomDrawer.of(context)!.close();
             }
@@ -57,7 +57,7 @@ class HomePageState extends State<MyApp>{
   //esta funcion devuelve una pantalla (clase) en base al valor actual de 'currentItem', el cual cambia de valor al darle
   //click a las opciones que vemos en el drawer
   Widget getScreen(){
-    switch (currentItem){
+    switch (itemActual){
       case MenuItems.main_alumno:
         return Main_alumno();
       case MenuItems.empresa_alumno:

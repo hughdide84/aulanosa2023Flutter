@@ -6,12 +6,14 @@ class Login extends StatefulWidget{
 }
 
 class Login2 extends State<Login>{
+  //variables de tamaño de pantalla, alto y ancho//
   var size, heightA, widthA;
   final formKey = GlobalKey<FormState>();
   
   @override
   Widget build(BuildContext context) {
 
+    //AL ENTRAR A LA CLASE, GUARDA EL TAMAÑO DE LA PANTALLA, ANCHO Y ALTO//
     setState(() {
       size = MediaQuery.of(context).size;
       heightA = size.height;

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 //acceder al drawer
 class MenuItemm{
   //titulo de la opcion
-  final String title;
+  final String titulo;
   //icono de la opcion
-  final IconData icon;
+  final IconData icono;
 
-  const MenuItemm(this.title, this.icon);
+  const MenuItemm(this.titulo, this.icono);
 }
