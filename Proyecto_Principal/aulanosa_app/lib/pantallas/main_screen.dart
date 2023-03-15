@@ -11,6 +11,7 @@ import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/admin/drawer_admin.dart';
 import 'package:aulanosa_app/alumno/drawer_alumno.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
+import 'package:aulanosa_app/alumno/pruebas_ppal.dart';
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_empresa_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_mensajeria_alumno.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatefulWidget{
 
 class HomePageState extends State<MyApp>{
   //pantalla actual de entre todas las existentes
+
+  //IMPORTANTE!!!!!!!!!!: esto debe recibir valor despues del login, para que lleve a la pagina principal del
+  //alumno o admin dependiendo del usuario, no siemore del alumno//
   MenuItemm itemActual = MenuItems.main_alumno;
 
   @override
@@ -42,7 +46,7 @@ class HomePageState extends State<MyApp>{
         // En el builder le vamos a mandar o Menu que es para el usuario alumno y sus pantallas //
         // O Menu2 que es para el admin y sus pantallas //
         menuScreen: Builder(
-          builder: (context) => Menu2(
+          builder: (context) => Menu(
             itemActual: itemActual,
             //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
             onSelectedItem: (item) {
@@ -77,7 +81,7 @@ class HomePageState extends State<MyApp>{
 
       // Casos para las pantallas de alumnos //
       case MenuItems.main_alumno:
-        return Main_alumno();
+        return PruebasPpalAlumno();
       case MenuItems.empresa_alumno:
         return Empresa_alumno();
       case MenuItems.mensajes_alumno:

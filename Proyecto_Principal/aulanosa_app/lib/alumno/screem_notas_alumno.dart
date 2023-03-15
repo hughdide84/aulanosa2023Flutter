@@ -18,5 +18,6 @@ class Notas_alumno2 extends State<Notas_alumno> {
       backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Notas'),
       leading: MenuWidget(),
+      
     ),
   );}
