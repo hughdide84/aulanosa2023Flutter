@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 
-
 //Pagina principal del alumno
 class cambioContrasena extends StatefulWidget {
   cambioContrasena2 createState() => cambioContrasena2();
