@@ -15,7 +15,7 @@ class Main_alumno2 extends State<Main_alumno> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Pagina principal'),
       leading: MenuWidget(),
     ),

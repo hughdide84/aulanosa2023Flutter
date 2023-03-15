@@ -16,7 +16,7 @@ class Empresa_alumno2 extends State<Empresa_alumno> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Informacion Empresa'),
       leading: MenuWidget(),
     ),
