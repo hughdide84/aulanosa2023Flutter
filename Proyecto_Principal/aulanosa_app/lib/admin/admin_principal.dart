@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+//Pagina principal de administrador
 class Principal extends StatefulWidget {
   const Principal({super.key});
 

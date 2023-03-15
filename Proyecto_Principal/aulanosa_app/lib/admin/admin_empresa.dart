@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+
+//Pagina para editar/mostrar empresas
 class Empresas extends StatefulWidget {
   const Empresas({super.key});
 
