@@ -1,13 +1,13 @@
 // ignore_for_file: constant_identifier_names, prefer_const_constructors
 
-import 'package:aulanosa_app/screens/menu_item.dart';
+import 'package:aulanosa_app/objetosNecesarios/menu_item.dart';
 import 'package:flutter/material.dart';
 
 //definimos todas las opciones accesibles desde el drawer
-class MenuItems{
+class MenuItems2{
 
   static const adminPrincipal = MenuItemm('Principal', Icons.home);
-  static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
+  //static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
   static const adminEmpresa = MenuItemm('Empresas', Icons.business_center);
   static const adminAlumnos = MenuItemm('Alumnos', Icons.group);
   static const adminProductos = MenuItemm('Productos', Icons.shopping_cart_rounded);
@@ -17,7 +17,7 @@ class MenuItems{
 
   static const all = <MenuItemm>[
     adminPrincipal,
-    adminCrearUsuario,
+    //adminCrearUsuario,
     adminEmpresa,
     adminAlumnos,
     adminProductos,
@@ -29,14 +29,14 @@ class MenuItems{
 }
 
 //La clase Menu es el cuerpo del Drawer en si, lo que vemos al pulsar el botón de la esquina superior izquierda
-class Menu extends StatelessWidget {
+class Menu2 extends StatelessWidget {
 
-  final MenuItemm currentItem;
+  final MenuItemm itemActual;
   final ValueChanged<MenuItemm> onSelectedItem;
 
-  const Menu({
+  const Menu2({
     Key? key,
-    required this.currentItem,
+    required this.itemActual,
     required this.onSelectedItem,
   }) : super(key:key);
   
@@ -54,7 +54,7 @@ class Menu extends StatelessWidget {
           //estético entre ellas
           children: <Widget> [
             Spacer(),
-            ...MenuItems.all.map(buildMenuItem).toList(),
+            ...MenuItems2.all.map(buildMenuItem).toList(),
             Spacer(flex: 2,)
           ],
         )
@@ -69,7 +69,7 @@ class Menu extends StatelessWidget {
     selectedColor: Colors.white,
     child: ListTile(
       selectedTileColor: Colors.black26,
-      selected: currentItem == item,
+      selected: itemActual == item,
       minLeadingWidth: 20,
       leading: Icon(item.icono),
       title: Text(item.titulo),

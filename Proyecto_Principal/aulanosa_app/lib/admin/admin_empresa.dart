@@ -1,21 +1,24 @@
+import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 
-//Pagina para editar/mostrar empresas
-class Empresas extends StatefulWidget {
-  const Empresas({super.key});
+//Pagina para editar/mostrar Empresas y su informacion // 
+class AdminEmpresa extends StatefulWidget {
+  const AdminEmpresa({super.key});
 
   @override
-  State<Empresas> createState() => _EmpresasState();
+  State<AdminEmpresa> createState() => _AdminEmpresaState();
 }
 
-class _EmpresasState extends State<Empresas> {
+class _AdminEmpresaState extends State<AdminEmpresa> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Empresass')),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.blue,
+      title: Text('Información Empresas'),
+      leading: MenuWidget(),
+    ),
+  );
 }

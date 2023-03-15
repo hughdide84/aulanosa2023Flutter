@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, prefer_const_constructors
 
-import 'package:aulanosa_app/screens/menu_item.dart';
+import 'package:aulanosa_app/objetosNecesarios/menu_item.dart';
 import 'package:flutter/material.dart';
 
 //definimos todas las opciones accesibles desde el drawer
@@ -26,12 +26,12 @@ class MenuItems{
 //La clase Menu es el cuerpo del Drawer en si, lo que vemos al pulsar el botón de la esquina superior izquierda
 class Menu extends StatelessWidget {
 
-  final MenuItemm currentItem;
+  final MenuItemm itemActual;
   final ValueChanged<MenuItemm> onSelectedItem;
 
   const Menu({
     Key? key,
-    required this.currentItem,
+    required this.itemActual,
     required this.onSelectedItem,
   }) : super(key:key);
   
@@ -64,7 +64,7 @@ class Menu extends StatelessWidget {
     selectedColor: Colors.white,
     child: ListTile(
       selectedTileColor: Colors.black26,
-      selected: currentItem == item,
+      selected: itemActual == item,
       minLeadingWidth: 20,
       leading: Icon(item.icono),
       title: Text(item.titulo),

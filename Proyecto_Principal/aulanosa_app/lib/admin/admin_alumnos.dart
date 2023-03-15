@@ -1,21 +1,24 @@
+import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 
-//Pagina para editar/mostrar alumnos
-class Alumnos extends StatefulWidget {
-  const Alumnos({super.key});
+//Pagina para editar/mostrar AdminAlumnos
+class AdminAlumnos extends StatefulWidget {
+  const AdminAlumnos({super.key});
 
   @override
-  State<Alumnos> createState() => _AlumnosState();
+  State<AdminAlumnos> createState() => _AdminAlumnosState();
 }
 
-class _AlumnosState extends State<Alumnos> {
+class _AdminAlumnosState extends State<AdminAlumnos> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Alumnos')),
-    );
-  }
+   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.blue,
+      title: Text('Editar Alumnos'),
+      leading: MenuWidget(),
+    ),
+  );
 }

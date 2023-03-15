@@ -1,21 +1,24 @@
+import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 
-//Pagina para editar/mostrar proyectos
-class Proyectos extends StatefulWidget {
-  const Proyectos({super.key});
+//Pagina para editar/mostrar AdminProyectos
+class AdminProyectos extends StatefulWidget {
+  const AdminProyectos({super.key});
 
   @override
-  State<Proyectos> createState() => _ProyectosState();
+  State<AdminProyectos> createState() => _AdminProyectosState();
 }
 
-class _ProyectosState extends State<Proyectos> {
+class _AdminProyectosState extends State<AdminProyectos> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Proyectos')),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.blue,
+      title: Text('Gestión Proyectos'),
+      leading: MenuWidget(),
+    ),
+  );
 }

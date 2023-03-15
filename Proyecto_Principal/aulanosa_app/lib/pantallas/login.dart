@@ -1,3 +1,5 @@
+import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
+import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -144,7 +146,10 @@ class Login2 extends State<Login>{
                   //boton de iniciar sesión
                   InkWell(
                     onTap: () {
-                      
+                     // el login actualmente siempre va a llevar a las paginas de los alumnos, en un futuro
+                     //dependerá del rol que tenga el usuario que recibamos de la api (pendiente de api)//
+                     
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                     },
                     child: Container(
                       decoration:  BoxDecoration(

@@ -1,3 +1,4 @@
+import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,9 +14,11 @@ class AlumnosExternos extends StatefulWidget {
 
 class _AlumnosExternosState extends State<AlumnosExternos> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Alumnos Externos')),
-    );
-  }
+   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.blue,
+      title: Text('Alumnos Externos'),
+      leading: MenuWidget(),
+    ),
+  );
 }

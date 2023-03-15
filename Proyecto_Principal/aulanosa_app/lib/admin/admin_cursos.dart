@@ -1,20 +1,23 @@
+import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-//Pagina para editar/mostrar cursos
-class Cursos extends StatefulWidget {
-  const Cursos({super.key});
+//Pagina para editar/mostrar AdminCursos
+class AdminCursos extends StatefulWidget {
+  const AdminCursos({super.key});
 
   @override
-  State<Cursos> createState() => _CursosState();
+  State<AdminCursos> createState() => _AdminCursosState();
 }
 
-class _CursosState extends State<Cursos> {
+class _AdminCursosState extends State<AdminCursos> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Cursos')),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.blue,
+      title: Text('Cursos'),
+      leading: MenuWidget(),
+    ),
+  );
 }
