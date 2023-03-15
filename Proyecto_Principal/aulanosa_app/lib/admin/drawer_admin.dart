@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 //definimos todas las opciones accesibles desde el drawer
 class MenuItems{
-<<<<<<<< HEAD:Proyecto_Principal/aulanosa_app/lib/admin/drawer_admin.dart
 
   static const adminPrincipal = MenuItemm('Principal', Icons.home);
   static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
@@ -25,23 +24,7 @@ class MenuItems{
     adminProyectos,
     adminAlumnosExternos,
     adminCursos
-========
-  static const main_alumno = MenuItemm('Pagina principal', Icons.church);
-  static const calendario_alumno = MenuItemm('Calendario', Icons.monetization_on);
-  static const notas_alumno = MenuItemm('Notas', Icons.woman);
-  static const empresa_alumno = MenuItemm('Empresa', Icons.church);
-  static const mensajes_alumno = MenuItemm('Mensajes', Icons.church);
-  static const proyecto_alumno = MenuItemm('Proyecto final', Icons.church);
   
- //Los almacenamos en una lista para poder acceder a cada uno los items
-  static const all = <MenuItemm>[
-    main_alumno,
-    calendario_alumno,
-    notas_alumno,
-    empresa_alumno,
-    mensajes_alumno,
-    proyecto_alumno,
->>>>>>>> ZoomDrawerAlumnos:Proyecto_Principal/aulanosa_app/lib/alumno/drawer_alumno.dart
   ];
 }
 

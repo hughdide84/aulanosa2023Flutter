@@ -5,27 +5,6 @@ import 'package:flutter/material.dart';
 
 //definimos todas las opciones accesibles desde el drawer
 class MenuItems{
-<<<<<<<< HEAD:Proyecto_Principal/aulanosa_app/lib/admin/drawer_admin.dart
-
-  static const adminPrincipal = MenuItemm('Principal', Icons.home);
-  static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
-  static const adminEmpresa = MenuItemm('Empresas', Icons.business_center);
-  static const adminAlumnos = MenuItemm('Alumnos', Icons.group);
-  static const adminProductos = MenuItemm('Productos', Icons.shopping_cart_rounded);
-  static const adminProyectos = MenuItemm('Proyectos', Icons.assignment_rounded);
-  static const adminAlumnosExternos = MenuItemm('Alumnos Externos', Icons.groups);
-  static const adminCursos = MenuItemm('Cursos', Icons.grading_outlined);
-
-  static const all = <MenuItemm>[
-    adminPrincipal,
-    adminCrearUsuario,
-    adminEmpresa,
-    adminAlumnos,
-    adminProductos,
-    adminProyectos,
-    adminAlumnosExternos,
-    adminCursos
-========
   static const main_alumno = MenuItemm('Pagina principal', Icons.church);
   static const calendario_alumno = MenuItemm('Calendario', Icons.monetization_on);
   static const notas_alumno = MenuItemm('Notas', Icons.woman);
@@ -41,7 +20,6 @@ class MenuItems{
     empresa_alumno,
     mensajes_alumno,
     proyecto_alumno,
->>>>>>>> ZoomDrawerAlumnos:Proyecto_Principal/aulanosa_app/lib/alumno/drawer_alumno.dart
   ];
 }
 
