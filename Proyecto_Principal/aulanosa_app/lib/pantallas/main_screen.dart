@@ -42,7 +42,7 @@ class HomePageState extends State<MyApp>{
         // En el builder le vamos a mandar o Menu que es para el usuario alumno y sus pantallas //
         // O Menu2 que es para el admin y sus pantallas //
         menuScreen: Builder(
-          builder: (context) => Menu2(
+          builder: (context) => Menu(
             itemActual: itemActual,
             //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
             onSelectedItem: (item) {
