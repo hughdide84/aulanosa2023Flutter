@@ -16,7 +16,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
   @override
    Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Alumnos Externos'),
       leading: MenuWidget(),
     ),

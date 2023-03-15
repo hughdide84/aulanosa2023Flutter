@@ -60,9 +60,9 @@ class HomePageState extends State<MyApp>{
         borderRadius: 30.0,
         showShadow: true,
         angle: 0,
-        menuBackgroundColor: Color.fromARGB(255, 74, 29, 251),
+        menuBackgroundColor: Color.fromARGB(255, 72, 122, 216),
         openCurve: Curves.fastOutSlowIn,
-        closeCurve: Curves.bounceIn,
+        closeCurve: Curves.linear
         //slideWidth: MediaQuery.of(context).size.width * 0.75
       ),
     );
