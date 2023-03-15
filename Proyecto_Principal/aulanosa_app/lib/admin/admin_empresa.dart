@@ -16,7 +16,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Información Empresas'),
       leading: MenuWidget(),
     ),

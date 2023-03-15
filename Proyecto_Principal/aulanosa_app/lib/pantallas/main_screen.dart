@@ -11,6 +11,7 @@ import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/admin/drawer_admin.dart';
 import 'package:aulanosa_app/alumno/drawer_alumno.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
+import 'package:aulanosa_app/alumno/pruebas_ppal.dart';
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_empresa_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_mensajeria_alumno.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatefulWidget{
 
 class HomePageState extends State<MyApp>{
   //pantalla actual de entre todas las existentes
+
+  //IMPORTANTE!!!!!!!!!!: esto debe recibir valor despues del login, para que lleve a la pagina principal del
+  //alumno o admin dependiendo del usuario, no siemore del alumno//
   MenuItemm itemActual = MenuItems.main_alumno;
 
   @override
@@ -60,9 +64,9 @@ class HomePageState extends State<MyApp>{
         borderRadius: 30.0,
         showShadow: true,
         angle: 0,
-        menuBackgroundColor: Color.fromARGB(255, 74, 29, 251),
+        menuBackgroundColor: Color.fromARGB(255, 72, 122, 216),
         openCurve: Curves.fastOutSlowIn,
-        closeCurve: Curves.bounceIn,
+        closeCurve: Curves.linear
         //slideWidth: MediaQuery.of(context).size.width * 0.75
       ),
     );
@@ -77,7 +81,7 @@ class HomePageState extends State<MyApp>{
 
       // Casos para las pantallas de alumnos //
       case MenuItems.main_alumno:
-        return Main_alumno();
+        return PruebasPpalAlumno();
       case MenuItems.empresa_alumno:
         return Empresa_alumno();
       case MenuItems.mensajes_alumno:

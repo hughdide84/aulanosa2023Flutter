@@ -16,7 +16,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
   @override
    Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Editar Alumnos'),
       leading: MenuWidget(),
     ),

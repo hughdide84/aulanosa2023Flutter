@@ -16,7 +16,7 @@ class Mensajeria_alumno2 extends State<Mensajeria_alumno> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Mensajeria'),
       leading: MenuWidget(),
     ),

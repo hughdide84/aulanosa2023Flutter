@@ -41,7 +41,7 @@ class Menu extends StatelessWidget {
     data: ThemeData.dark(),
     child: Scaffold(
 
-      backgroundColor: Color.fromARGB(255, 74, 29, 251),
+      backgroundColor: Color.fromARGB(255, 72, 122, 216),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
