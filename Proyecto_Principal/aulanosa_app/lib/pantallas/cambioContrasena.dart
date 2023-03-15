@@ -93,10 +93,10 @@ class cambioContrasena2 extends State<cambioContrasena> {
                       ),
                     
                       // Segunda estructura para que el usuario confirme su contraseña nueva //
-                      Container(
+                  Container(
                     margin: EdgeInsets.only(left: widthA*0.06,top: heightA*0.03),
                     child: const Text("Introduce la nueva contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
-                ),
+                  ),
                   Stack(
                         children: [
                           //cuadro de texto para la contraseña //
