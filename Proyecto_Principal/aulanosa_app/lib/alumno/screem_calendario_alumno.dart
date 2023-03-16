@@ -48,6 +48,7 @@ class Calendario_alumno2 extends State<Calendario_alumno> {
           padding: const EdgeInsets.all(20.0),
           child: Column(children: [
              Container(
+              height: alturaPantalla * 0.53 ,
               decoration: 
               BoxDecoration(
                  //Configuracion de las sombras del contenedor del calendario
@@ -285,23 +286,26 @@ class Calendario_alumno2 extends State<Calendario_alumno> {
       body: SafeArea(
           top: true,
           child: Stack(
+            
             children: [
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(top: alturaPantalla * 0.01),
-                      child: calendario())
-                ],
-              ),
-              //Imagen de fondo
-              Align(
+               Align(
                 alignment: Alignment.bottomLeft,
                 child: Image.asset(
                   "assets/images/logoDark.png",
                   width: 717 * 0.3,
                   height: 445 * 0.3,
                 ),
-              )
+              ),
+              Column(
+                children: [
+                  
+                  Container(
+                      margin: EdgeInsets.only(top: alturaPantalla * 0.01),
+                      child: calendario())
+                ],
+              ),
+              //Imagen de fondo
+             
             ],
           )),
     );
