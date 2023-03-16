@@ -43,16 +43,27 @@ class Menu_alumno extends StatelessWidget {
 
       backgroundColor: Color.fromARGB(255, 72, 122, 216),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          //el cuerpo del drawer contiene todas las opciones 'MenuItemm' que tenemos definidas con un espacio
-          //estético entre ellas
-          children: <Widget> [
-            Spacer(),
-            ...MenuItems.all.map(buildMenuItem).toList(),
-            Spacer(flex: 2,)
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              //el cuerpo del drawer contiene todas las opciones 'MenuItemm' que tenemos definidas con un espacio
+              //estético entre ellas
+              children: <Widget> [
+                Spacer(),
+                ...MenuItems.all.map(buildMenuItem).toList(),
+                Spacer(flex: 2,)
+              ],
+            ),
+
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Image.asset("assets/images/logoDark.png", width: 717*0.3, height: 445*0.3,),
+            )
           ],
         )
+
+        
       )
     ),
   );
