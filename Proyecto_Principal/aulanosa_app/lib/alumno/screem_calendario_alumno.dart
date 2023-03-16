@@ -48,7 +48,7 @@ class Calendario_alumno2 extends State<Calendario_alumno> {
           padding: const EdgeInsets.all(20.0),
           child: Column(children: [
              Container(
-              height: alturaPantalla * 0.53 ,
+              height: alturaPantalla * 0.6 ,
               decoration: 
               BoxDecoration(
                  //Configuracion de las sombras del contenedor del calendario
