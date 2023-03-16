@@ -1,7 +1,12 @@
+import 'package:aulanosa_app/admin/admin_alumnos.dart';
+import 'package:aulanosa_app/admin/admin_alumnos_externos.dart';
+import 'package:aulanosa_app/admin/admin_crear_usuario.dart';
+import 'package:aulanosa_app/admin/admin_cursos.dart';
+import 'package:aulanosa_app/admin/admin_empresa.dart';
+import 'package:aulanosa_app/admin/admin_productos.dart';
+import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 //Pagina AdminPrincipal de administrador
 class AdminPrincipal extends StatefulWidget {
@@ -12,33 +17,36 @@ class AdminPrincipal extends StatefulWidget {
 }
 
 class _AdminPrincipalState extends State<AdminPrincipal> {
-  var size, heightA, widthA;
+  //pantalla principal del administrador/editores
+
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 72, 122, 216),
-        title: Text('Página Principal'),
+        backgroundColor: const Color.fromARGB(255, 72, 122, 216),
+        title: const Text('Aula Nosa (provisional)'),
+
+        //Botón que nos abre el Drawer común en todas las clases
         leading: MenuWidget(),
       ),
-      backgroundColor: Color.fromARGB(255, 233, 233, 233),
+      backgroundColor: const Color.fromARGB(255, 233, 233, 233),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 32),
-              Container(
-                child: Text('Bienvenido Administrador',
+              const SizedBox(height: 32),
+              const Text(
+                'Bienvenido Administrador',
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 72, 122, 216),
                 ),
-                ),
-                ),
-              
-              SizedBox(height: 32),
+              ),
+
+              const SizedBox(height: 32),
+
+              //GridView para mostrar los botones de las distintas opciones
               GridView.builder(
                 padding: const EdgeInsets.all(8),
                 physics: const NeverScrollableScrollPhysics(),
@@ -50,15 +58,24 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                 ),
                 itemCount: PrincipalAdminButtons.getListButtons().length,
                 itemBuilder: (context, index) {
+                  //Sobre el gestureDetector se añade un onTap para que al pulsar el boton nos lleve a la pagina correspondiente
                   return GestureDetector(
-                     onTap: () {
-                      print('Tapped on item '+PrincipalAdminButtons.getListButtons()[index].nombre);
-                      } ,
+                    onTap: () {
+                      //print('Tapped on item ' +PrincipalAdminButtons.getListButtons()[index].nombre);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PrincipalAdminButtons.getListButtons()[index]
+                                  .ruta,
+                        ),
+                      );
+                    },
                     child: Container(
                       decoration: BoxDecoration(
-                        
+                        color: PrincipalAdminButtons.getListButtons()[index].color,
                         borderRadius: BorderRadius.circular(32),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                               color: Color.fromARGB(255, 72, 122, 216),
                               blurRadius: 15,
@@ -68,9 +85,10 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                       child: Center(
                         child: Text(
                           PrincipalAdminButtons.getListButtons()[index].nombre,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18.0,
                           ),
                         ),
                       ),
@@ -86,28 +104,27 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
   }
 }
 
+//Clase para crear los botones de la pagina principal
 class PrincipalAdminButtons {
+  //variable que almacena el nombre que aparecerá en el boton
+  final String nombre;
+  //variable que almacena la ruta de la pagina a la que nos lleva el boton
+  final Widget ruta;
 
-final String nombre;
-  final String ruta;
+  final Color color;
 
-  PrincipalAdminButtons(this.nombre, this.ruta);
+  PrincipalAdminButtons(this.nombre, this.ruta, this.color);
 
+  //Lista de botones que se mostrarán en la pagina principal
   static List<PrincipalAdminButtons> getListButtons() {
     return <PrincipalAdminButtons>[
-
-      PrincipalAdminButtons('Añadir Usuarios' ,''),
-      PrincipalAdminButtons('Empresa' ,''),
-      PrincipalAdminButtons('Alumnos' ,''),
-      PrincipalAdminButtons('Productos' ,''),
-      PrincipalAdminButtons('Proyectos' ,''),
-      PrincipalAdminButtons('Alumnos externos' ,''),
-      PrincipalAdminButtons('Cursos' ,''),
-
-
-
+      PrincipalAdminButtons('Añadir Usuarios', const CrearUsuarios(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Empresa', const AdminEmpresa(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Alumnos', const AdminAlumnos(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Productos', const AdminProductos(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Proyectos', const AdminProyectos(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Alumnos externos', const AlumnosExternos(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Cursos', const AdminCursos(), Color.fromARGB(204, 33, 149, 243)),
     ];
-
   }
-
 }
