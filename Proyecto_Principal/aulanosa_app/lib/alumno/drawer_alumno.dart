@@ -24,12 +24,12 @@ class MenuItems{
 }
 
 //La clase Menu es el cuerpo del Drawer en si, lo que vemos al pulsar el botón de la esquina superior izquierda
-class Menu extends StatelessWidget {
+class Menu_alumno extends StatelessWidget {
 
   final MenuItemm itemActual;
   final ValueChanged<MenuItemm> onSelectedItem;
 
-  const Menu({
+  const Menu_alumno({
     Key? key,
     required this.itemActual,
     required this.onSelectedItem,
