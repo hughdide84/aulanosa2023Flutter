@@ -113,7 +113,7 @@ class HomePageState extends State<MyApp>{
         // Este default VA A ESTAR CONTROLADO POR LA VARIABLE QUE CONTENGA EL ROLL DEL USUARIO QUE SE HA LOGGEADO
         // QUE SE VA A HACER EN UN FUTURO CUANDO LA API NOS DEVUELVA ESTA INFO //
       default:
-        return Main_alumno();
+        return AdminPrincipal();
 
       /*
       default:

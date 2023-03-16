@@ -14,10 +14,38 @@ class AdminPrincipal extends StatefulWidget {
 class _AdminPrincipalState extends State<AdminPrincipal> {
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: Color.fromARGB(255, 48, 92, 174),
-      title: Text('Página Principal'),
-      leading: MenuWidget(),
-    ),
-  );
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Text('Página Principal'),
+          leading: MenuWidget(),
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  child: Text('Bienvenido Administrador'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 6,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+            ),
+                  itemBuilder: (context, index){
+                    return Container(
+                      color: Colors.blue,
+                      child: Text('Hola'),
+                    );
+                  },
+                )
+              ],
+            ),
+          ),
+        ),
+        
+      );
 }
