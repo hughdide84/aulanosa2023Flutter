@@ -197,7 +197,7 @@ class Login2 extends State<Login>{
                       alignment: Alignment.center,
                       height: 60,
                       width: 200,
-                      child: const Text("Iniciar sesión", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),),
+                      child: const Text("Iniciar sesión", style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),),
                     ),
                   ),
 
