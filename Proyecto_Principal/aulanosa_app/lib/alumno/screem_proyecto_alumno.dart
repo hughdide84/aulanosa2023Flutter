@@ -13,7 +13,23 @@ class Proyecto_alumno extends StatefulWidget {
 class Proyecto_alumno2 extends State<Proyecto_alumno> {
   var size, heightA, widthA;
 
-  //Cuerpo de Vision de las fechas marcadas
+ 
+
+  
+
+  @override
+  Widget build(BuildContext context){ 
+    var size, heightA, widthA;
+    late double alturaPantalla;
+    late double anchoPantalla;
+
+     //Reogememos las medidas de alto y ancho del dispositivo para poder trabajar siempre con medidas RELATIVAS
+    setState(() {
+      size = MediaQuery.of(context).size;
+      alturaPantalla = size.height;
+      anchoPantalla = size.width;
+    });
+   //Cuerpo de Vision de las fechas marcadas
   Widget ventana_fechas_marcadas(){
     return Padding(
       padding: EdgeInsets.all(20.0),
@@ -44,8 +60,8 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
      return Padding(
       padding: EdgeInsets.all(20.0),
       child: Container(
-      width: 350,
-      height: 150,
+      width: anchoPantalla * 0.9,
+      height: alturaPantalla * 0.18 ,
       decoration: BoxDecoration(
         color:  Color.fromARGB(255, 233, 233, 233),
         boxShadow: [
@@ -90,11 +106,8 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
         ],
       )));
   }
-
   
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
+ return Scaffold(
     backgroundColor: Color.fromARGB(255, 233, 233, 233),
     appBar: AppBar(
       backgroundColor: Color.fromARGB(255, 48, 92, 174),
@@ -119,7 +132,7 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
       ],)
     )
   );}
-
+}
 // Requisitos -> 
   /*
   Visión de las fechas marcadas de tutorias, estado del proyecto que se esta
