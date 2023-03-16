@@ -34,49 +34,50 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
     return Padding(
       padding: EdgeInsets.all(20.0),
       child: Container(
-      width: 350,
-      height: 150,
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 233, 233, 233),
-        boxShadow: [
-                  BoxShadow(
-                    color:Color.fromARGB(255, 72, 122, 216),
-                    spreadRadius: 2,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+         alignment: Alignment.center,
+         width: anchoPantalla * 0.9,
+         height: alturaPantalla * 0.18,
+         decoration: BoxDecoration(
+         color: Color.fromARGB(255, 233, 233, 233),
+         boxShadow: [
+          BoxShadow(
+            color:Color.fromARGB(255, 72, 122, 216),
+            spreadRadius: 2,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
         borderRadius: BorderRadius.circular(9.0),
         border: Border.all(color: Colors.black)),
-      child: Stack(
-        children: [
-          Text("Fechas marcadas")
+        child: Stack(
+          children: [
+            Text("Correciones")
         ],
       )));
   }
-  
   //Cuerpo de vision de estado de proyecto
   Widget ventana_estado_proyecto(){
-     return Padding(
+        return Padding(
       padding: EdgeInsets.all(20.0),
       child: Container(
-      width: anchoPantalla * 0.9,
-      height: alturaPantalla * 0.18 ,
-      decoration: BoxDecoration(
-        color:  Color.fromARGB(255, 233, 233, 233),
-        boxShadow: [
-                  BoxShadow(
-                    color:Color.fromARGB(255, 72, 122, 216),
-                    spreadRadius: 2,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+         alignment: Alignment.center,
+         width: anchoPantalla * 0.9,
+         height: alturaPantalla * 0.18,
+         decoration: BoxDecoration(
+         color: Color.fromARGB(255, 233, 233, 233),
+         boxShadow: [
+          BoxShadow(
+            color:Color.fromARGB(255, 72, 122, 216),
+            spreadRadius: 2,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
         borderRadius: BorderRadius.circular(9.0),
         border: Border.all(color: Colors.black)),
-      child: Stack(
-        children: [
-          Text("Estado proyecto")
+        child: Stack(
+          children: [
+            Text("Fechas proyecto")
         ],
       )));
   }
@@ -86,23 +87,24 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
      return Padding(
       padding: EdgeInsets.all(20.0),
       child: Container(
-      width: 350,
-      height: 150,
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 233, 233, 233),
-        boxShadow: [
-                  BoxShadow(
-                    color:Color.fromARGB(255, 72, 122, 216),
-                    spreadRadius: 2,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+         alignment: Alignment.center,
+         width: anchoPantalla * 0.9,
+         height: alturaPantalla * 0.18,
+         decoration: BoxDecoration(
+         color: Color.fromARGB(255, 233, 233, 233),
+         boxShadow: [
+          BoxShadow(
+            color:Color.fromARGB(255, 72, 122, 216),
+            spreadRadius: 2,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
         borderRadius: BorderRadius.circular(9.0),
         border: Border.all(color: Colors.black)),
-      child: Stack(
-        children: [
-          Text("Correciones")
+        child: Stack(
+          children: [
+            Text("Estado del proyecto")
         ],
       )));
   }
