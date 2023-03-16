@@ -1,3 +1,4 @@
+import 'package:aulanosa_app/admin/admin_principal.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/pantallas/login.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Login()
+      home: AdminPrincipal()
     );
   }
 }
