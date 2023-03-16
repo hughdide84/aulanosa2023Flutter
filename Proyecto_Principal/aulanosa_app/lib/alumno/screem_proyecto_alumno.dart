@@ -32,7 +32,11 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                 ],
         borderRadius: BorderRadius.circular(9.0),
         border: Border.all(color: Colors.black)),
-      child: Stack()));
+      child: Stack(
+        children: [
+          Text("Fechas marcadas")
+        ],
+      )));
   }
   
   //Cuerpo de vision de estado de proyecto
@@ -54,7 +58,11 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                 ],
         borderRadius: BorderRadius.circular(9.0),
         border: Border.all(color: Colors.black)),
-      child: Stack()));
+      child: Stack(
+        children: [
+          Text("Estado proyecto")
+        ],
+      )));
   }
   
   //Cuerp de vision de la ventana de correciones
@@ -76,7 +84,11 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                 ],
         borderRadius: BorderRadius.circular(9.0),
         border: Border.all(color: Colors.black)),
-      child: Stack()));
+      child: Stack(
+        children: [
+          Text("Correciones")
+        ],
+      )));
   }
 
   
