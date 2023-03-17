@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_typing_uninitialized_variables, prefer_const_constructors, unnecessary_import, annotate_overrides, unused_import, unused_local_variable, non_constant_identifier_names, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, avoid_print, unused_element, unused_field, no_leading_underscores_for_local_identifiers
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_typing_uninitialized_variables, prefer_const_constructors, unnecessary_import, annotate_overrides, unused_import, unused_local_variable, non_constant_identifier_names, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, avoid_print, unused_element, unused_field, no_leading_underscores_for_local_identifiers, prefer_final_fields, sort_child_properties_last, sized_box_for_whitespace
 
 
 import 'package:flutter/cupertino.dart';
@@ -7,41 +7,31 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../objetosNecesarios/menu_widget.dart';
 //Pagina que contiene la informacion de proyecto del alumno
+const List <String> lista = ['One', 'Two', 'Three', 'Four'];
 
 class Proyecto_alumno extends StatefulWidget {
   Proyecto_alumno2 createState() => Proyecto_alumno2();
 }
 
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-    this.isExpanded = false,
-  });
+bool marcado = false;
 
-  String expandedValue;
-  String headerValue;
-  bool isExpanded;
-}
-
-List<Item> generateItems(int numberOfItems) {
-  return List<Item>.generate(numberOfItems, (int index) {
-    return Item(
-      headerValue: 'Panel $index',
-      expandedValue: 'This is item number $index',
-    );
-  });
-}
 
 class Proyecto_alumno2 extends State<Proyecto_alumno> {
   var size, heightA, widthA;
-  final List<Item> _data = generateItems(20);
+  
+  
+  String dropdownValue = lista.first;
+  
+
+  
 
   @override
   Widget build(BuildContext context) {
+    
     var size, heightA, widthA;
     late double alturaPantalla;
     late double anchoPantalla;
+    DateTime hoy = DateTime.now();
 
     //Reogememos las medidas de alto y ancho del dispositivo para poder trabajar siempre con medidas RELATIVAS
     setState(() {
@@ -49,35 +39,31 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
       alturaPantalla = size.height;
       anchoPantalla = size.width;
     });
+    
+    ListView _lista() {
+  return ListView(
+    children: <Widget>[
+      // ListTile es un widget que funciona como un bloque del ListView
+      ListTile(
+        // Tiene muchas propiedades que nos ayudan a ordenar la información.
+        // Titulo
+        title: Text('Primero'),
+        // Subtitulo
+        subtitle: Text('Este es el primer Tile'),
+        // Icono inicial del bloque
+        leading: Icon(Icons.add),
+        // Funcion que se ejecuta al hacer click en él
+        onTap: () {},
+      ),
+      ListTile(
+        title: Text('Primero'),
+        onTap: () {},
+      )
+    ],
+  );
+}
 
-    //Metodo para generar la la lista
-    Widget _buildPanel() {
-      return ExpansionPanelList(
-        expansionCallback: (int index, bool isExpanded) {
-          setState(() {
-            _data[index].isExpanded = !isExpanded;
-          });
-        },
-        children: _data.map<ExpansionPanel>((Item item) {
-          return ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return ListTile(
-                title: Text(item.headerValue),
-              );
-            },
-            body: ListTile(
-                title: Text(item.expandedValue),
-                trailing: Icon(Icons.abc),
-                onTap: () {
-                  setState(() {
-                    //_data.removeWhere((Item currentItem) => item == currentItem);
-                  });
-                }),
-            isExpanded: item.isExpanded,
-          );
-        }).toList(),
-      );
-    }
+
 
     //Cuerpo de Vision de las fechas marcadas
     Widget ventana_fechas_marcadas() {
@@ -88,20 +74,8 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
               width: anchoPantalla * 0.9,
               height: alturaPantalla * 0.18,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 72, 122, 216),
-                        Colors.cyan,
-                        Color.fromARGB(255, 72, 122, 216)
-                      ],
-                      stops: [
-                        0.2,
-                        0.7,
-                        4
-                      ],
-                      begin: FractionalOffset.topLeft,
-                      end: FractionalOffset.bottomCenter),
-                  color: Color.fromARGB(255, 233, 233, 233),
+                 
+                  color: Color.fromARGB(255, 72, 122, 216),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 72, 122, 216),
@@ -111,7 +85,7 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                     ),
                   ],
                   borderRadius: BorderRadius.circular(9.0),
-                  border: Border.all(color: Colors.cyan, width: 2)),
+                  border: Border.all(color: Colors.cyan, width: 3)),
               child: Stack(
                 children: [
                   InkWell(
@@ -133,29 +107,85 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
               )));
     }
 
-    //Estructura de la carta de tutorias
-    Card tutoriaCarta() {
-      return Card(
-          //Modificamos la forma de nuestra carta con esta propiedad
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          //Ahora viene la propia estructura de la carta
-          child: Column(
-            children: <Widget>[
-              ListTile(),
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () => {},
-                    icon: Icon(Icons.abc),
-                  ),
-                  IconButton(onPressed: () => {}, icon: Icon(Icons.abc))
-                ],
-              )
-            ],
-          ));
+    Color seleccionado() {
+      if(!marcado){
+        return Color.fromARGB(255, 72, 122, 216);
+      }
+      return Colors.indigo;
     }
-
+    Widget buildCar(int index) => Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      color: Color.fromARGB(255, 72, 122, 216),
+      child: Container(
+        padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+        
+        borderRadius: BorderRadius.circular(15),
+         boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 48, 92, 174),
+                      spreadRadius: 2,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+        color: seleccionado()
+        ),
+      margin: EdgeInsets.only(bottom: 15),
+      height: 200,
+      width: 300,
+      child:  Stack(children: [
+        Column(
+          children: [
+          Container(
+            decoration: BoxDecoration(),
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                 
+                child: Row(children: [
+                  Container(
+                  width: 180,
+                  decoration: BoxDecoration(
+                  border: Border(top: BorderSide.none, left: BorderSide.none, right: BorderSide.none, bottom: BorderSide(color: Colors.cyan, width: 4) ), 
+                ),
+                  child: Text("Tutoria",  style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 233, 233, 233), fontWeight: FontWeight.bold))),
+                  Container(
+                    margin: EdgeInsets.only(left: 40),
+                    child: IconButton(
+                      
+                      color: Colors.yellowAccent,
+                      onPressed: (
+                      ) {
+                        setState(() {
+                          marcado == false ? marcado = true: marcado = false;
+                        });
+                        
+                       
+                       
+                      }, icon: Icon(Icons.star)))
+                ],)
+           ),
+           Container(
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          )
+          ],)),
+          
+             Container(
+              alignment: Alignment.center,
+              height: 40,
+              margin: EdgeInsets.only(top: 30),
+              decoration: BoxDecoration(
+                
+                border: Border.all(width: 3, color: Colors.cyan),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(hoy.toString(), style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),))
+          ],),
+      
+      ],)
+     ));
     //Cuerpo de vision de estado de proyecto
     Widget ventana_estado_proyecto() {
       return Padding(
@@ -165,20 +195,8 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
               width: anchoPantalla * 0.9,
               height: alturaPantalla * 0.18,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 72, 122, 216),
-                        Colors.cyan,
-                        Color.fromARGB(255, 72, 122, 216)
-                      ],
-                      stops: [
-                        0.2,
-                        0.7,
-                        4
-                      ],
-                      begin: FractionalOffset.topLeft,
-                      end: FractionalOffset.bottomCenter),
-                  color: Color.fromARGB(255, 233, 233, 233),
+                color: Color.fromARGB(255, 72, 122, 216),
+                 
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 72, 122, 216),
@@ -188,7 +206,7 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                     ),
                   ],
                   borderRadius: BorderRadius.circular(9.0),
-                  border: Border.all(color: Colors.cyan, width: 2)),
+                  border: Border.all(color: Colors.cyan, width: 3)),
               child: Stack(
                 children: [
                   InkWell(
@@ -207,18 +225,38 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                         context: context,
                         barrierDismissible: false,
                         builder: (BuildContext context) {
-                          return SingleChildScrollView(
-                            child: Container(
-                              child: _buildPanel(),
-                            ),
-                          );
-                        },
+                         return StatefulBuilder(builder: (context, StateSetter setState) {
+                          return Padding(
+                          padding: EdgeInsets.all(20),
+                          child: SingleChildScrollView(
+                          child: Container(
+                            width: 200,
+                            child: Column(children: [
+                            buildCar(1),
+                             SizedBox(width: 40),
+                            buildCar(1),
+                            SizedBox(width: 10),
+                            buildCar(1),
+                            SizedBox(width: 10),
+                            buildCar(1),
+                            const SizedBox(width: 10),
+                            buildCar(1),
+                            const SizedBox(width: 10),
+                            buildCar(1),
+                            ],)
+                        )));
+
+                         });
+            
+                  },
                       );
                     },
                   ),
                 ],
               )));
     }
+
+    
 
     //Cuerp de vision de la ventana de correciones
     Widget ventana_correciones() {
@@ -229,20 +267,7 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
               width: anchoPantalla * 0.9,
               height: alturaPantalla * 0.18,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 72, 122, 216),
-                        Colors.cyan,
-                        Color.fromARGB(255, 72, 122, 216)
-                      ],
-                      stops: [
-                        0.2,
-                        0.7,
-                        4
-                      ],
-                      begin: FractionalOffset.topLeft,
-                      end: FractionalOffset.bottomCenter),
-                  color: Color.fromARGB(255, 233, 233, 233),
+                 color: Color.fromARGB(255, 72, 122, 216),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 72, 122, 216),
@@ -252,7 +277,7 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
                     ),
                   ],
                   borderRadius: BorderRadius.circular(9.0),
-                  border: Border.all(color: Colors.cyan, width: 2)),
+                  border: Border.all(color: Colors.cyan, width: 3)),
               child: Stack(
                 children: [
                   InkWell(
@@ -302,23 +327,26 @@ class Proyecto_alumno2 extends State<Proyecto_alumno> {
           ],
         )));
   }
+
+  
 }
 
-/*ExpansionPanelList(
-                        children: [
-                          ExpansionPanel(
-                              headerBuilder: (context, isOpen) {
-                                return Text("Hello");
-                              },
-                              body: Text("Now open"),
-                              isExpanded: true),
-                          ExpansionPanel(
-                              headerBuilder: (context, isOpen) {
-                                return Text("Hello");
-                              },
-                              body: Text("Now open"),
-                              isExpanded: estaAbierto[1]),
-                        ],
-                        expansionCallback: (i, isOpen) =>
-                            setState(() => estaAbierto[i] = !isOpen),
-                      ); */
+/*Padding(
+                          padding: EdgeInsets.all(20),
+                          child: SingleChildScrollView(
+                          child: Container(
+                            width: 200,
+                            child: Column(children: [
+                            buildCar(1),
+                             SizedBox(width: 40),
+                            buildCar(1),
+                            SizedBox(width: 10),
+                            buildCar(1),
+                            SizedBox(width: 10),
+                            buildCar(1),
+                            const SizedBox(width: 10),
+                            buildCar(1),
+                            const SizedBox(width: 10),
+                            buildCar(1),
+                            ],)
+                        ))); */
