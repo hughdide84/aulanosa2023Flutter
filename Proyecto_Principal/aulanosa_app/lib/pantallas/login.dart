@@ -64,7 +64,7 @@ class Login2 extends State<Login>{
             //parte superior de la pantalla con fondo azul que contiene el logo de AulaNosa
             Container(
               width: widthA,
-              height: heightA*0.4,
+              height: heightA*0.35,
               
               decoration: const BoxDecoration(
                 color:Color.fromARGB(255, 72, 122, 216),
@@ -79,7 +79,7 @@ class Login2 extends State<Login>{
                     child: Image.asset("assets/images/logo.png", width: 1123*0.25, height: 794*0.25,),
                   ),
 
-                  const SizedBox(height: 20,),
+                   SizedBox(height: heightA*0.02,),
 
                   //texto bienvenida
                   const Text("Bienvenidos a Aula Nosa", style: TextStyle(fontSize: 20, color: Colors.white)),
