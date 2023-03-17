@@ -64,7 +64,7 @@ class Login2 extends State<Login>{
             //parte superior de la pantalla con fondo azul que contiene el logo de AulaNosa
             Container(
               width: widthA,
-              height: heightA*0.4,
+              height: heightA*0.45,
               
               decoration: const BoxDecoration(
                 color:Color.fromARGB(255, 72, 122, 216),
