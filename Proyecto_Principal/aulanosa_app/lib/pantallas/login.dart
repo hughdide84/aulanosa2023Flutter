@@ -236,7 +236,7 @@ class Login2 extends State<Login>{
                       }
                       */
                       await comprobarUsuario(nombreUsuario, context);
-                      if(globales.roll.isNotEmpty){
+                      if(globales.roll!=""){
                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                       }
                     },
@@ -333,9 +333,10 @@ class Login2 extends State<Login>{
         }
       }catch(excepcion){
         print(excepcion);
+        Notififcaciones().errorInicioSesion(context);
 
       }
-        Notififcaciones().errorInicioSesion(context);
+        
       // RETORNA 0 EN CASO DE ERROR: SI LA CONTRASEÑA ES INCORRECTA O SI EL NOMBRE DE USUARIO NO EXISTE //
       
       
