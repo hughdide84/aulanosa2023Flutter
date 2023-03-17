@@ -47,7 +47,7 @@ class HomePageState extends State<MyApp>{
         // O Menu2 que es para el admin y sus pantallas //
         menuScreen: Builder(
           //SE DEBE HACER UNA FUNCION WIDGET QUE EN BASE A LO QUE RECIBA DEL LOGIN DEVUELVA MENU_ALUMNO O MENU_ADMIN//
-          builder: (context) => Menu_alumno(
+          builder: (context) => Menu_admin(
             itemActual: itemActual,
             //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
             onSelectedItem: (item) {
