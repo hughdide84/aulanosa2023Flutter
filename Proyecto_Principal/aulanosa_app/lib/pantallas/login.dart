@@ -55,219 +55,227 @@ class Login2 extends State<Login>{
       resizeToAvoidBottomInset: false,
 
       //cuerpo principal de toda la pantalla del login
-      body: Container(
-        height: heightA,
-        width: widthA,
-        child: Column(
-          children: [
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Container(
+          height: heightA,
+          width: widthA,
+          child: Column(
+            children: [
 
-            //parte superior de la pantalla con fondo azul que contiene el logo de AulaNosa
-            Container(
-              width: widthA,
-              height: heightA*0.45,
-              
-              decoration: const BoxDecoration(
-                color:Color.fromARGB(255, 72, 122, 216),
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 50,),
-                        
-                  //logo aulanosa
-                  Align(
-                    alignment: Alignment.center,
-                    child: Image.asset("assets/images/logo.png", width: 1123*0.25, height: 794*0.25,),
-                  ),
+              //parte superior de la pantalla con fondo azul que contiene el logo de AulaNosa
+              Container(
+                width: widthA,
+                height: heightA*0.4,
+                
+                decoration: const BoxDecoration(
+                  color:Color.fromARGB(255, 72, 122, 216),
+                ),
+                child: Column(
+                  children: [
 
-                   SizedBox(height: heightA*0.01,),
-
-                  //texto bienvenida
-                  const Text("Bienvenidos a Aula Nosa", style: TextStyle(fontSize: 20, color: Colors.white)),
-                ],
-              ),
-            ),
-
-            //formulario donde ponemos nuestro usuario y contraseña
-            Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  const SizedBox(height: 50),
-
-                  //columna con el texto 'usuario' y su respectivo cuadro de texto
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    
-                      //texto 'usuario'
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: const Text("Usuario", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
+                    //logo aula nosa   
+                    Container(
+                      //color: Colors.yellow,
+                      margin: EdgeInsets.only(top: 10),
+                      width: widthA,
+                      height: heightA*0.3,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Image.asset("assets/images/logo.png", width: 1123*0.25, height: 794*0.25,),
                       ),
-              
-                      Stack(
-                        children: [
-                          //cuadro de texto para el usuario
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 206, 206, 206),
-                              borderRadius:  BorderRadius.horizontal(
-                                left: Radius.circular(20),
-                                right: Radius.circular(20)
-                              )
-                            ),
-                            height: heightA*0.05,
-                            width: widthA*0.7,
-                          ),
-                          Container(
-                            width: widthA*0.6,
-                            margin: EdgeInsets.only(left: widthA*0.04),
-                            alignment: Alignment.center,
-                            child:TextFormField(
-                               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                              decoration: const InputDecoration(
-                                border: InputBorder.none
-                              ),
-                               onSaved: (value){
-                                nombreUsuario = value!;
-                                
-                              },
-                              // validator: (value) {
-                              //     if(value!.isEmpty){
-                                      
-                              //         return 'Campo vacio';
-                              //     }
+                    ),
+                    //texto bienvenida
+                    const Text("Bienvenidos a Aula Nosa", style: TextStyle(fontSize: 20, color: Colors.white)),
+                  ],
+                ),
+              ),
 
-                              //   if(value.length < 3){
-                              //       return 'Campo no válido';
-                              //     }
-                              //   },
+              //formulario donde ponemos nuestro usuario y contraseña
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 40),
+
+                    //columna con el texto 'usuario' y su respectivo cuadro de texto
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      
+                        //texto 'usuario'
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: const Text("Usuario", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
+                        ),
+                
+                        Stack(
+                          children: [
+                            //cuadro de texto para el usuario
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 206, 206, 206),
+                                borderRadius:  BorderRadius.horizontal(
+                                  left: Radius.circular(20),
+                                  right: Radius.circular(20)
+                                )
+                              ),
+                              height: heightA*0.05,
+                              width: widthA*0.7,
+                            ),
+                            Container(
+                              width: widthA*0.6,
+                              margin: EdgeInsets.only(left: widthA*0.04),
+                              alignment: Alignment.center,
+                              child:TextFormField(
+                                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none
+                                ),
+                                onSaved: (value){
+                                  nombreUsuario = value!;
+                                  
+                                },
+                                // validator: (value) {
+                                //     if(value!.isEmpty){
+                                        
+                                //         return 'Campo vacio';
+                                //     }
+
+                                //   if(value.length < 3){
+                                //       return 'Campo no válido';
+                                //     }
+                                //   },
+                              ),   
                             ),   
-                          ),   
-                        ],
-                      )
-                    ],
-                  ),
-
-                  const SizedBox(height: 25,),
-
-                  //columna con el texto 'contraseña' y su respectivo cuadro de texto
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      
-                      //texto 'contraseña'
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: const Text("Contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
-                      ),
-
-                      Stack(
-                        children: [
-                          //cuadro de texto para la contraseña //
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 206, 206, 206),
-                              borderRadius:  BorderRadius.horizontal(
-                                left: Radius.circular(20),
-                                right: Radius.circular(20)
-                              )
-                            ),
-                            height: heightA*0.05,
-                            width: widthA*0.7,
-                          ),
-
-                          // Campo donde rellena el usuario los datos, en este caso la contraseña //
-                          Container(
-                            width: widthA*0.6,
-                            margin: EdgeInsets.only(left: widthA*0.04),
-                            alignment: Alignment.center,
-                            child:TextFormField(
-                              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                              decoration: const InputDecoration(
-                                border: InputBorder.none
-                              ),
-                              onSaved: (value){
-                                contrasena = value!;
-                              },
-                              obscureText: verContrasena,
-                            ),  
-                          ),
-
-                          // Container del icono del ojo para cambiar la visibilidad de la contraseña //
-                          Container(
-                            margin: EdgeInsets.only(left: widthA*0.59),
-                            child: IconButton(
-                              iconSize: 25,
-                              icon: const Icon(Icons.visibility),
-                              // En este onPressed llamo a la función que cambia la visibilidad de la contraseña //
-                              onPressed: () {
-                                visionContrasena();
-                              },
-                            )   
-                          ) 
-                        ],
-                      ), 
-                    ],
-                  ),
-
-                  // Espaciador entre containers //
-                  const SizedBox(height: 50,),
-
-                  //boton de iniciar sesión
-                  InkWell(
-                    onTap: () async {
-
-                      // ignore: unrelated_type_equality_checks
-                      
-                      
-                      formKey.currentState!.save();
-                      
-                      // Posibilidades de vuelta de la funcion //
-                      // Si el roll que ha devuelto no esta vacio //
-                      // Avanzo a la siguiente clase en función al roll que le de //
-                      await comprobarUsuario(nombreUsuario, context);
-                      if(globales.roll!=""){
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-                      }
-                    },
-                    child: Container(
-                      decoration:  const BoxDecoration(
-                        color: Color.fromARGB(255, 72, 122, 216),
-                        borderRadius:  BorderRadius.horizontal(
-                          left: Radius.circular(20),
-                          right: Radius.circular(20),
+                          ],
                         )
+                      ],
+                    ),
+
+                    const SizedBox(height: 25,),
+
+                    //columna con el texto 'contraseña' y su respectivo cuadro de texto
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        
+                        //texto 'contraseña'
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: const Text("Contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
+                        ),
+
+                        Stack(
+                          children: [
+                            //cuadro de texto para la contraseña //
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 206, 206, 206),
+                                borderRadius:  BorderRadius.horizontal(
+                                  left: Radius.circular(20),
+                                  right: Radius.circular(20)
+                                )
+                              ),
+                              height: heightA*0.05,
+                              width: widthA*0.7,
+                            ),
+
+                            // Campo donde rellena el usuario los datos, en este caso la contraseña //
+                            Container(
+                              width: widthA*0.6,
+                              margin: EdgeInsets.only(left: widthA*0.04),
+                              alignment: Alignment.center,
+                              child:TextFormField(
+                                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none
+                                ),
+                                onSaved: (value){
+                                  contrasena = value!;
+                                },
+                                obscureText: verContrasena,
+                              ),  
+                            ),
+
+                            // Container del icono del ojo para cambiar la visibilidad de la contraseña //
+                            Container(
+                              margin: EdgeInsets.only(left: widthA*0.59),
+                              child: IconButton(
+                                iconSize: 25,
+                                icon: const Icon(Icons.visibility),
+                                // En este onPressed llamo a la función que cambia la visibilidad de la contraseña //
+                                onPressed: () {
+                                  visionContrasena();
+                                },
+                              )   
+                            ) 
+                          ],
+                        ), 
+                      ],
+                    ),
+
+                    // Espaciador entre containers //
+                    const SizedBox(height: 50,),
+
+                    //boton de iniciar sesión
+                    InkWell(
+                      onTap: () async {
+
+                        // ignore: unrelated_type_equality_checks
+                        
+                        
+                        formKey.currentState!.save();
+                        
+                        // Posibilidades de vuelta de la funcion //
+                        // Si el roll que ha devuelto no esta vacio //
+                        // Avanzo a la siguiente clase en función al roll que le de //
+                        await comprobarUsuario(nombreUsuario, context);
+                        if(globales.roll!=""){
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                        }
+                      },
+                      child: Container(
+                        decoration:  const BoxDecoration(
+                          color: Color.fromARGB(255, 72, 122, 216),
+                          borderRadius:  BorderRadius.horizontal(
+                            left: Radius.circular(20),
+                            right: Radius.circular(20),
+                          )
+                        ),
+                        alignment: Alignment.center,
+                        height: 60,
+                        width: 200,
+                        child: const Text("Iniciar sesión", style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),),
                       ),
-                      alignment: Alignment.center,
-                      height: 60,
-                      width: 200,
-                      child: const Text("Iniciar sesión", style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),),
                     ),
-                  ),
 
-                  // Espaciador entre containers //
-                  const SizedBox(height: 20),
+                    // Espaciador entre containers //
+                    const SizedBox(height: 20),
 
-                  //boton de cambio de contraseña //
-                  InkWell(
-                    onTap: () {
-                    // Este boton llama a otra pantalla para cambiar la contraseña del usuario //
-                      Navigator.push(context,MaterialPageRoute(builder: (context) =>cambioContrasena(),));
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: 150,
-                      child: const Text("Cambiar Contraseña", style: TextStyle(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),),
+                    //boton de cambio de contraseña //
+                    InkWell(
+                      onTap: () {
+                      // Este boton llama a otra pantalla para cambiar la contraseña del usuario //
+                        Navigator.push(context,MaterialPageRoute(builder: (context) =>cambioContrasena(),));
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 150,
+                        child: const Text("Cambiar Contraseña", style: TextStyle(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),),
+                      ),
                     ),
-                  ),
-                ],
-              )
-            ),
-          ],
-        )
-      ), 
+                  ],
+                )
+              ),
+            ],
+          )
+        ),
+      ) 
     );
   }
   // Función que varia la visibilidad de la contraseña //
