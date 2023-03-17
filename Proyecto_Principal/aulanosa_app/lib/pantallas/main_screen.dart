@@ -11,7 +11,7 @@ import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/admin/drawer_admin.dart';
 import 'package:aulanosa_app/alumno/drawer_alumno.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
-import 'package:aulanosa_app/alumno/pruebas_ppal.dart';
+import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_empresa_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_mensajeria_alumno.dart';
@@ -82,7 +82,7 @@ class HomePageState extends State<MyApp>{
 
       // Casos para las pantallas de alumnos //
       case MenuItems.main_alumno:
-        return PruebasPpalAlumno();
+        return AlumnoPrincipal();
       case MenuItems.empresa_alumno:
         return Empresa_alumno();
       case MenuItems.mensajes_alumno:
