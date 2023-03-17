@@ -58,10 +58,9 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                 ),
                 itemCount: PrincipalAdminButtons.getListButtons().length,
                 itemBuilder: (context, index) {
-                  //Sobre el gestureDetector se añade un onTap para que al pulsar el boton nos lleve a la pagina correspondiente
+                  //Sobre el gestureDetector se añade un onTap para que al pulsar el boton nos lleve a la pagina correspondiente, la página está definida en la clase PrincipalAdminButtons
                   return GestureDetector(
                     onTap: () {
-                      //print('Tapped on item ' +PrincipalAdminButtons.getListButtons()[index].nombre);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -71,8 +70,10 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                         ),
                       );
                     },
+                    //Container que contiene el boton, 
                     child: Container(
                       decoration: BoxDecoration(
+                        //se le define el color llamando a la clase PrincipalAdminButtons y su variable color
                         color: PrincipalAdminButtons.getListButtons()[index].color,
                         borderRadius: BorderRadius.circular(32),
                         boxShadow: const [
@@ -82,8 +83,10 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                               blurStyle: BlurStyle.outer)
                         ],
                       ),
+                      //se añade el texto del boton
                       child: Center(
                         child: Text(
+                          //se define el texto llamando a la clase PrincipalAdminButtons y su variable nombre
                           PrincipalAdminButtons.getListButtons()[index].nombre,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
