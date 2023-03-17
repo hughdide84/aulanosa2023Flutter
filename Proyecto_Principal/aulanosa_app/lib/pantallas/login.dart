@@ -2,6 +2,7 @@ import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
+import 'package:aulanosa_app/util/notificaciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -225,15 +226,13 @@ String nombreUsuario ="";
                       // 0 para codigo de error //
                       // La siguiente linea de codigo guarda los datos recogidos por teclado //
                       formKey.currentState!.save();
-                      print(nombreUsuario);
-                      print(contrasena);
-
+                      
                       // Variable para comparar el retorno (roll) de la API para enviar a una pantalla o a otra //
-                      int comprobarRoll= await comprobarUsuario(nombreUsuario);
+                      int comprobarRoll= await comprobarUsuario(nombreUsuario, context);
 
                       if(comprobarRoll==1){
-                         print("roll admin");
-                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                        // MIRAR QUE NAVIGATOR HACER EN FUNCION A LA CLASE PRINCIPAL //
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                       }else if(comprobarRoll==2){
                          print("roll editor");
                         // Navigator a la clase 
@@ -241,12 +240,8 @@ String nombreUsuario ="";
                       }else if (comprobarRoll==3){
                         // Navigator a la clase principal del alumno 
                         print("roll usuario");
-                      }else{
-                        // Snackbar de error Usuario o Contraseña Incorrecta //
-                        print("algo ha ido muy mal");
                       }
                       
-                     
                     },
                     child: Container(
                       decoration:  const BoxDecoration(
@@ -273,24 +268,16 @@ String nombreUsuario ="";
                       Navigator.push(context,MaterialPageRoute(builder: (context) =>cambioContrasena(),));
                     },
                     child: Container(
-                      decoration:  const BoxDecoration(
-                        color: Color.fromARGB(255, 72, 122, 216),
-                        borderRadius:  BorderRadius.horizontal(
-                          left: Radius.circular(20),
-                          right: Radius.circular(20),
-                        )
-                      ),
                       alignment: Alignment.center,
                       height: 50,
                       width: 150,
-                      child: const Text("Cambiar Contraseña", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),),
+                      child: const Text("Cambiar Contraseña", style: TextStyle(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),),
                     ),
                   ),
                 ],
               )
             ),
           ],
-
         )
       ), 
     );
@@ -307,7 +294,7 @@ String nombreUsuario ="";
   // Si son correctos guarda su roll para enviarle a una pantalla o a otra //
   // Devuelve un boleano en funcion a si esta comprobacion es positiva o no //
 
-  Future<int>comprobarUsuario(String nombreUsuario) async{
+  Future<int>comprobarUsuario(String nombreUsuario,BuildContext context) async{
       // Variable entera que devuelvo en funcion al roll cuando la contraseña es correcta //
      
 
@@ -325,8 +312,11 @@ String nombreUsuario ="";
       try{
         Usuario usuarioEntrada = Usuario.devolverUsuario(respuestaApi.body);
         if(usuarioEntrada.password==contrasena){
-        
-          if(usuarioEntrada.rol=="ADM"){
+          
+          if(usuarioEntrada.rol=="ADM"){  
+
+            //  Notififcaciones().acertadoInicioSesion(context);
+
               return 1;
 
           // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
@@ -342,10 +332,13 @@ String nombreUsuario ="";
         print(excepcion);
 
       }
-
+        Notififcaciones().errorInicioSesion(context);
       // RETORNA 0 EN CASO DE ERROR: SI LA CONTRASEÑA ES INCORRECTA O SI EL NOMBRE DE USUARIO NO EXISTE //
       return 0;
       
   }
+
+
+  
 }
 
