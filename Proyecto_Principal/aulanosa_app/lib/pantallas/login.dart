@@ -73,7 +73,7 @@ String nombreUsuario ="";
               ),
               child: Column(
                 children: [
-                  const SizedBox(height: 50,),
+                  SizedBox(height: heightA*0.06,),
                         
                   //logo aulanosa
                   Align(
@@ -81,7 +81,7 @@ String nombreUsuario ="";
                     child: Image.asset("assets/images/logo.png", width: 1123*0.25, height: 794*0.25,),
                   ),
 
-                  const SizedBox(height: 20,),
+                  SizedBox(height: heightA*0.02,),
 
                   //texto bienvenida
                   const Text("Bienvenidos a Aula Nosa", style: TextStyle(fontSize: 20, color: Colors.white)),
