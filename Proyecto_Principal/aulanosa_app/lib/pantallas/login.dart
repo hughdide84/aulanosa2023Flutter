@@ -222,34 +222,20 @@ String nombreUsuario ="";
 
                       // ignore: unrelated_type_equality_checks
                       // Posibilidades de vuelta de la funcion //
-                      // 1 para roll admin //
-                      // 2 para roll editor //
-                      // 3 para roll alumno //
-                      // 0 para codigo de error //
+                      // Si devuelve true la comprobación ha sido correcta //
+                      // Y se a actualizado la variable global roll para arrastrarla al resto de clases //
+                      // Si devuelve false, la comprobación ha sido incorrecta //
+                      // No actualiza la variable global roll y muestra una notificación al usuario por pantalla //
                       // La siguiente linea de codigo guarda los datos recogidos por teclado //
                       formKey.currentState!.save();
                       
                       // Variable para comparar el retorno (roll) de la API para enviar a una pantalla o a otra //
-                      /*
-                      int comprobarRoll= await comprobarUsuario(nombreUsuario, context);
+                      bool comprobarRoll= await comprobarUsuario(nombreUsuario, context);
 
-                      if(comprobarRoll==1){
+                      if(comprobarRoll==true){
                         // MIRAR QUE NAVIGATOR HACER EN FUNCION A LA CLASE PRINCIPAL //
                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-
-                      }else if(comprobarRoll==2){
-                         print("roll editor");
-                        // Navigator a la clase 
-                          //Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-                      }else if (comprobarRoll==3){
-                        // Navigator a la clase principal del alumno 
-                        print("roll usuario");
-                      }
-                      */
-                      comprobarUsuario(nombreUsuario, context);
-
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-                      
+                      }   
                     },
                     child: Container(
                       decoration:  const BoxDecoration(
@@ -302,7 +288,7 @@ String nombreUsuario ="";
   // Si son correctos guarda su roll para enviarle a una pantalla o a otra //
   // Devuelve un boleano en funcion a si esta comprobacion es positiva o no //
 
-  Future<int>comprobarUsuario(String nombreUsuario,BuildContext context) async{
+  Future<bool>comprobarUsuario(String nombreUsuario,BuildContext context) async{
       // Variable entera que devuelvo en funcion al roll cuando la contraseña es correcta //
      
 
@@ -327,16 +313,16 @@ String nombreUsuario ="";
           if(usuarioEntrada.rol=="ADM"){ 
               
               print(globales.roll);
-              return 1;
+              return true;
 
           // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
           // ESTOS ROLLES AUN NO TIENEN NOMENCLATURA //
           }else if(usuarioEntrada.rol=="editor"){
               
-              return 2;
+              return true;
           }else if(usuarioEntrada.rol=="alumno"){
            
-              return 3;
+              return true;
           }
           
         }
@@ -346,7 +332,7 @@ String nombreUsuario ="";
       }
         Notififcaciones().errorInicioSesion(context);
       // RETORNA 0 EN CASO DE ERROR: SI LA CONTRASEÑA ES INCORRECTA O SI EL NOMBRE DE USUARIO NO EXISTE //
-      return 0;
+      return false;
       
   }
 
