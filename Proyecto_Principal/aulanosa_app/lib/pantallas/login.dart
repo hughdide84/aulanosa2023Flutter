@@ -21,11 +21,10 @@ bool contrasenaCorrecta = false;
 String urlcomprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
 
 
-// Variable para guardar el nombre de usuario que insertar el usuario //
-String nombreUsuario ="";
+
 
 // Variable para guardar la contraseña de usuario que inserta el usuario //
-String contrasena ="";
+String contrasena ="pgadmin";
 
 
 class Login extends StatefulWidget{
@@ -37,7 +36,8 @@ class Login2 extends State<Login>{
   //variables de tamaño de pantalla, alto y ancho//
   var size, heightA, widthA;
   final formKey = GlobalKey<FormState>();
-
+// Variable para guardar el nombre de usuario que insertar el usuario //
+String nombreUsuario ="";
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +223,7 @@ class Login2 extends State<Login>{
                       // 2 para roll editor //
                       // 3 para roll alumno //
                       // 0 para codigo de error //
-
+                      formKey.currentState!.save();
                       int comprobarRoll= await comprobarUsuario(nombreUsuario);
                       if(comprobarRoll==1){
                          print("roll admin");
@@ -306,11 +306,11 @@ class Login2 extends State<Login>{
      
 
       // Parseo del url de la api a uri //
-      Uri myUri = Uri.parse('${urlcomprobarUsuario}'+ '\${nombreUsuario}');
+      Uri myUri = Uri.parse('${urlcomprobarUsuario}'+ '${nombreUsuario}');
 
       // Llamada a la api, guardo su respuesta en la variable respuestaApi //
       // para luego poder parsearla y trabajar con ella //
-      final respuestaApi=await http.post(myUri);
+      final respuestaApi=await http.get(myUri);
 
       try{
         Usuario usuarioEntrada = Usuario.devolverUsuario(respuestaApi.body);
