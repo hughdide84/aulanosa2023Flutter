@@ -20,7 +20,22 @@ class Notas_alumno2 extends State<Notas_alumno> {
 
   var size, heightA, widthA;
 
+  //String que gana valor al entrar a una asignatura, es el título que sale arriba al entrar a una
+  //asignatura en detalle
   late String nombreAsignatura;
+
+  //color de letra y de fondo del botón de 'Notas Examenes'
+  Color fondoExamenes = Color.fromARGB(255, 48, 92, 174);
+  Color letraExamenes = Colors.white;
+
+  //color de letra y de fondo del botón de 'Notas Prácticas'
+  Color fondoPracticas = Colors.transparent;
+  Color letraPracticas = Color.fromARGB(255, 48, 92, 174);
+
+  //INT que indica si estamos viendo las notas de los examenes o de las prácticas
+  //0.- Examenes
+  //1.- Prácticas
+  int tipoNotas = 0;
 
   //Este booleano indica si hemos clickadoe en una de las asignaturas para verla en más detalle.
   //Si está positivo, todo el cuerpo de la pantalla cambiará para mostrar info de esa asignatura en concreto//
@@ -301,16 +316,20 @@ class Notas_alumno2 extends State<Notas_alumno> {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: [
               InkWell(
+                onTap: () {
+                  tipoNotas = 0;
+                  cambioTipoNotas();
+                },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 48, 92, 174),
+                    color: fondoExamenes,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   alignment: Alignment.center,
                   width: (MediaQuery.of(context).size.width)*0.4,
                   height: (MediaQuery.of(context).size.width)*0.1,
                   
-                  child: Text("Notas exámenes", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
+                  child: Text("Notas exámenes", style: TextStyle(color: letraExamenes, fontSize: 18, fontWeight: FontWeight.bold),),
                 ),
               ),
 
@@ -318,7 +337,23 @@ class Notas_alumno2 extends State<Notas_alumno> {
                 width: 22,
               ),
               
-              Text("Notas prácticas", style: TextStyle(color: Color.fromARGB(255, 48, 92, 174), fontSize: 18, fontWeight: FontWeight.bold),),
+              InkWell(
+                onTap: () {
+                  tipoNotas = 1;
+                  cambioTipoNotas();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: fondoPracticas,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  alignment: Alignment.center,
+                  width: (MediaQuery.of(context).size.width)*0.4,
+                  height: (MediaQuery.of(context).size.width)*0.1,
+                  
+                  child: Text("Notas prácticas", style: TextStyle(color: letraPracticas, fontSize: 18, fontWeight: FontWeight.bold),),
+                ),
+              ),
             ],
           ),
 
@@ -340,7 +375,11 @@ class Notas_alumno2 extends State<Notas_alumno> {
             //NO DEBE DEVOLVER UN TEXTO, DEBE DEVOVLER UNA LISTA DE EXAMENES
             //PENDIENTE DE COMO NOS DIGAN QUE EL PROFESORADO LO QUIERE MANEJAR//
             child: SingleChildScrollView(
-              child: Text("[Exámen tema 2]: 6", style: TextStyle(fontSize: 25),),
+              child: Container(
+                height: (MediaQuery.of(context).size.height)*0.2,
+                width: (MediaQuery.of(context).size.width)*0.9,
+                child: cambioListView(),
+              ),
             ),
           )
 
@@ -348,6 +387,71 @@ class Notas_alumno2 extends State<Notas_alumno> {
         ],
       ),
     );
+  }
+
+
+  //dos array string de prueba, esta info debrá recibirse de la BBDD
+  List<String> pruebaExamenes = [
+    "[Exámen tema 2]: 6",
+    "[Exámen Recuperación tema 3]: 8"
+  ];
+  List<String> pruebaPracticas = [
+    "[Primera entrega clicker]: 8",
+    "[Práctica Sockets]: 4"
+  ];
+
+
+  //funcion que devuelve un listview.builder para ver las notas de las practicas o de los examenes
+  //devolverá una lista u otra en base a que boton hayamos pulsado (examenes o practicas)
+  Widget cambioListView(){
+
+    if(tipoNotas==0){
+      return ListView.builder(
+        itemCount: pruebaExamenes.length,
+        itemBuilder: (BuildContext context, int index){
+
+          //Cada InkWell es una asignatura, que al pulsar nos lleva a esa asignatura//
+          return Text(pruebaExamenes[index], style: TextStyle(fontSize: 20));
+        }
+      );
+    }else{
+      return ListView.builder(
+        itemCount: pruebaPracticas.length,
+        itemBuilder: (BuildContext context, int index){
+
+          //Cada InkWell es una asignatura, que al pulsar nos lleva a esa asignatura//
+          return Text(pruebaPracticas[index], style: TextStyle(fontSize: 20));
+        }
+      );
+    }
+    
+  }
+
+
+  //funcion que cambia el color de letra y de fondo de los botones (practica y examenes) cuando pulsamos uno u otro
+  void cambioTipoNotas(){
+
+    if(tipoNotas==0){
+
+      setState(() {
+        fondoExamenes = Color.fromARGB(255, 48, 92, 174);
+        letraExamenes = Colors.white;
+
+        fondoPracticas = Colors.transparent;
+        letraPracticas = Color.fromARGB(255, 48, 92, 174);
+      });
+
+    }else{
+
+      setState(() {
+        fondoPracticas = Color.fromARGB(255, 48, 92, 174);
+        letraPracticas = Colors.white;
+
+        fondoExamenes = Colors.transparent;
+        letraExamenes = Color.fromARGB(255, 48, 92, 174);
+      });
+    }
+
   }
 
 
