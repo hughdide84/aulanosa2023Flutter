@@ -18,13 +18,13 @@ bool contrasenaCorrecta = false;
 // Esta contraseña es la que comparo con la contraseña introducida por el usuario por pantalla //
 // Además tambien recojo la variable "roll" de la API para enviar al usuario a las páginas de admin o de alumno //
 // A esta variable le concateno el nombre del usuario que estoy buscando //
-String urlcomprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
+String urlComprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
 
 
 
 
 // Variable para guardar la contraseña de usuario que inserta el usuario //
-String contrasena ="pgadmin";
+String contrasena ="";
 
 
 class Login extends StatefulWidget{
@@ -223,11 +223,17 @@ String nombreUsuario ="";
                       // 2 para roll editor //
                       // 3 para roll alumno //
                       // 0 para codigo de error //
+                      // La siguiente linea de codigo guarda los datos recogidos por teclado //
                       formKey.currentState!.save();
+                      print(nombreUsuario);
+                      print(contrasena);
+
+                      // Variable para comparar el retorno (roll) de la API para enviar a una pantalla o a otra //
                       int comprobarRoll= await comprobarUsuario(nombreUsuario);
+
                       if(comprobarRoll==1){
                          print("roll admin");
-                        //  Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                       }else if(comprobarRoll==2){
                          print("roll editor");
                         // Navigator a la clase 
@@ -306,12 +312,16 @@ String nombreUsuario ="";
      
 
       // Parseo del url de la api a uri //
-      Uri myUri = Uri.parse('${urlcomprobarUsuario}'+ '${nombreUsuario}');
+      // La concatenacion de ('${urlComprobarUsuario}'+ '${nombreUsuario}') es //
+      // el url de la API el nombre de usuario que nos introduce por formulario //
+       
+      Uri myUri = Uri.parse('${urlComprobarUsuario}'+ '${nombreUsuario}');
 
       // Llamada a la api, guardo su respuesta en la variable respuestaApi //
       // para luego poder parsearla y trabajar con ella //
       final respuestaApi=await http.get(myUri);
 
+      //
       try{
         Usuario usuarioEntrada = Usuario.devolverUsuario(respuestaApi.body);
         if(usuarioEntrada.password==contrasena){
@@ -320,6 +330,7 @@ String nombreUsuario ="";
               return 1;
 
           // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
+          // ESTOS ROLLES AUN NO TIENEN NOMENCLATURA //
           }else if(usuarioEntrada.rol=="editor"){
               return 2;
           }else if(usuarioEntrada.rol=="alumno"){
@@ -331,6 +342,8 @@ String nombreUsuario ="";
         print(excepcion);
 
       }
+
+      // RETORNA 0 EN CASO DE ERROR: SI LA CONTRASEÑA ES INCORRECTA O SI EL NOMBRE DE USUARIO NO EXISTE //
       return 0;
       
   }
