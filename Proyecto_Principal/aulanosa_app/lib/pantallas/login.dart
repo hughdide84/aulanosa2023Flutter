@@ -24,8 +24,6 @@ bool contrasenaCorrecta = false;
 String urlComprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
 
 
-
-
 // Variable para guardar la contraseña de usuario que inserta el usuario //
 String contrasena ="";
 
@@ -39,8 +37,8 @@ class Login2 extends State<Login>{
   //variables de tamaño de pantalla, alto y ancho//
   var size, heightA, widthA;
   final formKey = GlobalKey<FormState>();
-// Variable para guardar el nombre de usuario que insertar el usuario //
-String nombreUsuario ="";
+  // Variable para guardar el nombre de usuario que insertar el usuario //
+  String nombreUsuario ="";
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,7 @@ String nombreUsuario ="";
               ),
               child: Column(
                 children: [
-                  SizedBox(height: heightA*0.06,),
+                  const SizedBox(height: 50,),
                         
                   //logo aulanosa
                   Align(
@@ -81,7 +79,7 @@ String nombreUsuario ="";
                     child: Image.asset("assets/images/logo.png", width: 1123*0.25, height: 794*0.25,),
                   ),
 
-                  SizedBox(height: heightA*0.02,),
+                  const SizedBox(height: 20,),
 
                   //texto bienvenida
                   const Text("Bienvenidos a Aula Nosa", style: TextStyle(fontSize: 20, color: Colors.white)),
@@ -230,12 +228,17 @@ String nombreUsuario ="";
                       formKey.currentState!.save();
                       
                       // Variable para comparar el retorno (roll) de la API para enviar a una pantalla o a otra //
-                      bool comprobarRoll= await comprobarUsuario(nombreUsuario, context);
+                      /*bool comprobarRoll= await comprobarUsuario(nombreUsuario, context);
 
                       if(comprobarRoll==true){
                         // MIRAR QUE NAVIGATOR HACER EN FUNCION A LA CLASE PRINCIPAL //
                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-                      }   
+                      }
+                      */
+                      await comprobarUsuario(nombreUsuario, context);
+                      if(globales.roll.isNotEmpty){
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                      }
                     },
                     child: Container(
                       decoration:  const BoxDecoration(
@@ -288,7 +291,7 @@ String nombreUsuario ="";
   // Si son correctos guarda su roll para enviarle a una pantalla o a otra //
   // Devuelve un boleano en funcion a si esta comprobacion es positiva o no //
 
-  Future<bool>comprobarUsuario(String nombreUsuario,BuildContext context) async{
+  Future <void> comprobarUsuario(String nombreUsuario,BuildContext context) async{
       // Variable entera que devuelvo en funcion al roll cuando la contraseña es correcta //
      
 
@@ -309,22 +312,24 @@ String nombreUsuario ="";
           
           // Actualizo la variable global de roll del usuario para ahora en la siguiente ventana//
           globales.roll=usuarioEntrada.rol;
-
+          /*
           if(usuarioEntrada.rol=="ADM"){ 
               
               print(globales.roll);
-              return true;
+              return 1;
 
           // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
           // ESTOS ROLLES AUN NO TIENEN NOMENCLATURA //
           }else if(usuarioEntrada.rol=="editor"){
               
-              return true;
+              return 1;
           }else if(usuarioEntrada.rol=="alumno"){
            
-              return true;
+              return 1;
           }
-          
+          */
+        }else{
+          globales.roll="";
         }
       }catch(excepcion){
         print(excepcion);
@@ -332,7 +337,7 @@ String nombreUsuario ="";
       }
         Notififcaciones().errorInicioSesion(context);
       // RETORNA 0 EN CASO DE ERROR: SI LA CONTRASEÑA ES INCORRECTA O SI EL NOMBRE DE USUARIO NO EXISTE //
-      return false;
+      
       
   }
 
