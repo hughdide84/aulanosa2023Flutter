@@ -73,7 +73,8 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: PrincipalAdminButtons.getListButtons()[index].color,
+                        color:
+                            PrincipalAdminButtons.getListButtons()[index].color,
                         borderRadius: BorderRadius.circular(32),
                         boxShadow: const [
                           BoxShadow(
@@ -106,6 +107,9 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
 
 //Clase para crear los botones de la pagina principal
 class PrincipalAdminButtons {
+//Construcyor
+  PrincipalAdminButtons(this.nombre, this.ruta, this.color);
+
   //variable que almacena el nombre que aparecerá en el boton
   final String nombre;
   //variable que almacena la ruta de la pagina a la que nos lleva el boton
@@ -113,18 +117,23 @@ class PrincipalAdminButtons {
 
   final Color color;
 
-  PrincipalAdminButtons(this.nombre, this.ruta, this.color);
-
   //Lista de botones que se mostrarán en la pagina principal
   static List<PrincipalAdminButtons> getListButtons() {
     return <PrincipalAdminButtons>[
-      PrincipalAdminButtons('Añadir Usuarios', const CrearUsuarios(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Empresa', const AdminEmpresa(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Alumnos', const AdminAlumnos(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Productos', const AdminProductos(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Proyectos', const AdminProyectos(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Alumnos externos', const AlumnosExternos(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Cursos', const AdminCursos(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Añadir Usuarios', const CrearUsuarios(),
+          Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons(
+          'Empresa', const AdminEmpresa(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons(
+          'Alumnos', const AdminAlumnos(), Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Productos', const AdminProductos(),
+          Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Proyectos', const AdminProyectos(),
+          Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Alumnos externos', const AlumnosExternos(),
+          Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons(
+          'Cursos', const AdminCursos(), Color.fromARGB(204, 33, 149, 243)),
     ];
   }
 }
