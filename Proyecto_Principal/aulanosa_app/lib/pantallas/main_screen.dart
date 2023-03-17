@@ -67,16 +67,24 @@ class HomePageState extends State<MyApp>{
   // MenuItems_Admin es para las clases que contienen las pantallas disponibles para los admins/editores //
 
   Widget getScreen(){
+
     if(!globales.inicializado){
       globales.inicializado=true;
       if(globales.roll=="ADMIN"){
        itemActual = MenuItems_Admin.adminPrincipal;
-    }else if(globales.roll=="ALUMNO"){
-       itemActual = MenuItems_Alumno.main_alumno;
-    }else if(globales.roll=="EDITOR"){
-       itemActual = MenuItems_Admin.adminEmpresa;
+      }else if(globales.roll=="ALUMNO"){
+        itemActual = MenuItems_Alumno.main_alumno;
+      }else if(globales.roll=="EDITOR"){
+        itemActual = MenuItems_Admin.adminEmpresa;
+      }
     }
+
+    if(globales.redireccion==""){
+      //NO DEBE HACER NADA SI ESTÁ VACÍO
+    }else{
+      valorRedireccion();
     }
+
     //MenuItemm itemActual = MenuItems_Alumno.main_alumno;
     switch (itemActual){
       
@@ -135,59 +143,11 @@ class HomePageState extends State<MyApp>{
 
   Builder pantallaSiguiente(){
 
-      // Mirar la nomenclatura para el alumno //
-      if(globales.roll=="ALUMNO"){
-        
-        return Builder(
-          builder: (context) => Menu_alumno(
-          itemActual: itemActual,
-          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
-          onSelectedItem: (item) {
-            setState(() {
-              itemActual = item;
-            });
-            ZoomDrawer.of(context)!.close();
-          }
-        ),
-
-        );
-      }
-      if(globales.roll=="ADMIN"){
-        
-        return  Builder(
-          builder: (context) => Menu_admin(
-          itemActual: itemActual,
-          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
-          onSelectedItem: (item) {
-            setState(() {
-              itemActual = item;
-            });
-            ZoomDrawer.of(context)!.close();
-          }
-        ),
-
-        );
-      }
-
-      if(globales.roll=="EDITOR"){
-        
-        return  Builder(
-          builder: (context) => Menu_admin(
-          itemActual: itemActual,
-          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
-          onSelectedItem: (item) {
-            setState(() {
-              itemActual = item;
-            });
-            ZoomDrawer.of(context)!.close();
-          }
-        ),
-
-        );
-      }
-
+    // Mirar la nomenclatura para el alumno //
+    if(globales.roll=="ALUMNO"){
+      
       return Builder(
-          builder: (context) => Menu_alumno(
+        builder: (context) => Menu_alumno(
           itemActual: itemActual,
           //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
           onSelectedItem: (item) {
@@ -198,8 +158,66 @@ class HomePageState extends State<MyApp>{
           }
         ),
 
-        );
+      );
     }
+    if(globales.roll=="ADMIN"){
+      
+      return  Builder(
+        builder: (context) => Menu_admin(
+          itemActual: itemActual,
+          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+          onSelectedItem: (item) {
+            setState(() {
+              itemActual = item;
+            });
+            ZoomDrawer.of(context)!.close();
+          }
+        ),
+
+      );
+    }
+
+    if(globales.roll=="EDITOR"){
+      
+      return  Builder(
+        builder: (context) => Menu_admin(
+          itemActual: itemActual,
+          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+          onSelectedItem: (item) {
+            setState(() {
+              itemActual = item;
+            });
+            ZoomDrawer.of(context)!.close();
+          }
+        ),
+
+      );
+    }
+
+    return Builder(
+      builder: (context) => Menu_alumno(
+        itemActual: itemActual,
+        //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+        onSelectedItem: (item) {
+          setState(() {
+            itemActual = item;
+          });
+          ZoomDrawer.of(context)!.close();
+        }
+      ),
+
+    );
+  }
+
+
+  void valorRedireccion(){
+
+    if(globales.redireccion=="calendario"){
+      itemActual = MenuItems_Alumno.calendario_alumno;
+    }
+
+    globales.redireccion = "";
+  }
 
     
 }

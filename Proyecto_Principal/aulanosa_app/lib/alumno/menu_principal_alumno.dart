@@ -1,9 +1,11 @@
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
+import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
 class AlumnoPrincipal extends StatefulWidget {
   const AlumnoPrincipal({super.key});
@@ -309,7 +311,8 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
                       ),
                       onPressed: (){
                         //TODO revisar push para que no pete despues al intentar abrir el drawer desde la pagina a la que has accedido
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => Calendario_alumno()));
+                        globales.redireccion="calendario";
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()));
                       },
                       child: Text('Ver calendario completo',
                         style: TextStyle(

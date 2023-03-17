@@ -2,3 +2,5 @@
 String roll="";
 
 bool inicializado=false;
+
+String redireccion="";
