@@ -1,4 +1,5 @@
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
+import 'package:aulanosa_app/globals/variable_global.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
 // Variable para controlar la vision de la contraseña //
 bool verContrasena = true;
@@ -228,11 +230,13 @@ String nombreUsuario ="";
                       formKey.currentState!.save();
                       
                       // Variable para comparar el retorno (roll) de la API para enviar a una pantalla o a otra //
+                      /*
                       int comprobarRoll= await comprobarUsuario(nombreUsuario, context);
 
                       if(comprobarRoll==1){
                         // MIRAR QUE NAVIGATOR HACER EN FUNCION A LA CLASE PRINCIPAL //
                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+
                       }else if(comprobarRoll==2){
                          print("roll editor");
                         // Navigator a la clase 
@@ -241,6 +245,10 @@ String nombreUsuario ="";
                         // Navigator a la clase principal del alumno 
                         print("roll usuario");
                       }
+                      */
+                      comprobarUsuario(nombreUsuario, context);
+
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                       
                     },
                     child: Container(
@@ -313,17 +321,21 @@ String nombreUsuario ="";
         Usuario usuarioEntrada = Usuario.devolverUsuario(respuestaApi.body);
         if(usuarioEntrada.password==contrasena){
           
-          if(usuarioEntrada.rol=="ADM"){  
+          // Actualizo la variable global de roll del usuario para ahora en la siguiente ventana//
+          globales.roll=usuarioEntrada.rol;
 
-            //  Notififcaciones().acertadoInicioSesion(context);
-
+          if(usuarioEntrada.rol=="ADM"){ 
+              
+              print(globales.roll);
               return 1;
 
           // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
           // ESTOS ROLLES AUN NO TIENEN NOMENCLATURA //
           }else if(usuarioEntrada.rol=="editor"){
+              
               return 2;
           }else if(usuarioEntrada.rol=="alumno"){
+           
               return 3;
           }
           

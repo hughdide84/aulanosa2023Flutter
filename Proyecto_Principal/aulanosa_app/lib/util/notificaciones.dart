@@ -10,7 +10,7 @@ class Notififcaciones{
   // SnakBar para mostrar un error en el inicio de sesion de la clase login //
   void errorInicioSesion(BuildContext context) {
     final snb = SnackBar(
-      backgroundColor: Color.fromARGB(0, 247, 3, 3),
+      backgroundColor: Color.fromARGB(255, 230, 6, 6),
     content:
         Row(
           children: const [
