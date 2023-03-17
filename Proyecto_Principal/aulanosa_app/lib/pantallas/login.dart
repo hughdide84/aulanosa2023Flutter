@@ -219,22 +219,13 @@ class Login2 extends State<Login>{
                     onTap: () async {
 
                       // ignore: unrelated_type_equality_checks
-                      // Posibilidades de vuelta de la funcion //
-                      // Si devuelve true la comprobación ha sido correcta //
-                      // Y se a actualizado la variable global roll para arrastrarla al resto de clases //
-                      // Si devuelve false, la comprobación ha sido incorrecta //
-                      // No actualiza la variable global roll y muestra una notificación al usuario por pantalla //
-                      // La siguiente linea de codigo guarda los datos recogidos por teclado //
+                      
+                      
                       formKey.currentState!.save();
                       
-                      // Variable para comparar el retorno (roll) de la API para enviar a una pantalla o a otra //
-                      /*bool comprobarRoll= await comprobarUsuario(nombreUsuario, context);
-
-                      if(comprobarRoll==true){
-                        // MIRAR QUE NAVIGATOR HACER EN FUNCION A LA CLASE PRINCIPAL //
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-                      }
-                      */
+                      // Posibilidades de vuelta de la funcion //
+                      // Si el roll que ha devuelto no esta vacio //
+                      // Avanzo a la siguiente clase en función al roll que le de //
                       await comprobarUsuario(nombreUsuario, context);
                       if(globales.roll!=""){
                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
@@ -312,22 +303,7 @@ class Login2 extends State<Login>{
           
           // Actualizo la variable global de roll del usuario para ahora en la siguiente ventana//
           globales.roll=usuarioEntrada.rol;
-          /*
-          if(usuarioEntrada.rol=="ADM"){ 
-              
-              print(globales.roll);
-              return 1;
-
-          // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
-          // ESTOS ROLLES AUN NO TIENEN NOMENCLATURA //
-          }else if(usuarioEntrada.rol=="editor"){
-              
-              return 1;
-          }else if(usuarioEntrada.rol=="alumno"){
-           
-              return 1;
-          }
-          */
+          
         }else{
           globales.roll="";
         }

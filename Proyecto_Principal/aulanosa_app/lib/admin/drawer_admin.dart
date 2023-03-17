@@ -4,7 +4,7 @@ import 'package:aulanosa_app/objetosNecesarios/menu_item.dart';
 import 'package:flutter/material.dart';
 
 //definimos todas las opciones accesibles desde el drawer
-class MenuItems2{
+class MenuItems_Admin{
 
   static const adminPrincipal = MenuItemm('Principal', Icons.home);
   //static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
@@ -56,7 +56,7 @@ class Menu_admin extends StatelessWidget {
               //estético entre ellas
               children: <Widget> [
                 Spacer(),
-                ...MenuItems2.all.map(buildMenuItem).toList(),
+                ...MenuItems_Admin.all.map(buildMenuItem).toList(),
                 Spacer(flex: 2,),
 
                 

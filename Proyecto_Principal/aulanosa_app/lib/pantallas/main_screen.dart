@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../alumno/menu_principal_alumno.dart';
 import '../objetosNecesarios/menu_item.dart';
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
 class MyApp extends StatefulWidget{
   @override
@@ -29,34 +30,20 @@ class MyApp extends StatefulWidget{
   }
 
 class HomePageState extends State<MyApp>{
-  //pantalla actual de entre todas las existentes
+  // pantalla actual de entre todas las existentes //
 
-  //IMPORTANTE!!!!!!!!!!: esto debe recibir valor despues del login, para que lleve a la pagina principal del
-  //alumno o admin dependiendo del usuario, no siemore del alumno//
-  MenuItemm itemActual = MenuItems.main_alumno;
+  late MenuItemm itemActual;
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       home: ZoomDrawer(
 
         //menuScreen es el cuerpo del drawer//
 
-        // Este builder va a depender en un futuro de la variable que recojamos de la API que nos diga el roll del usuario //
-        // En el builder le vamos a mandar o Menu que es para el usuario alumno y sus pantallas //
-        // O Menu2 que es para el admin y sus pantallas //
         menuScreen: Builder(
-          //SE DEBE HACER UNA FUNCION WIDGET QUE EN BASE A LO QUE RECIBA DEL LOGIN DEVUELVA MENU_ALUMNO O MENU_ADMIN//
-          builder: (context) => Menu_alumno(
-            itemActual: itemActual,
-            //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
-            onSelectedItem: (item) {
-              setState(() {
-                itemActual = item;
-              });
-              ZoomDrawer.of(context)!.close();
-            }
-          ),
+          builder: (context)=> pantallaSiguiente(),
         ) ,
 
         //mainScreen es la pantalla a la que accedemos a través de las opciones del drawer
@@ -75,57 +62,144 @@ class HomePageState extends State<MyApp>{
 
   //esta funcion devuelve una pantalla (clase) en base al valor actual de 'itemActual', el cual cambia de valor al darle
   //click a las opciones que vemos en el drawer //
-  // Hay dos listas de MenuItems, MenuItems es para las clases que contienen las pantallas disponibles para los usuarios alumnos //
-  // MenuItems2 es para las clases que contienen las pantallas disponibles para los admins/editores //
-  Widget getScreen(){
-    switch (itemActual){
+  // Hay dos listas de MenuItems, MenuItems_Alumno es para las clases que contienen //
+  // las pantallas disponibles para los usuarios alumnos //
+  // MenuItems_Admin es para las clases que contienen las pantallas disponibles para los admins/editores //
 
+  Widget getScreen(){
+    if(!globales.inicializado){
+      globales.inicializado=true;
+      if(globales.roll=="ADMIN"){
+       itemActual = MenuItems_Admin.adminPrincipal;
+    }else if(globales.roll=="ALUMNO"){
+       itemActual = MenuItems_Alumno.main_alumno;
+    }else if(globales.roll=="EDITOR"){
+       itemActual = MenuItems_Admin.adminEmpresa;
+    }
+    }
+    //MenuItemm itemActual = MenuItems_Alumno.main_alumno;
+    switch (itemActual){
+      
       // Casos para las pantallas de alumnos //
-      case MenuItems.main_alumno:
+      case MenuItems_Alumno.main_alumno:
         return AlumnoPrincipal();
-      case MenuItems.empresa_alumno:
+      case MenuItems_Alumno.empresa_alumno:
         return Empresa_alumno();
-      case MenuItems.mensajes_alumno:
+      case MenuItems_Alumno.mensajes_alumno:
         return Mensajeria_alumno();
-      case MenuItems.notas_alumno:
+      case MenuItems_Alumno.notas_alumno:
         return Notas_alumno();
-      case MenuItems.proyecto_alumno:
+      case MenuItems_Alumno.proyecto_alumno:
         return Proyecto_alumno();
-      case MenuItems.calendario_alumno:
+      case MenuItems_Alumno.calendario_alumno:
         return Calendario_alumno();
 
         // Casos para las pantallas de admin/editor //
-      case MenuItems2.adminPrincipal:
+      case MenuItems_Admin.adminPrincipal:
         return AdminPrincipal();   
-      case MenuItems2.adminAlumnos:
+      case MenuItems_Admin.adminAlumnos:
         return AdminAlumnos();
-      case MenuItems2.adminAlumnosExternos:
+      case MenuItems_Admin.adminAlumnosExternos:
         return AlumnosExternos();
-      case MenuItems2.adminCursos:
+      case MenuItems_Admin.adminCursos:
         return AdminCursos();  
-      case MenuItems2.adminEmpresa:
+      case MenuItems_Admin.adminEmpresa:
         return AdminEmpresa();
-      case MenuItems2.adminProductos:
+      case MenuItems_Admin.adminProductos:
         return AdminProductos();
-      case MenuItems2.adminProyectos:
+      case MenuItems_Admin.adminProyectos:
         return AdminProyectos();
          
 
-        // Este default VA A ESTAR CONTROLADO POR LA VARIABLE QUE CONTENGA EL ROLL DEL USUARIO QUE SE HA LOGGEADO
-        // QUE SE VA A HACER EN UN FUTURO CUANDO LA API NOS DEVUELVA ESTA INFO //
+        // Este default va controlado por la variable global del roll que he actualizado en el login //
+        
       default:
-        return AdminPrincipal();
+        if(globales.roll=="ALUMNO"){
+          return AlumnoPrincipal();
 
-      /*
-      default:
-        if(rollUsuario=="alumno"){
-            return Main_Alumno();
+        }else if(globales.roll=="ADMIN"){
 
-        }else if(rollUsuario=="admin"){
-            return AdminPrincipal();
+          return AdminPrincipal();
+
+        }else if(globales.roll=="EDITOR"){
+
+          return AdminPrincipal();
+          // En caso de que de alguna forma de error de momento lo mando //
+          // A la clase del alumno que es el usuario que suele puede consultar datos y no modificarlos //
+        }else{
+          return AlumnoPrincipal();
         }
-      */ 
+      
     }
   }
 
+  Builder pantallaSiguiente(){
+
+      // Mirar la nomenclatura para el alumno //
+      if(globales.roll=="ALUMNO"){
+        
+        return Builder(
+          builder: (context) => Menu_alumno(
+          itemActual: itemActual,
+          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+          onSelectedItem: (item) {
+            setState(() {
+              itemActual = item;
+            });
+            ZoomDrawer.of(context)!.close();
+          }
+        ),
+
+        );
+      }
+      if(globales.roll=="ADMIN"){
+        
+        return  Builder(
+          builder: (context) => Menu_admin(
+          itemActual: itemActual,
+          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+          onSelectedItem: (item) {
+            setState(() {
+              itemActual = item;
+            });
+            ZoomDrawer.of(context)!.close();
+          }
+        ),
+
+        );
+      }
+
+      if(globales.roll=="EDITOR"){
+        
+        return  Builder(
+          builder: (context) => Menu_admin(
+          itemActual: itemActual,
+          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+          onSelectedItem: (item) {
+            setState(() {
+              itemActual = item;
+            });
+            ZoomDrawer.of(context)!.close();
+          }
+        ),
+
+        );
+      }
+
+      return Builder(
+          builder: (context) => Menu_alumno(
+          itemActual: itemActual,
+          //cambia el valor de la pantalla actual a la que hemos clickado en el drawer y cierra el drawer
+          onSelectedItem: (item) {
+            setState(() {
+              itemActual = item;
+            });
+            ZoomDrawer.of(context)!.close();
+          }
+        ),
+
+        );
+    }
+
+    
 }
