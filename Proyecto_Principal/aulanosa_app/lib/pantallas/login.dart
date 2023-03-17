@@ -1,13 +1,31 @@
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
+import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:http/http.dart' as http;
 
 // Variable para controlar la vision de la contraseña //
 bool verContrasena = true;
+
+// Variable para aceptar el inicio de sesion en función a la comprobación de contraseña //
+bool contrasenaCorrecta = false;
+
+// Variable que contiene el url del endpoint de la API para consultar usuarios por su nombre //
+// Este endpoint me devuelve todo el objeto usuario de la bbdd, con su correspondiente contraseña //
+// Esta contraseña es la que comparo con la contraseña introducida por el usuario por pantalla //
+// Además tambien recojo la variable "roll" de la API para enviar al usuario a las páginas de admin o de alumno //
+// A esta variable le concateno el nombre del usuario que estoy buscando //
+String urlcomprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
+
+
+// Variable para guardar el nombre de usuario que insertar el usuario //
+String nombreUsuario ="";
+
+// Variable para guardar la contraseña de usuario que inserta el usuario //
+String contrasena ="";
 
 
 class Login extends StatefulWidget{
@@ -109,6 +127,20 @@ class Login2 extends State<Login>{
                               decoration: const InputDecoration(
                                 border: InputBorder.none
                               ),
+                               onSaved: (value){
+                                nombreUsuario = value!;
+                                
+                              },
+                              // validator: (value) {
+                              //     if(value!.isEmpty){
+                                      
+                              //         return 'Campo vacio';
+                              //     }
+
+                              //   if(value.length < 3){
+                              //       return 'Campo no válido';
+                              //     }
+                              //   },
                             ),   
                           ),   
                         ],
@@ -154,6 +186,9 @@ class Login2 extends State<Login>{
                               decoration: const InputDecoration(
                                 border: InputBorder.none
                               ),
+                              onSaved: (value){
+                                contrasena = value!;
+                              },
                               obscureText: verContrasena,
                             ),  
                           ),
@@ -180,11 +215,32 @@ class Login2 extends State<Login>{
 
                   //boton de iniciar sesión
                   InkWell(
-                    onTap: () {
-                     // el login actualmente siempre va a llevar a las paginas de los alumnos, en un futuro
-                     //dependerá del rol que tenga el usuario que recibamos de la api (pendiente de api)//
+                    onTap: () async {
+
+                      // ignore: unrelated_type_equality_checks
+                      // Posibilidades de vuelta de la funcion //
+                      // 1 para roll admin //
+                      // 2 para roll editor //
+                      // 3 para roll alumno //
+                      // 0 para codigo de error //
+
+                      int comprobarRoll= await comprobarUsuario(nombreUsuario);
+                      if(comprobarRoll==1){
+                         print("roll admin");
+                        //  Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                      }else if(comprobarRoll==2){
+                         print("roll editor");
+                        // Navigator a la clase 
+                          //Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                      }else if (comprobarRoll==3){
+                        // Navigator a la clase principal del alumno 
+                        print("roll usuario");
+                      }else{
+                        // Snackbar de error Usuario o Contraseña Incorrecta //
+                        print("algo ha ido muy mal");
+                      }
+                      
                      
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                     },
                     child: Container(
                       decoration:  const BoxDecoration(
@@ -239,6 +295,44 @@ class Login2 extends State<Login>{
       verContrasena=!verContrasena;
     });
     
+  }
+
+  // Método para comprobar que el usuario y la contraseña que se introduce son correctos //
+  // Si son correctos guarda su roll para enviarle a una pantalla o a otra //
+  // Devuelve un boleano en funcion a si esta comprobacion es positiva o no //
+
+  Future<int>comprobarUsuario(String nombreUsuario) async{
+      // Variable entera que devuelvo en funcion al roll cuando la contraseña es correcta //
+     
+
+      // Parseo del url de la api a uri //
+      Uri myUri = Uri.parse('${urlcomprobarUsuario}'+ '\${nombreUsuario}');
+
+      // Llamada a la api, guardo su respuesta en la variable respuestaApi //
+      // para luego poder parsearla y trabajar con ella //
+      final respuestaApi=await http.post(myUri);
+
+      try{
+        Usuario usuarioEntrada = Usuario.devolverUsuario(respuestaApi.body);
+        if(usuarioEntrada.password==contrasena){
+        
+          if(usuarioEntrada.rol=="ADM"){
+              return 1;
+
+          // COMPROBAR COMO LE LLAMAN AL ROLL EDITOR EN LA API //
+          }else if(usuarioEntrada.rol=="editor"){
+              return 2;
+          }else if(usuarioEntrada.rol=="alumno"){
+              return 3;
+          }
+          
+        }
+      }catch(excepcion){
+        print(excepcion);
+
+      }
+      return 0;
+      
   }
 }
 

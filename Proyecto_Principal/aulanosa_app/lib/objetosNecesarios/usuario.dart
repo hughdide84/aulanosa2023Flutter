@@ -29,12 +29,12 @@ class Usuario {
     String rol;
 
 
-
-  static Usuario devolverObjeto(String datos){
+  // Métodos para devolver objetos usuario pasandole el string que formateo desde el json de la api //
+  static Usuario devolverUsuario(String datos){
     return  usuarioFromJson(datos);
   } 
 
-  static List<Usuario> devolverListaObjeto(String datos){
+  static List<Usuario> devolverListaUsuarios(String datos){
     return  usuariosFromJson(datos);
   } 
 
