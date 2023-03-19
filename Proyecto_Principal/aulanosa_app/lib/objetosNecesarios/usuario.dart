@@ -21,7 +21,7 @@ class Usuario {
         required this.email,
         required this.rol,
     });
-
+    
     int id;
     String nombre;
     String password;
@@ -31,7 +31,7 @@ class Usuario {
 
   // Métodos para devolver objetos usuario pasandole el string que formateo desde el json de la api //
   static Usuario devolverUsuario(String datos){
-    return  usuarioFromJson(datos);
+    return usuarioFromJson(datos);
   } 
 
   static List<Usuario> devolverListaUsuarios(String datos){
