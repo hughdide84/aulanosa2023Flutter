@@ -210,10 +210,27 @@ class HomePageState extends State<MyApp>{
   }
 
 
+  //cuando intentas ir a una página del drawer mediante un boton y no desde el propio drawer
+  //al volver a pulsar el boton de abrir el drawer el programa explota, ya que al hacer un navigator
+  //finaliza el drawer inicializado.
+  //la forma de solucionar esto es navegar a la pagina principal, que sí inicializa el drawer
+  //y cambiar la pagina inicial
   void valorRedireccion(){
 
     if(globales.redireccion=="calendario"){
       itemActual = MenuItems_Alumno.calendario_alumno;
+    }else if(globales.redireccion=="notas"){
+      itemActual = MenuItems_Alumno.notas_alumno;
+    }else if(globales.redireccion=="empresa"){
+      itemActual = MenuItems_Alumno.empresa_alumno;
+    }else if(globales.redireccion=="proyecto"){
+      itemActual = MenuItems_Alumno.proyecto_alumno;
+    }else if(globales.redireccion=="tutorias"){
+      //itemActual = MenuItems_Alumno.;
+    }else if(globales.redireccion=="mensajes"){
+      itemActual = MenuItems_Alumno.mensajes_alumno;
+    }else if(globales.redireccion=="ajustes"){
+      //itemActual = MenuItems_Alumno;
     }
 
     globales.redireccion = "";

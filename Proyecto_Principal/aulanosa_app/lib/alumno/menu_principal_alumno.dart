@@ -22,12 +22,12 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
   //LISTAS DE ELEMENTOS SCROLLEABLES//
   //Lista horizontal
   List opciones = [
-    Opcion(nombre: 'Notas', icono: Icon(Icons.checklist_rtl, size: 50), ruta: 'CAMBIARPORRUTA1'),
-    Opcion(nombre: 'Empresa', icono: Icon(Icons.business_center_sharp, size: 50), ruta: 'CAMBIARPORRUTA2'),
-    Opcion(nombre: 'Proyecto', icono: Icon(Icons.auto_awesome_motion_sharp, size: 50), ruta: 'CAMBIARPORRUTA3'),
-    Opcion(nombre: 'Tutorias', icono: Icon(Icons.co_present_outlined, size: 50), ruta: 'CAMBIARPORRUTA4'),
-    Opcion(nombre: 'Mensajes', icono: Icon(Icons.message, size: 50), ruta: 'CAMBIARPORRUTA5'),
-    Opcion(nombre: 'Ajustes', icono: Icon(Icons.settings, size: 50), ruta: 'CAMBIARPORRUTA6')
+    Opcion(nombre: 'Notas', icono: Icon(Icons.checklist_rtl, size: 50), ruta: 'notas'),
+    Opcion(nombre: 'Empresa', icono: Icon(Icons.business_center_sharp, size: 50), ruta: 'empresa'),
+    Opcion(nombre: 'Proyecto', icono: Icon(Icons.auto_awesome_motion_sharp, size: 50), ruta: 'proyecto'),
+    Opcion(nombre: 'Tutorias', icono: Icon(Icons.co_present_outlined, size: 50), ruta: 'tutorias'),
+    Opcion(nombre: 'Mensajes', icono: Icon(Icons.message, size: 50), ruta: 'mensajes'),
+    Opcion(nombre: 'Ajustes', icono: Icon(Icons.settings, size: 50), ruta: 'ajustes')
   ];
 
   //Lista vertical
@@ -171,8 +171,10 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
                   //este container es cada una de las opciones que podemos pulsar desde el perfil principal
                   return GestureDetector(
                     onTap: () {
-                      //TODO cambiar por los corresponidentes push a las opciones mostradas en pantalla
-                      print(opciones[index].ruta);
+
+                      globales.redireccion = opciones[index].ruta;
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()));
+                      
                     },
                     child: Container(
                     decoration: BoxDecoration(
@@ -310,7 +312,7 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
                           ))
                       ),
                       onPressed: (){
-                        //TODO revisar push para que no pete despues al intentar abrir el drawer desde la pagina a la que has accedido
+                        
                         globales.redireccion="calendario";
                         Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()));
                       },
