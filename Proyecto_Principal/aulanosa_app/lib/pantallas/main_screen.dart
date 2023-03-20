@@ -231,7 +231,23 @@ class HomePageState extends State<MyApp>{
       itemActual = MenuItems_Alumno.mensajes_alumno;
     }else if(globales.redireccion=="ajustes"){
       //itemActual = MenuItems_Alumno;
-    }
+    }else if(globales.redireccion=="Añadir Usuarios"){
+      itemActual = MenuItems_Admin.adminAlumnosExternos;
+      }else if(globales.redireccion=="Empresas"){
+      itemActual = MenuItems_Admin.adminEmpresa;
+      }
+      else if(globales.redireccion=="Alumnos"){
+      itemActual = MenuItems_Admin.adminAlumnos;
+      }
+      else if(globales.redireccion=="Proyectos"){
+      itemActual = MenuItems_Admin.adminProyectos;
+      }
+      else if(globales.redireccion=="Alumnos externos"){
+      itemActual = MenuItems_Admin.adminAlumnosExternos;
+      }
+      else if(globales.redireccion=="Cursos"){
+      itemActual = MenuItems_Admin.adminCursos;
+      }
 
     globales.redireccion = "";
   }

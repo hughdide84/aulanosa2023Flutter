@@ -8,6 +8,8 @@ import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
+
 
 //Pagina AdminPrincipal de administrador
 class AdminPrincipal extends StatefulWidget {
@@ -63,6 +65,7 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                   return GestureDetector(
                     onTap: () {
                       //print('Tapped on item ' +PrincipalAdminButtons.getListButtons()[index].nombre);
+globales.redireccion = PrincipalAdminButtons.getListButtons()[index].ruta;
                       Navigator.push(
                         context,
                         MaterialPageRoute(
