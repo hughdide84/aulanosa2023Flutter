@@ -1,5 +1,7 @@
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/globals/variable_global.dart';
+import 'package:aulanosa_app/objetosNecesarios/alumno.dart';
+import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
@@ -22,6 +24,16 @@ bool contrasenaCorrecta = false;
 // Además tambien recojo la variable "roll" de la API para enviar al usuario a las páginas de admin o de alumno //
 // A esta variable le concateno el nombre del usuario que estoy buscando //
 String urlComprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
+
+
+// Variable que guarda la url para la direccion de la API de //
+// recuperacion de datos del alumnno en funcion a su nombre de usuario//
+String urlApiAlumnoDatos="http://10.0.2.2:8080/api/alumno/usuario/";
+
+
+// recuperacion de datos del curso del alumno //
+String urlCursoAlumno="http://10.0.2.2:8080/api/curso/";
+
 
 
 // Variable para guardar la contraseña de usuario que inserta el usuario //
@@ -235,9 +247,12 @@ class Login2 extends State<Login>{
                         // Si el roll que ha devuelto no esta vacio //
                         // Avanzo a la siguiente clase en función al roll que le de //
                         await comprobarUsuario(nombreUsuario, context);
+                        await recuperarDatosAlumno(nombreUsuario);
+                        await recuperarDatosCurso(alumnoUsuario.idCurso);
                         if(globales.roll!=""){
-                          
+
                           globales.nombreUsuario=nombreUsuario;
+                          
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
                       },
@@ -327,6 +342,73 @@ class Login2 extends State<Login>{
       
       
   }
+
+   // Método para recuperar datos del alumno //
+  Future<void> recuperarDatosAlumno(String nombreUsuario) async{
+
+    Uri myUri = Uri.parse('${urlApiAlumnoDatos}'+'${nombreUsuario}');
+
+        // Llamada a la api, guardo su respuesta en la variable respuestaApi //
+      // para luego poder parsearla y trabajar con ella //
+      final respuestaApi=await http.get(myUri);
+     
+      try{
+        Alumno alumnoRecuperado = Alumno.devolverAlumno(respuestaApi.body);
+        alumnoUsuario.id=alumnoRecuperado.id;
+        alumnoUsuario.nombre= alumnoRecuperado.nombre;
+        alumnoUsuario.idCurso= alumnoRecuperado.idCurso;
+        alumnoUsuario.idEmpresa= alumnoRecuperado.idEmpresa;
+        alumnoUsuario.idEstudios=alumnoRecuperado.idEstudios;
+        alumnoUsuario.carta=alumnoRecuperado.carta;
+        alumnoUsuario.inicioPr=alumnoRecuperado.inicioPr;
+        alumnoUsuario.finPr=alumnoRecuperado.finPr;
+        alumnoUsuario.usuario=alumnoRecuperado.usuario;
+        
+
+      }catch(excepcion){
+
+        print(excepcion);
+        print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
+      
+      }
+      
+
+  }
+
+  // Método para recuperar datos del alumno //
+  Future<void> recuperarDatosCurso(int idCurso) async{
+
+    Uri myUri = Uri.parse('${urlCursoAlumno}'+'${idCurso}');
+
+        // Llamada a la api, guardo su respuesta en la variable respuestaApi //
+      // para luego poder parsearla y trabajar con ella //
+      final respuestaApi=await http.get(myUri);
+     
+      try{
+        Curso cursoRecuperado = Curso.devolverCurso(respuestaApi.body);
+        globales.nombreCurso=cursoRecuperado.nombre;
+        if(cursoRecuperado.estado=="a"){
+            globales.estadoCurso="Activo";
+        }else if(cursoRecuperado.estado=="b"){
+            globales.estadoCurso="Inactivo";
+        }
+        
+
+      }catch(excepcion){
+
+        print(excepcion);
+        print("NO SE HAN RECUPERADO LOS DATOS DEL CURSO");
+      
+      }
+      
+
+  }
+
+
+
+
+
+
 
 
   

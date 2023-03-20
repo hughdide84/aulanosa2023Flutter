@@ -37,7 +37,7 @@ class Alumno {
     DateTime finPr;
     dynamic usuario;
 
-    // Métodos para devolver objetos usuario pasandole el string que formateo desde el json de la api //
+    // Métodos para devolver objetos alumno pasandole el string que formateo desde el json de la api //
   static Alumno devolverAlumno(String datos){
     return alumnoFromJson(datos);
   } 
