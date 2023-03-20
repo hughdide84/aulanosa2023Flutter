@@ -4,3 +4,5 @@ String roll="";
 bool inicializado=false;
 
 String redireccion="";
+
+String nombre_usuario_global = "Placeholder";

@@ -234,7 +234,9 @@ class Login2 extends State<Login>{
                         // Avanzo a la siguiente clase en función al roll que le de //
                         await comprobarUsuario(nombreUsuario, context);
                         if(globales.roll!=""){
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                          //guardamos el nombre del usuario en una variable global y navegamos a la página principal
+                          globales.nombre_usuario_global = nombreUsuario;
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()));
                         }
                       },
                       child: Container(
