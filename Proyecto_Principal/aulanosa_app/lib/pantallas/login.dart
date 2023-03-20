@@ -123,11 +123,12 @@ class Login2 extends State<Login>{
                                   right: Radius.circular(20)
                                 )
                               ),
-                              height: heightA*0.05,
+                              height: heightA*0.055,
                               width: widthA*0.7,
                             ),
                             Container(
                               width: widthA*0.6,
+                              height: heightA*0.047,
                               margin: EdgeInsets.only(left: widthA*0.04),
                               alignment: Alignment.center,
                               child:TextFormField(
@@ -180,12 +181,13 @@ class Login2 extends State<Login>{
                                   right: Radius.circular(20)
                                 )
                               ),
-                              height: heightA*0.05,
+                              height: heightA*0.055,
                               width: widthA*0.7,
                             ),
 
                             // Campo donde rellena el usuario los datos, en este caso la contraseña //
                             Container(
+                              height: heightA*0.05,
                               width: widthA*0.6,
                               margin: EdgeInsets.only(left: widthA*0.04),
                               alignment: Alignment.center,
