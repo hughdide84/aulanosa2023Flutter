@@ -29,6 +29,7 @@ class cambioContrasena2 extends State<cambioContrasena> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          
         backgroundColor: Colors.blue,
         title: Text('Cambia tu contraseña'),
       ),
@@ -45,7 +46,7 @@ class cambioContrasena2 extends State<cambioContrasena> {
                       //texto descriptivo de lo que tiene que introducir el usuario, "contraseña actual"
                       Container(
                         margin: EdgeInsets.only(left: widthA*0.06,top: heightA*0.06),
-                        child: const Text("Introduce tu contraseña actual", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
+                        child: const Text("Introducir nombre de usuario", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
                   ),
                   Stack(
                         children: [
@@ -95,7 +96,7 @@ class cambioContrasena2 extends State<cambioContrasena> {
                       // Segunda estructura para que el usuario confirme su contraseña nueva //
                   Container(
                     margin: EdgeInsets.only(left: widthA*0.06,top: heightA*0.03),
-                    child: const Text("Introduce la nueva contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
+                    child: const Text("Introducir nueva contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
                   ),
                   Stack(
                         children: [
@@ -145,7 +146,7 @@ class cambioContrasena2 extends State<cambioContrasena> {
 
                       Container(
                     margin: EdgeInsets.only(left: widthA*0.06,top: heightA*0.03),
-                    child: const Text("Confirma la nueva contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
+                    child: const Text("Confirmar nueva contraseña", style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),),
                 ),
 
                   Stack(
