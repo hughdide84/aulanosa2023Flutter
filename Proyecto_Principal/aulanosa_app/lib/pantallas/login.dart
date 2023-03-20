@@ -1,6 +1,7 @@
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/globals/variable_global.dart';
 import 'package:aulanosa_app/objetosNecesarios/alumno.dart';
+import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
@@ -29,7 +30,10 @@ String urlComprobarUsuario="http://10.0.2.2:8080/api/usuario/nombreEs/";
 // recuperacion de datos del alumnno en funcion a su nombre de usuario//
 String urlApiAlumnoDatos="http://10.0.2.2:8080/api/alumno/usuario/";
 
-//String nombreUsuario= globales.nombreUsuario;
+
+// recuperacion de datos del curso del alumno //
+String urlCursoAlumno="http://10.0.2.2:8080/api/curso/";
+
 
 
 // Variable para guardar la contraseña de usuario que inserta el usuario //
@@ -369,6 +373,36 @@ class Login2 extends State<Login>{
       
 
   }
+
+  // Método para recuperar datos del alumno //
+  Future<void> recuperarDatosCurso(int idCurso) async{
+
+    Uri myUri = Uri.parse('${urlCursoAlumno}'+'${idCurso}');
+
+        // Llamada a la api, guardo su respuesta en la variable respuestaApi //
+      // para luego poder parsearla y trabajar con ella //
+      final respuestaApi=await http.get(myUri);
+     
+      try{
+        Curso cursoRecuperado = Curso.devolverCurso(respuestaApi.body);
+        
+        
+
+      }catch(excepcion){
+
+        print(excepcion);
+        print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
+      
+      }
+      
+
+  }
+
+
+
+
+
+
 
 
   

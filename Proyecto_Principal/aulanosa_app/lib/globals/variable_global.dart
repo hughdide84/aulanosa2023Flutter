@@ -8,7 +8,9 @@ String redireccion="";
 // Variable para guardar el nombre de usuario //
 String nombreUsuario ="";
 
-// Variable para guardar el curso del alumno //
-String curso="";
+// Variable para guardar el nombre del curso del alumno //
+String nombreCurso="";
+
+
 
 
