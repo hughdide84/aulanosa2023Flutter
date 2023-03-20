@@ -225,12 +225,8 @@ class HomePageState extends State<MyApp>{
       itemActual = MenuItems_Alumno.empresa_alumno;
     }else if(globales.redireccion=="proyecto"){
       itemActual = MenuItems_Alumno.proyecto_alumno;
-    }else if(globales.redireccion=="tutorias"){
-      //itemActual = MenuItems_Alumno.;
     }else if(globales.redireccion=="mensajes"){
       itemActual = MenuItems_Alumno.mensajes_alumno;
-    }else if(globales.redireccion=="ajustes"){
-      //itemActual = MenuItems_Alumno;
     }else if(globales.redireccion=="Añadir Usuarios"){
       itemActual = MenuItems_Admin.adminAlumnosExternos;
       }else if(globales.redireccion=="Empresas"){
@@ -247,6 +243,9 @@ class HomePageState extends State<MyApp>{
       }
       else if(globales.redireccion=="Cursos"){
       itemActual = MenuItems_Admin.adminCursos;
+      }else{
+        //no deberia haber else, cuando todas las clases estén implementadas se debe borrar
+        itemActual = MenuItems_Alumno.main_alumno;
       }
 
     globales.redireccion = "";

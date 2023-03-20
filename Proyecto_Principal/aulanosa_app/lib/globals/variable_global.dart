@@ -14,7 +14,7 @@ String nombreCurso="";
 // Variable que guarda el estado del curso //
 String estadoCurso="Sin Info";
 
-String nombre_usuario_global = "Placeholder";
+
 
 
 

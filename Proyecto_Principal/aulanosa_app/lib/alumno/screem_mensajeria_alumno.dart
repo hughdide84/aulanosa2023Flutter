@@ -230,7 +230,7 @@ class Mensajeria_alumno2 extends State<Mensajeria_alumno> {
                         margin: EdgeInsets.only(top: 8, bottom: 8),
                         child: Text("  De", style: TextStyle(fontSize: 17),),
                       ),
-                      Text(globales.nombre_usuario_global, style: TextStyle(fontSize: 17),),
+                      Text(globales.nombreUsuario, style: TextStyle(fontSize: 17),),
                     ],
                   ),
 
