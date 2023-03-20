@@ -6,7 +6,10 @@ import 'package:aulanosa_app/admin/admin_empresa.dart';
 import 'package:aulanosa_app/admin/admin_productos.dart';
 import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
+import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
+
 
 //Pagina AdminPrincipal de administrador
 class AdminPrincipal extends StatefulWidget {
@@ -62,12 +65,12 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                   return GestureDetector(
                     onTap: () {
                       //print('Tapped on item ' +PrincipalAdminButtons.getListButtons()[index].nombre);
+globales.redireccion = PrincipalAdminButtons.getListButtons()[index].ruta;
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              PrincipalAdminButtons.getListButtons()[index]
-                                  .ruta,
+                              MyApp(),
                         ),
                       );
                     },
@@ -113,27 +116,27 @@ class PrincipalAdminButtons {
   //variable que almacena el nombre que aparecerá en el boton
   final String nombre;
   //variable que almacena la ruta de la pagina a la que nos lleva el boton
-  final Widget ruta;
+  final String ruta;
 
   final Color color;
 
   //Lista de botones que se mostrarán en la pagina principal
   static List<PrincipalAdminButtons> getListButtons() {
     return <PrincipalAdminButtons>[
-      PrincipalAdminButtons('Añadir Usuarios', const CrearUsuarios(),
+      PrincipalAdminButtons('Añadir Usuarios', 'Añadir Usuarios',
           Color.fromARGB(204, 33, 149, 243)),
       PrincipalAdminButtons(
-          'Empresa', const AdminEmpresa(), Color.fromARGB(204, 33, 149, 243)),
+          'Empresa','Empresas', Color.fromARGB(204, 33, 149, 243)),
       PrincipalAdminButtons(
-          'Alumnos', const AdminAlumnos(), Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Productos', const AdminProductos(),
+          'Alumnos', 'Alumnos', Color.fromARGB(204, 33, 149, 243)),
+      PrincipalAdminButtons('Productos', 'Productos',
           Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Proyectos', const AdminProyectos(),
+      PrincipalAdminButtons('Proyectos', 'Proyectos',
           Color.fromARGB(204, 33, 149, 243)),
-      PrincipalAdminButtons('Alumnos externos', const AlumnosExternos(),
+      PrincipalAdminButtons('Alumnos externos', 'Alumnos externos',
           Color.fromARGB(204, 33, 149, 243)),
       PrincipalAdminButtons(
-          'Cursos', const AdminCursos(), Color.fromARGB(204, 33, 149, 243)),
+          'Cursos', 'Cursos', Color.fromARGB(204, 33, 149, 243)),
     ];
   }
 }
