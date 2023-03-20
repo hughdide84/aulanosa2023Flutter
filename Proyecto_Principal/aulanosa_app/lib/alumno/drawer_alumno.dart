@@ -4,7 +4,8 @@ import 'package:aulanosa_app/objetosNecesarios/menu_item.dart';
 import 'package:flutter/material.dart';
 
 //definimos todas las opciones accesibles desde el drawer
-class MenuItems{
+// ignore: camel_case_types
+class MenuItems_Alumno{
   static const main_alumno = MenuItemm('Pagina principal', Icons.church);
   static const calendario_alumno = MenuItemm('Calendario', Icons.monetization_on);
   static const notas_alumno = MenuItemm('Notas', Icons.woman);
@@ -24,6 +25,7 @@ class MenuItems{
 }
 
 //La clase Menu es el cuerpo del Drawer en si, lo que vemos al pulsar el botón de la esquina superior izquierda
+// ignore: camel_case_types
 class Menu_alumno extends StatelessWidget {
 
   final MenuItemm itemActual;
@@ -51,7 +53,7 @@ class Menu_alumno extends StatelessWidget {
               //estético entre ellas
               children: <Widget> [
                 Spacer(),
-                ...MenuItems.all.map(buildMenuItem).toList(),
+                ...MenuItems_Alumno.all.map(buildMenuItem).toList(),
                 Spacer(flex: 2,)
               ],
             ),

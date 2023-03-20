@@ -1,9 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages, unused_import
 
-import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
-import 'package:aulanosa_app/alumno/screem_proyecto_alumno.dart';
+import 'package:aulanosa_app/alumno/screem_mensajeria_alumno.dart';
 import 'package:aulanosa_app/pantallas/login.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Main_alumno()
+      home: Login()
     );
   }
 }
