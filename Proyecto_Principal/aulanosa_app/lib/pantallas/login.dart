@@ -227,7 +227,6 @@ class Login2 extends State<Login>{
 
                         // ignore: unrelated_type_equality_checks
                         
-                        
                         formKey.currentState!.save();
                         
                         // Posibilidades de vuelta de la funcion //
