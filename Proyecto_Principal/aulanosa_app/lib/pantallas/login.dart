@@ -99,7 +99,7 @@ class Login2 extends State<Login>{
                 key: formKey,
                 child: Column(
                   children: [
-                    const SizedBox(height: 40),
+                     SizedBox(height: heightA * 0.05),
 
                     //columna con el texto 'usuario' y su respectivo cuadro de texto
                     Column(
@@ -156,7 +156,7 @@ class Login2 extends State<Login>{
                       ],
                     ),
 
-                    const SizedBox(height: 25,),
+                    SizedBox(height: heightA * 0.03,),
 
                     //columna con el texto 'contraseña' y su respectivo cuadro de texto
                     Column(
@@ -205,7 +205,7 @@ class Login2 extends State<Login>{
                             Container(
                               margin: EdgeInsets.only(left: widthA*0.59),
                               child: IconButton(
-                                iconSize: 25,
+                                iconSize: heightA * 0.03,
                                 icon: const Icon(Icons.visibility),
                                 // En este onPressed llamo a la función que cambia la visibilidad de la contraseña //
                                 onPressed: () {
@@ -219,7 +219,7 @@ class Login2 extends State<Login>{
                     ),
 
                     // Espaciador entre containers //
-                    const SizedBox(height: 50,),
+                    SizedBox(height: heightA * 0.065,),
 
                     //boton de iniciar sesión
                     InkWell(
@@ -246,14 +246,14 @@ class Login2 extends State<Login>{
                           )
                         ),
                         alignment: Alignment.center,
-                        height: 60,
-                        width: 200,
+                        height: heightA * 0.08,
+                        width: widthA * 0.5,
                         child: const Text("Iniciar sesión", style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),),
                       ),
                     ),
 
                     // Espaciador entre containers //
-                    const SizedBox(height: 20),
+                    SizedBox(height: heightA * 0.025),
 
                     //boton de cambio de contraseña //
                     InkWell(
@@ -263,8 +263,8 @@ class Login2 extends State<Login>{
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        height: 50,
-                        width: 150,
+                        height: heightA * 0.065,
+                        width: widthA * 0.45,
                         child: const Text("Cambiar Contraseña", style: TextStyle(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),),
                       ),
                     ),
