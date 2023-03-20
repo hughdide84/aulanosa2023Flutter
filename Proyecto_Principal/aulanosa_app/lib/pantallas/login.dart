@@ -236,6 +236,8 @@ class Login2 extends State<Login>{
                         // Avanzo a la siguiente clase en función al roll que le de //
                         await comprobarUsuario(nombreUsuario, context);
                         if(globales.roll!=""){
+                          
+                          globales.nombreUsuario=nombreUsuario;
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
                       },

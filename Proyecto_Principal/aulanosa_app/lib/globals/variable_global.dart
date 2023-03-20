@@ -4,3 +4,7 @@ String roll="";
 bool inicializado=false;
 
 String redireccion="";
+
+// Variable para guardar el nombre de usuario //
+String nombreUsuario ="";
+

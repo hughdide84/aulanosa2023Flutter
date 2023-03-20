@@ -282,8 +282,7 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
                                 size: 40,
                                 color: Color.fromARGB(255, 72, 122, 216)
                                 ),
-                            )
-                            
+                            ) 
                           ],
                         ),
                       );
