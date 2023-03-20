@@ -16,9 +16,7 @@ class AlumnoPrincipal extends StatefulWidget {
   State<AlumnoPrincipal> createState() => _AlumnoPrincipalState();
 }
 
-String urlApiAlumnoDatos="http://10.0.2.2:8080/api/alumno/usuario/";
 
-String nombreUsuario= globales.nombreUsuario;
 
 Alumno alumnoUsuario = Alumno(
     id: 0, idCurso: 0, idEmpresa: 0, idEstudios: 0, cv: 'hola', nombre: 'Prueba', carta: 'hola', finPr: DateTime.parse('2023-03-20T10:27:09.798Z'), inicioPr: DateTime.parse('2023-03-20T10:27:09.798Z'),
@@ -136,13 +134,13 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
                         ),
 
                         SizedBox(height: heightA * 0.035),
-
+                        /* 
                         Text('PLACEHOLDER_APELLIDOS',
                           style: TextStyle(
                             fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold
                           ),
                         ),
-
+                          */
                         SizedBox(height: heightA * 0.035),
 
                         Row(
@@ -343,46 +341,46 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
     
   }
   
-  @override
-  Future<void> initState() async {
-    // TODO: implement initState
-    recuperarDatosAlumno(globales.nombreUsuario,alumnoUsuario);
-    super.initState();
-  }
+  // @override
+  // Future<void> initState() async {
+  //   // TODO: implement initState
+  //   recuperarDatosAlumno(globales.nombreUsuario);
+  //   super.initState();
+  // }
   
 
-  // Método para recuperar datos del alumno //
-  Future<void> recuperarDatosAlumno(String nombreUsuario) async{
+  // // Método para recuperar datos del alumno //
+  // Future<void> recuperarDatosAlumno(String nombreUsuario) async{
 
-    Uri myUri = Uri.parse('${urlApiAlumnoDatos}'+'${nombreUsuario}');
+  //   Uri myUri = Uri.parse('${urlApiAlumnoDatos}'+'${nombreUsuario}');
 
-        // Llamada a la api, guardo su respuesta en la variable respuestaApi //
-      // para luego poder parsearla y trabajar con ella //
-      final respuestaApi=await http.get(myUri);
+  //       // Llamada a la api, guardo su respuesta en la variable respuestaApi //
+  //     // para luego poder parsearla y trabajar con ella //
+  //     final respuestaApi=await http.get(myUri);
      
-      try{
-        Alumno alumnoRecuperado = Alumno.devolverAlumno(respuestaApi.body);
-        alumnoUsuario.id=alumnoRecuperado.id;
-        alumnoUsuario.nombre= alumnoRecuperado.nombre;
-        alumnoUsuario.idCurso= alumnoRecuperado.idCurso;
-        alumnoUsuario.idEmpresa= alumnoRecuperado.idEmpresa;
-        alumnoUsuario.idEstudios=alumnoRecuperado.idEstudios;
-        alumnoUsuario.carta=alumnoRecuperado.carta;
-        alumnoUsuario.inicioPr=alumnoRecuperado.inicioPr;
-        alumnoUsuario.finPr=alumnoRecuperado.finPr;
-        alumnoUsuario.usuario=alumnoRecuperado.usuario;
+  //     try{
+  //       Alumno alumnoRecuperado = Alumno.devolverAlumno(respuestaApi.body);
+  //       alumnoUsuario.id=alumnoRecuperado.id;
+  //       alumnoUsuario.nombre= alumnoRecuperado.nombre;
+  //       alumnoUsuario.idCurso= alumnoRecuperado.idCurso;
+  //       alumnoUsuario.idEmpresa= alumnoRecuperado.idEmpresa;
+  //       alumnoUsuario.idEstudios=alumnoRecuperado.idEstudios;
+  //       alumnoUsuario.carta=alumnoRecuperado.carta;
+  //       alumnoUsuario.inicioPr=alumnoRecuperado.inicioPr;
+  //       alumnoUsuario.finPr=alumnoRecuperado.finPr;
+  //       alumnoUsuario.usuario=alumnoRecuperado.usuario;
         
 
-      }catch(excepcion){
+  //     }catch(excepcion){
 
-        print(excepcion);
-        print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
+  //       print(excepcion);
+  //       print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
       
 
-      }
+  //     }
       
 
-  }
+  // }
   
 }
 
