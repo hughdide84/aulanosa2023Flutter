@@ -248,6 +248,7 @@ class Login2 extends State<Login>{
                         // Avanzo a la siguiente clase en función al roll que le de //
                         await comprobarUsuario(nombreUsuario, context);
                         await recuperarDatosAlumno(nombreUsuario);
+                        await recuperarDatosCurso(alumnoUsuario.idCurso);
                         if(globales.roll!=""){
 
                           globales.nombreUsuario=nombreUsuario;
@@ -385,13 +386,18 @@ class Login2 extends State<Login>{
      
       try{
         Curso cursoRecuperado = Curso.devolverCurso(respuestaApi.body);
-        
+        globales.nombreCurso=cursoRecuperado.nombre;
+        if(cursoRecuperado.estado=="a"){
+            globales.estadoCurso="Activo";
+        }else if(cursoRecuperado.estado=="b"){
+            globales.estadoCurso="Inactivo";
+        }
         
 
       }catch(excepcion){
 
         print(excepcion);
-        print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
+        print("NO SE HAN RECUPERADO LOS DATOS DEL CURSO");
       
       }
       

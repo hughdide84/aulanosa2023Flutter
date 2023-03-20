@@ -148,11 +148,11 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
 
                             SizedBox(width: widthA * 0.02),
 
-                            Text('CURSO'),
+                            Text(globales.nombreCurso),
 
                             SizedBox(width: widthA * 0.2),
 
-                            Text('ALGO MÁS')
+                            Text(globales.estadoCurso)
                           ],
                         )
                       ],

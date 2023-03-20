@@ -11,6 +11,9 @@ String nombreUsuario ="";
 // Variable para guardar el nombre del curso del alumno //
 String nombreCurso="";
 
+// Variable que guarda el estado del curso //
+String estadoCurso="Sin Info";
+
 
 
 
