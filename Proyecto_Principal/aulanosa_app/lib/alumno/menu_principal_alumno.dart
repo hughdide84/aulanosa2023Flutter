@@ -1,4 +1,5 @@
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
+import 'package:aulanosa_app/objetosNecesarios/alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
+import 'package:http/http.dart' as http;
 
 class AlumnoPrincipal extends StatefulWidget {
   const AlumnoPrincipal({super.key});
@@ -14,10 +16,20 @@ class AlumnoPrincipal extends StatefulWidget {
   State<AlumnoPrincipal> createState() => _AlumnoPrincipalState();
 }
 
+String urlApiAlumnoDatos="http://10.0.2.2:8080/api/alumno/usuario/";
+
+String nombreUsuario= globales.nombreUsuario;
+
+Alumno alumnoUsuario = Alumno(
+    id: 0, idCurso: 0, idEmpresa: 0, idEstudios: 0, cv: 'hola', nombre: 'Prueba', carta: 'hola', finPr: DateTime.parse('2023-03-20T10:27:09.798Z'), inicioPr: DateTime.parse('2023-03-20T10:27:09.798Z'),
+);
+
+
 class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
 
   //variables de tamaño de pantalla, alto y ancho//
   var size, heightA, widthA;
+
 
   //LISTAS DE ELEMENTOS SCROLLEABLES//
   //Lista horizontal
@@ -32,6 +44,7 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
 
   //Lista vertical
   //TODO recoger datos del calendario SOLO DE LOS PROXIMOS 5 EVENTOS
+  // Esto va a empezar a recoger eventos de la API cuando recuperemos los datos //
   List cartas = [
     Carta(dia: '03', mes: 'MAR', descripcion: 'Una descripcion de prueba'),
     Carta(dia: '03', mes: 'MAR', descripcion: 'Una descripcion de prueba'),
@@ -116,7 +129,7 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
 
                         SizedBox(height: heightA * 0.035),
 
-                        Text('PLACEHOLDER_NOMBRE',
+                        Text(alumnoUsuario.nombre,
                           style: TextStyle(
                             fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold
                           ),
@@ -327,10 +340,50 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
           
         ),
       );
-
-
     
   }
+  
+  @override
+  Future<void> initState() async {
+    // TODO: implement initState
+    recuperarDatosAlumno(globales.nombreUsuario,alumnoUsuario);
+    super.initState();
+  }
+  
+
+  // Método para recuperar datos del alumno //
+  Future<void> recuperarDatosAlumno(String nombreUsuario) async{
+
+    Uri myUri = Uri.parse('${urlApiAlumnoDatos}'+'${nombreUsuario}');
+
+        // Llamada a la api, guardo su respuesta en la variable respuestaApi //
+      // para luego poder parsearla y trabajar con ella //
+      final respuestaApi=await http.get(myUri);
+     
+      try{
+        Alumno alumnoRecuperado = Alumno.devolverAlumno(respuestaApi.body);
+        alumnoUsuario.id=alumnoRecuperado.id;
+        alumnoUsuario.nombre= alumnoRecuperado.nombre;
+        alumnoUsuario.idCurso= alumnoRecuperado.idCurso;
+        alumnoUsuario.idEmpresa= alumnoRecuperado.idEmpresa;
+        alumnoUsuario.idEstudios=alumnoRecuperado.idEstudios;
+        alumnoUsuario.carta=alumnoRecuperado.carta;
+        alumnoUsuario.inicioPr=alumnoRecuperado.inicioPr;
+        alumnoUsuario.finPr=alumnoRecuperado.finPr;
+        alumnoUsuario.usuario=alumnoRecuperado.usuario;
+        
+
+      }catch(excepcion){
+
+        print(excepcion);
+        print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
+      
+
+      }
+      
+
+  }
+  
 }
 
 //CLASES QUE DEFINEN LOS ELEMENTOS DE AMBAS LISTAS//
