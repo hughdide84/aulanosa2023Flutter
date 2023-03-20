@@ -85,7 +85,7 @@ class Login2 extends State<Login>{
                       height: heightA*0.3,
                       child: Align(
                         alignment: Alignment.center,
-                        child: Image.asset("assets/images/logo.png", width: 1123*0.25, height: 794*0.25,),
+                        child: Image.asset("assets/images/logo.png", width: widthA * 0.7, height: heightA * 0.3,),
                       ),
                     ),
                     //texto bienvenida
