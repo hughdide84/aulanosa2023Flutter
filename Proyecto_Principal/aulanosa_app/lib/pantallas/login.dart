@@ -227,7 +227,6 @@ class Login2 extends State<Login>{
 
                         // ignore: unrelated_type_equality_checks
                         
-                        
                         formKey.currentState!.save();
                         
                         // Posibilidades de vuelta de la funcion //
@@ -298,13 +297,12 @@ class Login2 extends State<Login>{
       // La concatenacion de ('${urlComprobarUsuario}'+ '${nombreUsuario}') es //
       // el url de la API el nombre de usuario que nos introduce por formulario //
        
-      Uri myUri = Uri.parse('${urlComprobarUsuario}'+ '${nombreUsuario}');
+      Uri myUri = Uri.parse('${urlComprobarUsuario}'+'${nombreUsuario}');
 
       // Llamada a la api, guardo su respuesta en la variable respuestaApi //
       // para luego poder parsearla y trabajar con ella //
       final respuestaApi=await http.get(myUri);
 
-      //
       try{
         Usuario usuarioEntrada = Usuario.devolverUsuario(respuestaApi.body);
         if(usuarioEntrada.password==contrasena){
