@@ -177,6 +177,7 @@ class Calendario_alumno2 extends State<Calendario_alumno> {
                   */
                   markerBuilder: (context, day, events) {
                     //Cantidad de "citas"
+                    // AQUI va a haber que cambiarlo en funcion a lo que recuperemos de la API //
                     var citas = "5";
                     return Align(
                         alignment: Alignment.bottomRight,
