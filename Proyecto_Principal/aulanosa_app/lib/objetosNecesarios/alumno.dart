@@ -1,12 +1,14 @@
+// To parse this JSON data, do
+//
+//     final alumno = alumnoFromJson(jsonString);
 
 import 'dart:convert';
-
-// Clase que representa el objeto Alumno, para guardar la info de los usuarios de rol alumno //
 
 Alumno alumnoFromJson(String str) => Alumno.fromJson(json.decode(str));
 
 List<Alumno> alumnosFromJson(String str) =>
     List<Alumno>.from(json.decode(str).map((x) => Alumno.fromJson(x)));
+
 
 String alumnoToJson(Alumno data) => json.encode(data.toJson());
 
@@ -21,6 +23,7 @@ class Alumno {
         required this.idEmpresa,
         required this.inicioPr,
         required this.finPr,
+        this.usuario,
     });
 
     int id;
@@ -32,8 +35,9 @@ class Alumno {
     int idEmpresa;
     DateTime inicioPr;
     DateTime finPr;
+    dynamic usuario;
 
-  // Métodos para devolver objetos usuario pasandole el string que formateo desde el json de la api //
+    // Métodos para devolver objetos usuario pasandole el string que formateo desde el json de la api //
   static Alumno devolverAlumno(String datos){
     return alumnoFromJson(datos);
   } 
@@ -42,9 +46,6 @@ class Alumno {
     return  alumnosFromJson(datos);
   } 
 
-
-  // Método para mapear los atributos del objeto alumno que devuelve la API en formato Json //
-  
     factory Alumno.fromJson(Map<String, dynamic> json) => Alumno(
         id: json["id"],
         idCurso: json["idCurso"],
@@ -55,6 +56,7 @@ class Alumno {
         idEmpresa: json["idEmpresa"],
         inicioPr: DateTime.parse(json["inicioPr"]),
         finPr: DateTime.parse(json["finPr"]),
+        usuario: json["usuario"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -67,5 +69,6 @@ class Alumno {
         "idEmpresa": idEmpresa,
         "inicioPr": inicioPr.toIso8601String(),
         "finPr": finPr.toIso8601String(),
+        "usuario": usuario,
     };
 }
