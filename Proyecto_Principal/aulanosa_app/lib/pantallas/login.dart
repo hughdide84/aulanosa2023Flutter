@@ -252,7 +252,7 @@ class Login2 extends State<Login>{
                           await recuperarDatosCurso(alumnoUsuario.idCurso);
 
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-                          
+
                         }else if(globales.roll=="ADMIN"){
                           metodosCompartidos().recuperarEmpresas();
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
@@ -333,7 +333,7 @@ class Login2 extends State<Login>{
           
         }else{
           globales.roll="";
-          Notififcaciones().errorInicioSesion(context);
+          Notififcaciones().contrasenaIncorrecta(context);
         }
       }catch(excepcion){
         print(excepcion);
