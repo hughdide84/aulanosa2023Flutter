@@ -5,6 +5,7 @@ import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
+import 'package:aulanosa_app/util/metodosCompartidos.dart';
 import 'package:aulanosa_app/util/notificaciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -242,19 +243,28 @@ class Login2 extends State<Login>{
                         // ignore: unrelated_type_equality_checks
                         
                         formKey.currentState!.save();
+                        await comprobarUsuario(nombreUsuario, context);
+
+                        print(globales.roll);
                         
                         // Posibilidades de vuelta de la funcion //
                         // Si el roll que ha devuelto no esta vacio //
                         // Avanzo a la siguiente clase en función al roll que le de //
-                        await comprobarUsuario(nombreUsuario, context);
-                        await recuperarDatosAlumno(nombreUsuario);
-                        await recuperarDatosCurso(alumnoUsuario.idCurso);
-                        if(globales.roll!=""){
+                        if(globales.roll=="ALUMNO"){
+                          
+                          await recuperarDatosAlumno(nombreUsuario);
+                          await recuperarDatosCurso(alumnoUsuario.idCurso);
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
 
                           globales.nombreUsuario=nombreUsuario;
                           
+                        }else if(globales.roll=="ADMIN"){
+                          await metodosCompartidos().recuperarEmpresas();
+                          
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
+                        // Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                         
                       },
                       child: Container(
                         decoration:  const BoxDecoration(
@@ -338,9 +348,8 @@ class Login2 extends State<Login>{
 
       }
         
-      // RETORNA 0 EN CASO DE ERROR: SI LA CONTRASEÑA ES INCORRECTA O SI EL NOMBRE DE USUARIO NO EXISTE //
       
-      
+
   }
 
    // Método para recuperar datos del alumno //
