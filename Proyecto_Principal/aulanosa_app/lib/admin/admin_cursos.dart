@@ -104,7 +104,7 @@ class _AdminCursosState extends State<AdminCursos> {
           decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
           width: 250,
-          child:Text(fechaInicio.toIso8601String(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
+          child:Text("Fecha de inicio: " + fechaInicio.toIso8601String(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
         ),
         SizedBox(height: 40,),
         Container(
@@ -112,7 +112,7 @@ class _AdminCursosState extends State<AdminCursos> {
           decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
           width: 250,
-          child:Text(fechaFin.toIso8601String(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
+          child:Text("Fecha de terminacion: " + fechaFin.toIso8601String(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
         ),
       ],)
     );
