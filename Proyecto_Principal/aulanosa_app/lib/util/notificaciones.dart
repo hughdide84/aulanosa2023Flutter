@@ -26,20 +26,19 @@ class Notififcaciones{
   }
 
  // SnakBar para mostrar el inicio de sesion correcto de la clase login //
-   void acertadoInicioSesion (BuildContext context){
+   void contrasenaIncorrecta (BuildContext context){
     final snb = SnackBar(
-      content:
-      Container(
-        color: Color.fromARGB(255, 39, 230, 22),
-        child:Row(
+      backgroundColor: Color.fromARGB(255, 230, 6, 6),
+    content:
+        Row(
           children: const [
-            Icon(Icons.add_task, color: Colors.white),
+            Icon(Icons.block_flipped),
             SizedBox(
               width: 20,
             ),
-            Text("Inicio de sesión correcto")
+            Text("Contraseña Incorrecta")
           ],
-      ) ,) ,
+    )  ,
     );
     ScaffoldMessenger.of(context).showSnackBar(snb);
 

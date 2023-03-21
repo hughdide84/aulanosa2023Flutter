@@ -254,9 +254,10 @@ class Login2 extends State<Login>{
                           
                           await recuperarDatosAlumno(nombreUsuario);
                           await recuperarDatosCurso(alumnoUsuario.idCurso);
+                          globales.nombreUsuario=nombreUsuario;
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
 
-                          globales.nombreUsuario=nombreUsuario;
+                        
                           
                         }else if(globales.roll=="ADMIN"){
                           await metodosCompartidos().recuperarEmpresas();
@@ -341,10 +342,11 @@ class Login2 extends State<Login>{
           
         }else{
           globales.roll="";
+          Notififcaciones().contrasenaIncorrecta(context);
         }
       }catch(excepcion){
         print(excepcion);
-        Notififcaciones().errorInicioSesion(context);
+        //Notififcaciones().errorInicioSesion(context);
 
       }
         
