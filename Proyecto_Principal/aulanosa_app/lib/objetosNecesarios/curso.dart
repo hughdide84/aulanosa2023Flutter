@@ -6,7 +6,7 @@ import 'dart:convert';
 
 Curso cursoFromJson(String str) => Curso.fromJson(json.decode(str));
 
-List<Curso> alumnosFromJson(String str) =>
+List<Curso> cursosFromJson(String str) =>
     List<Curso>.from(json.decode(str).map((x) => Curso.fromJson(x)));
 
 String cursoToJson(Curso data) => json.encode(data.toJson());
@@ -31,8 +31,8 @@ class Curso {
     return cursoFromJson(datos);
   } 
   
-  static List<Curso> devolverListaAlumnos(String datos){
-    return  alumnosFromJson(datos);
+  static List<Curso> devolverListaCursos(String datos){
+    return  cursosFromJson(datos);
   } 
 
     factory Curso.fromJson(Map<String, dynamic> json) => Curso(

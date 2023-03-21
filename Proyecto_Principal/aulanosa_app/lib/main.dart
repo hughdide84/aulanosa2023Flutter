@@ -1,5 +1,7 @@
-// ignore_for_file: depend_on_referenced_packages, unused_import
+// ignore_for_file: depend_on_referenced_packages, unused_import, prefer_const_constructors
 
+import 'package:aulanosa_app/admin/admin_cursos.dart';
+import 'package:aulanosa_app/admin/admin_empresa.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_calendario_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_mensajeria_alumno.dart';
@@ -17,6 +19,8 @@ Future main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+ 
 
   @override
   Widget build(BuildContext context) {

@@ -58,7 +58,7 @@ class Empresa {
 
 
     factory Empresa.fromJson(Map<String, dynamic> json) => Empresa(
-        id: json["id"],
+       id: json["id"],
         idCurso: json["idCurso"],
         idEstudios: json["idEstudios"],
         nombre: json["nombre"],
@@ -76,9 +76,9 @@ class Empresa {
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id,
-        "idCurso": idCurso,
-        "idEstudios": idEstudios,
+        //"id": id,
+        //"idCurso": idCurso,
+        //"idEstudios": idEstudios,
         "nombre": nombre,
         "direccionSocial": direccionSocial,
         "direccionTrabajo": direccionTrabajo,
