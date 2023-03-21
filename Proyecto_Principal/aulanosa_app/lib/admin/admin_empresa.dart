@@ -17,6 +17,7 @@ class AdminEmpresa extends StatefulWidget {
   @override
   State<AdminEmpresa> createState() => _AdminEmpresaState();
 }
+const List<String> listadoCursos = <String>["dsf", "sdfdsfsdf", "lkmkop"];
 
 class _AdminEmpresaState extends State<AdminEmpresa> {
 
@@ -54,7 +55,10 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   var size, heightA, widthA;
   double alturaContainerInfoEmpresa = 0;
   bool containerAlumno = false;
+  
   String infoContainerEmpresa = "";
+  
+  
 
  //Metodo para determinar que apartado tiene que mostrar dentro de cada empresa
  String determinarApartado(int index){
@@ -109,6 +113,8 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
     listadoEmpresas.add(empresa5);
     listadoEmpresas.add(empresa6);
   }
+
+  
   
   //Metodo para retornar la informacion de cada uno de los apartados de la empresa, es decir, direccion de trabajo, direccion social, etc
   Container retornarInfo(String tituloCarta, int index) {
@@ -212,6 +218,31 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
     }
     return Container();
   }
+
+  Container retornarBottonRefresco(List<Empresa> listaEmpresas, int index) {
+    int fin = listadoEmpresas.length - 1;
+    if( index == fin){
+      return Container(
+        alignment: Alignment.center,
+      margin: EdgeInsets.only(left: 100, top: 100),
+       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
+        width: 40,
+        height: 40,
+        
+        child: IconButton(
+          alignment: Alignment.center,
+          
+          icon: Icon(Icons.refresh, color: Colors.blueGrey, weight: 900, size: 30,),onPressed: () => {
+
+        },));
+    }
+  else  return Container(
+      height: 1,
+      width: 1,
+    );
+  }
 //Metodo para crear la estructura de toda la pagina, esta funcion creara tanto la lista principal de empresas como
 //la lista que contiene la informacion de cada empresa
 ListView listaEmpresas() {
@@ -220,6 +251,7 @@ return ListView.builder(
   itemBuilder: ((context, index) {
     //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
     int numeroEmpresa = index;
+     
     return Container(
       alignment: Alignment.center,
       height: 200,
@@ -228,13 +260,17 @@ return ListView.builder(
  spreadRadius: 12,blurRadius: 7, offset: Offset(3, 3),),],
         color: Colors.grey[200],
         border:  Border(top: BorderSide.none, left: BorderSide.none, right: BorderSide.none, bottom: BorderSide(color: Colors.blueGrey,width: 4))),
-      child: TextButton(
+      child: Stack(
+        
         //Lo unico importante en esta linea es el valor que tiene el Text, este equivale al nombre que tiene el objeto empresa de la lista, al cual accedemos en funcion del index de la lista
-        child: Text(listadoEmpresas[numeroEmpresa].nombre, style: TextStyle(fontSize: 50, color: Colors.blueGrey, fontWeight: FontWeight.bold,
-        shadows: <Shadow>[Shadow( offset: Offset(2, 2), blurRadius: 10.0, color: Colors.black),],
-      ),
+        children: [ 
+         
+          TextButton(
+            child: Text(listadoEmpresas[numeroEmpresa].nombre, style: TextStyle(fontSize: 50, color: Colors.blueGrey, fontWeight: FontWeight.bold,
+          shadows: <Shadow>[Shadow( offset: Offset(2, 2), blurRadius: 10.0, color: Colors.black),],
+          ),
+            ),      
       
-      ),
       onPressed: () {
         showDialog(
         context: context,
@@ -279,11 +315,18 @@ return ListView.builder(
           });
         },
       );
-      })
-          );
+      }),
+      
+        
+       
+      retornarBottonRefresco(listadoEmpresas, index),
+    
+          ]));
         }));
       }
-  
+
+   String dropdownValue = listadoCursos.first;
+
   @override
   Widget build(BuildContext context) {
       
@@ -292,6 +335,8 @@ return ListView.builder(
       heightA = size.height;
       widthA = size.width;
     });
+
+    
     
     return Scaffold(
     appBar: AppBar(
@@ -299,6 +344,38 @@ return ListView.builder(
       title: Text('Información Empresas'),
       leading: MenuWidget(),
     ),
-    body: listaEmpresas()
+    body: Stack(children: [
+
+      
+      Container(child: 
+      listaEmpresas(),
+      ),
+       Container(
+        width: 80,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.blueGrey, width: 4)),
+        child:
+       DropdownButton<String>(
+      value: dropdownValue,
+     
+      elevation: 0,
+      style: const TextStyle(color: Colors.black, fontSize: 10),
+      
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: listadoCursos.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    ),),
+  
+    ],)
   );
 }}
