@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unused_local_variable, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_interpolation_to_compose_strings, curly_braces_in_flow_control_structures
 
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
-import 'package:aulanosa_app/objetosNecesarios/empresas.dart';
+import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
+
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:aulanosa_app/pantallas/mainScreen.dart';
 import 'package:flutter/material.dart';
