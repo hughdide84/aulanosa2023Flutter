@@ -208,8 +208,8 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   }
 
 
-   Container retornarBottonRefresco(List<Empresa> listaEmpresas, int index) {
-    int fin = listaEmpresas.length - 1;
+   Container retornarBotonRefresco(List<Empresa> listadoEmpresas, int index) {
+    int fin = listadoEmpresas.length - 1;
     if( index == fin){
       return Container(
         alignment: Alignment.center,
@@ -240,6 +240,7 @@ return ListView.builder(
   itemBuilder: ((context, index) {
     //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
     int numeroEmpresa = index;
+     
     return Container(
       alignment: Alignment.center,
       height: 200,
@@ -248,13 +249,17 @@ return ListView.builder(
  spreadRadius: 12,blurRadius: 7, offset: Offset(3, 3),),],
         color: Colors.grey[200],
         border:  Border(top: BorderSide.none, left: BorderSide.none, right: BorderSide.none, bottom: BorderSide(color: Colors.blueGrey,width: 4))),
-      child: TextButton(
+      child: Stack(
+        
         //Lo unico importante en esta linea es el valor que tiene el Text, este equivale al nombre que tiene el objeto empresa de la lista, al cual accedemos en funcion del index de la lista
-        child: Text(globales.listaEmpresas[numeroEmpresa].nombre, style: TextStyle(fontSize: 50, color: Colors.blueGrey, fontWeight: FontWeight.bold,
-        shadows: <Shadow>[Shadow( offset: Offset(2, 2), blurRadius: 10.0, color: Colors.black),],
-      ),
+        children: [ 
+         
+          TextButton(
+            child: Text(globales.listaEmpresas[numeroEmpresa].nombre, style: TextStyle(fontSize: 50, color: Colors.blueGrey, fontWeight: FontWeight.bold,
+          shadows: <Shadow>[Shadow( offset: Offset(2, 2), blurRadius: 10.0, color: Colors.black),],
+          ),
+            ),      
       
-      ),
       onPressed: () {
         showDialog(
         context: context,
@@ -295,17 +300,27 @@ return ListView.builder(
                       retornarInfo(determinarApartado(index), numeroEmpresa)
                   ],));
               },
-            ));
+            )); 
           });
         },
       );
       }),
-       retornarBottonRefresco(listaEmpresas, index),
-          );
+      
+      retornarBotonRefresco(globales.listaEmpresas, index),
+      ],));
         }));
       }
+    
+    //Metodo que sirve para recoger todos los nombres de los cursos
+    List<String> retornarNombresCursos() {
+      List<String> listadoNombresCursos = [];
+      for(int i = 0; i < globales.listaCursos.length; i++){
+        listadoNombresCursos.add(globales.listaCursos[i].nombre);
+      }
+      return listadoNombresCursos;
+    }
 
-  String dropdownValue = listaCursos.first;
+  String dropdownValue = globales.listaCursos[0].nombre;
   
   @override
   Widget build(BuildContext context) {
@@ -323,7 +338,6 @@ return ListView.builder(
       leading: MenuWidget(),
     ),
     body: Stack(children: [
-
       
       Container(child: 
       listadoEmpresas(),
@@ -346,7 +360,7 @@ return ListView.builder(
           dropdownValue = value!;
         });
       },
-      items: listadoCursos.map<DropdownMenuItem<String>>((String value) {
+      items:  retornarNombresCursos().map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
