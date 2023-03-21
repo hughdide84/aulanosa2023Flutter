@@ -223,7 +223,8 @@ return ListView.builder(
       alignment: Alignment.center,
       height: 200,
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.blueGrey, spreadRadius: 12,blurRadius: 7, offset: Offset(3, 3),),],
+        boxShadow: [BoxShadow(color: Color.fromARGB(255, 72, 122, 216),
+ spreadRadius: 12,blurRadius: 7, offset: Offset(3, 3),),],
         color: Colors.grey[200],
         border:  Border(top: BorderSide.none, left: BorderSide.none, right: BorderSide.none, bottom: BorderSide(color: Colors.blueGrey,width: 4))),
       child: TextButton(

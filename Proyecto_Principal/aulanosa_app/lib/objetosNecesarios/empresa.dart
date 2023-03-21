@@ -13,9 +13,9 @@ String empresaToJson(Empresa data) => json.encode(data.toJson());
 
 class Empresa {
     Empresa({
-        required this.id,
-        required this.idCurso,
-        required this.idEstudios,
+        //required this.id,
+        //required this.idCurso,
+        //required this.idEstudios,
         required this.nombre,
         required this.direccionSocial,
         required this.direccionTrabajo,
@@ -30,9 +30,9 @@ class Empresa {
         required this.hojaActividades,
     });
 
-    int id;
-    int idCurso;
-    int idEstudios;
+    //int id;
+    //int idCurso;
+    //int idEstudios;
     String nombre;
     String direccionSocial;
     String direccionTrabajo;
@@ -58,9 +58,9 @@ class Empresa {
 
 
     factory Empresa.fromJson(Map<String, dynamic> json) => Empresa(
-        id: json["id"],
-        idCurso: json["idCurso"],
-        idEstudios: json["idEstudios"],
+       // id: json["id"],
+        //idCurso: json["idCurso"],
+        //idEstudios: json["idEstudios"],
         nombre: json["nombre"],
         direccionSocial: json["direccionSocial"],
         direccionTrabajo: json["direccionTrabajo"],
@@ -76,9 +76,9 @@ class Empresa {
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id,
-        "idCurso": idCurso,
-        "idEstudios": idEstudios,
+        //"id": id,
+        //"idCurso": idCurso,
+        //"idEstudios": idEstudios,
         "nombre": nombre,
         "direccionSocial": direccionSocial,
         "direccionTrabajo": direccionTrabajo,
