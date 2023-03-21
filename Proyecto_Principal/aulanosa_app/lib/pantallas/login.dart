@@ -5,6 +5,7 @@ import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
 import 'package:aulanosa_app/pantallas/cambioContrasena.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
+import 'package:aulanosa_app/util/metodosCompartidos.dart';
 import 'package:aulanosa_app/util/notificaciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -243,16 +244,17 @@ class Login2 extends State<Login>{
                         
                         formKey.currentState!.save();
                         
-                        // Posibilidades de vuelta de la funcion //
-                        // Si el roll que ha devuelto no esta vacio //
-                        // Avanzo a la siguiente clase en función al roll que le de //
                         await comprobarUsuario(nombreUsuario, context);
-                        await recuperarDatosAlumno(nombreUsuario);
-                        await recuperarDatosCurso(alumnoUsuario.idCurso);
-                        if(globales.roll!=""){
+                        globales.nombreUsuario=nombreUsuario;
 
-                          globales.nombreUsuario=nombreUsuario;
+                        if(globales.roll=="ALUMNO"){
+                          await recuperarDatosAlumno(nombreUsuario);
+                          await recuperarDatosCurso(alumnoUsuario.idCurso);
+
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                           
+                        }else if(globales.roll=="ADMIN"){
+                          metodosCompartidos().recuperarEmpresas();
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
                       },
@@ -331,10 +333,11 @@ class Login2 extends State<Login>{
           
         }else{
           globales.roll="";
+          Notififcaciones().errorInicioSesion(context);
         }
       }catch(excepcion){
         print(excepcion);
-        Notififcaciones().errorInicioSesion(context);
+        //Notififcaciones().errorInicioSesion(context);
 
       }
         
