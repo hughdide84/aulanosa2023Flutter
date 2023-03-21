@@ -21,6 +21,7 @@ class _AdminCursosState extends State<AdminCursos> {
 
   String tituloCurso = "";
   String estadoCurso = "";
+  // Formatear visualmente a string en flutter //
   DateTime fechaInicio = DateTime.now();
   DateTime fechaFin = DateTime.now();
 
