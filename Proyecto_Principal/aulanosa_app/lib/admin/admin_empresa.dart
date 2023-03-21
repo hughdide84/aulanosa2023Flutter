@@ -24,27 +24,27 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
 
   Empresa empresa1 = Empresa(nombre: "Empresa1", direccionSocial: "DireccionSocialEmpresa1", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa1", direccionTrabajo: "DirecionTrabajoEmpresa1",
   contacto: "contactoEmpresa1", tutor1: "Tutor1Empresa1", tutor2: "Tutor2Empresa2", tutor3: "tutor3Empresa3", convenio: "Empresa1Convenio",
-  planIndividual: "Empresa1PlanIndividual", hojaActividades: "Empresa1HojaActividades"
+  planIndividual: "Empresa1PlanIndividual", hojaActividades: "Empresa1HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
   );
   Empresa empresa2 = Empresa(nombre: "Empresa2", direccionSocial: "DireccionSocialEmpresa12", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa2", direccionTrabajo: "DirecionTrabajoEmpresa2",
   contacto: "contactoEmpresa2", tutor1: "Tutor1Empresa2", tutor2: "Tutor2Empresa2", tutor3: "tutor3Empresa2", convenio: "Empresa2Convenio",
-  planIndividual: "Empresa2PlanIndividual", hojaActividades: "Empresa2HojaActividades"
+  planIndividual: "Empresa2PlanIndividual", hojaActividades: "Empresa2HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
   );
   Empresa empresa3 = Empresa(nombre: "Empresa3", direccionSocial: "DireccionSocialEmpresa3", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa3", direccionTrabajo: "DirecionTrabajoEmpresa3",
   contacto: "contactoEmpresa3", tutor1: "Tutor1Empresa3", tutor2: "Tutor2Empresa3", tutor3: "tutor3Empresa3", convenio: "Empresa3Convenio",
-  planIndividual: "Empresa3PlanIndividual", hojaActividades: "Empresa3HojaActividades"
+  planIndividual: "Empresa3PlanIndividual", hojaActividades: "Empresa3HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
   );
   Empresa empresa4 = Empresa(nombre: "Empresa4", direccionSocial: "DireccionSocialEmpresa4", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa4", direccionTrabajo: "DirecionTrabajoEmpresa4",
   contacto: "contactoEmpresa4", tutor1: "Tutor1Empresa4", tutor2: "Tutor2Empresa4", tutor3: "tutor3Empresa4", convenio: "Empresa4Convenio",
-  planIndividual: "Empresa4PlanIndividual", hojaActividades: "Empresa4HojaActividades"
+  planIndividual: "Empresa4PlanIndividual", hojaActividades: "Empresa4HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
   );
   Empresa empresa5 = Empresa(nombre: "Empresa5", direccionSocial: "DireccionSocialEmpresa5", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa5", direccionTrabajo: "DirecionTrabajoEmpresa5",
   contacto: "contactoEmpresa5", tutor1: "Tutor1Empresa5", tutor2: "Tutor2Empresa5", tutor3: "tutor3Empresa5", convenio: "Empresa5Convenio",
-  planIndividual: "Empresa5PlanIndividual", hojaActividades: "Empresa5HojaActividades"
+  planIndividual: "Empresa5PlanIndividual", hojaActividades: "Empresa5HojaActividades", id: 0, idCurso: 0, idEstudios: 0
   );
   Empresa empresa6 = Empresa(nombre: "Empresa6", direccionSocial: "DireccionSocialEmpresa6", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa6", direccionTrabajo: "DirecionTrabajoEmpresa6",
   contacto: "contactoEmpresa6", tutor1: "Tutor1Empresa6", tutor2: "Tutor2Empresa6", tutor3: "tutor3Empresa6", convenio: "Empresa6Convenio",
-  planIndividual: "Empresa6PlanIndividual", hojaActividades: "Empresa6HojaActividades"
+  planIndividual: "Empresa6PlanIndividual", hojaActividades: "Empresa6HojaActividades", id: 0, idCurso: 0, idEstudios: 0
   );
 
 
@@ -95,6 +95,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   }
   else return 200;
  }
+ 
 
  //Utilizo el InitState porque quise cargar asi los objetos en la lista
  @override
