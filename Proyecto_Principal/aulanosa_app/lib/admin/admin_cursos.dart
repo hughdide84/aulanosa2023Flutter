@@ -34,8 +34,6 @@ class _AdminCursosState extends State<AdminCursos> {
 
   }
 
- 
-
    Widget estadoCursos(){
     return  Container(
       padding: EdgeInsets.all(5),
