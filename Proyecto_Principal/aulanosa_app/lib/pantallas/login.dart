@@ -254,7 +254,9 @@ class Login2 extends State<Login>{
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
 
                         }else if(globales.roll=="ADMIN"){
-                          metodosCompartidos().recuperarEmpresas();
+                          await metodosCompartidos().recuperarEmpresas();
+                          await metodosCompartidos().recuperarCursos();
+                          print(globales.listaCursos);
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
                       },
