@@ -2,10 +2,11 @@
 
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:aulanosa_app/pantallas/mainScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
 
 
@@ -17,48 +18,23 @@ class AdminEmpresa extends StatefulWidget {
   @override
   State<AdminEmpresa> createState() => _AdminEmpresaState();
 }
-const List<String> listadoCursos = <String>["dsf", "sdfdsfsdf", "lkmkop"];
+
+String urlListaEmpresas="http://10.0.2.2:8080/api/empresa";
 
 class _AdminEmpresaState extends State<AdminEmpresa> {
 
   //Objetos de ejemplo, hacen la misma funcion que si tuvieramos que crear objectos para guardar la informacion proveniente de la BBDD
 
-  Empresa empresa1 = Empresa(nombre: "Empresa1", direccionSocial: "DireccionSocialEmpresa1", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa1", direccionTrabajo: "DirecionTrabajoEmpresa1",
-  contacto: "contactoEmpresa1", tutor1: "Tutor1Empresa1", tutor2: "Tutor2Empresa2", tutor3: "tutor3Empresa3", convenio: "Empresa1Convenio",
-  planIndividual: "Empresa1PlanIndividual", hojaActividades: "Empresa1HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
-  );
-  Empresa empresa2 = Empresa(nombre: "Empresa2", direccionSocial: "DireccionSocialEmpresa12", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa2", direccionTrabajo: "DirecionTrabajoEmpresa2",
-  contacto: "contactoEmpresa2", tutor1: "Tutor1Empresa2", tutor2: "Tutor2Empresa2", tutor3: "tutor3Empresa2", convenio: "Empresa2Convenio",
-  planIndividual: "Empresa2PlanIndividual", hojaActividades: "Empresa2HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
-  );
-  Empresa empresa3 = Empresa(nombre: "Empresa3", direccionSocial: "DireccionSocialEmpresa3", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa3", direccionTrabajo: "DirecionTrabajoEmpresa3",
-  contacto: "contactoEmpresa3", tutor1: "Tutor1Empresa3", tutor2: "Tutor2Empresa3", tutor3: "tutor3Empresa3", convenio: "Empresa3Convenio",
-  planIndividual: "Empresa3PlanIndividual", hojaActividades: "Empresa3HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
-  );
-  Empresa empresa4 = Empresa(nombre: "Empresa4", direccionSocial: "DireccionSocialEmpresa4", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa4", direccionTrabajo: "DirecionTrabajoEmpresa4",
-  contacto: "contactoEmpresa4", tutor1: "Tutor1Empresa4", tutor2: "Tutor2Empresa4", tutor3: "tutor3Empresa4", convenio: "Empresa4Convenio",
-  planIndividual: "Empresa4PlanIndividual", hojaActividades: "Empresa4HojaActividades", id: 0, idCurso: 0, idEstudios: 0,
-  );
-  Empresa empresa5 = Empresa(nombre: "Empresa5", direccionSocial: "DireccionSocialEmpresa5", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa5", direccionTrabajo: "DirecionTrabajoEmpresa5",
-  contacto: "contactoEmpresa5", tutor1: "Tutor1Empresa5", tutor2: "Tutor2Empresa5", tutor3: "tutor3Empresa5", convenio: "Empresa5Convenio",
-  planIndividual: "Empresa5PlanIndividual", hojaActividades: "Empresa5HojaActividades", id: 0, idCurso: 0, idEstudios: 0
-  );
-  Empresa empresa6 = Empresa(nombre: "Empresa6", direccionSocial: "DireccionSocialEmpresa6", cif: "sdfdsfsdf", representante: "ReprsentanteEmpresa6", direccionTrabajo: "DirecionTrabajoEmpresa6",
-  contacto: "contactoEmpresa6", tutor1: "Tutor1Empresa6", tutor2: "Tutor2Empresa6", tutor3: "tutor3Empresa6", convenio: "Empresa6Convenio",
-  planIndividual: "Empresa6PlanIndividual", hojaActividades: "Empresa6HojaActividades", id: 0, idCurso: 0, idEstudios: 0
-  );
+  
 
 
 
   //Lista donde se almacenaran los objetos de la empresa que cada uno de ellos representaran 
-  List<Empresa> listadoEmpresas = [];
+  //List<Empresa> globales.listaEmpresas = [];
   var size, heightA, widthA;
   double alturaContainerInfoEmpresa = 0;
   bool containerAlumno = false;
-  
   String infoContainerEmpresa = "";
-  
-  
 
  //Metodo para determinar que apartado tiene que mostrar dentro de cada empresa
  String determinarApartado(int index){
@@ -100,21 +76,33 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   else return 200;
  }
  
+ // Método para recuperar la lista de empresas //
+  Future<void> recuperarEmpresas() async {
+    
+    Uri myUri = Uri.parse('${urlListaEmpresas}');
+
+    final respuestaApi = await http.get(myUri);
+
+    try{
+      globales.listaEmpresas= Empresa.devolverListaEmpresas(respuestaApi.body);
+      print(globales.listaEmpresas);
+      
+
+    }catch(excepcion){
+      print(excepcion);
+    }
+    
+  }
+  
 
  //Utilizo el InitState porque quise cargar asi los objetos en la lista
  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    listadoEmpresas.add(empresa1);
-    listadoEmpresas.add(empresa2);
-    listadoEmpresas.add(empresa3);
-    listadoEmpresas.add(empresa4);
-    listadoEmpresas.add(empresa5);
-    listadoEmpresas.add(empresa6);
+    
+    
   }
-
-  
   
   //Metodo para retornar la informacion de cada uno de los apartados de la empresa, es decir, direccion de trabajo, direccion social, etc
   Container retornarInfo(String tituloCarta, int index) {
@@ -130,7 +118,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           color: Colors.blueGrey,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.blueGrey, width: 3)),
-        child: Text(listadoEmpresas[index].direccionTrabajo, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
+        child: Text(globales.listaEmpresas[index].direccionTrabajo, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
     }
      if(tituloCarta == "Direccion social"){
         
@@ -143,7 +131,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           color: Colors.blueGrey,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.blueGrey, width: 3)),
-        child: Text(listadoEmpresas[index].direccionSocial, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
+        child: Text(globales.listaEmpresas[index].direccionSocial, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
     }
      if(tituloCarta == "Cif"){
        
@@ -156,7 +144,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           color: Colors.blueGrey,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.blueGrey, width: 3)),
-        child: Text(listadoEmpresas[index].cif, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
+        child: Text(globales.listaEmpresas[index].cif, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
     }
      if(tituloCarta == "Representante"){
       
@@ -169,7 +157,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           color: Colors.blueGrey,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.blueGrey, width: 3)),
-        child: Text(listadoEmpresas[index].representante, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
+        child: Text(globales.listaEmpresas[index].representante, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)));
     }
     if(tituloCarta == "Contacto"){
        
@@ -184,7 +172,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Text(listadoEmpresas[index].contacto, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
+          Text(globales.listaEmpresas[index].contacto, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(width: 10),
           Icon(Icons.phone, color: Colors.white)
         ],));
@@ -198,60 +186,34 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
         decoration: BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(10)),
         child: Column(children: [
           SizedBox(height: 10),
-          Text("Tutor 1: " + listadoEmpresas[index].tutor1, style: TextStyle(fontSize: 18,  color: Colors.white, fontWeight: FontWeight.bold)),
+          Text("Tutor 1: " + globales.listaEmpresas[index].tutor1, style: TextStyle(fontSize: 18,  color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          Text("Tutor 2: " + listadoEmpresas[index].tutor2, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
+          Text("Tutor 2: " + globales.listaEmpresas[index].tutor2, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          Text("Tutor 3: " + listadoEmpresas[index].tutor3, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
+          Text("Tutor 3: " + globales.listaEmpresas[index].tutor3, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
       ],));
     }
      if(tituloCarta == "Convenio"){
       //FALTA PORQUE NO SE COMO DE GRANDE ES LA INFORMACION QUE TIENE UN CONVENIO ASI QUE xD
-      return Container(child: Text(listadoEmpresas[index].convenio));
+      return Container(child: Text(globales.listaEmpresas[index].convenio));
     }
     if(tituloCarta == "Alumnos"){
       /*
         Falta por rellenar porque no se como van a ser las relaciones para este campo
        */
-      return Container(child: Text(listadoEmpresas[index].convenio));
+      return Container(child: Text(globales.listaEmpresas[index].convenio));
     }
     return Container();
-  }
-
-  Container retornarBottonRefresco(List<Empresa> listaEmpresas, int index) {
-    int fin = listadoEmpresas.length - 1;
-    if( index == fin){
-      return Container(
-        alignment: Alignment.center,
-      margin: EdgeInsets.only(left: 100, top: 100),
-       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-        width: 40,
-        height: 40,
-        
-        child: IconButton(
-          alignment: Alignment.center,
-          
-          icon: Icon(Icons.refresh, color: Colors.blueGrey, weight: 900, size: 30,),onPressed: () => {
-
-        },));
-    }
-  else  return Container(
-      height: 1,
-      width: 1,
-    );
   }
 //Metodo para crear la estructura de toda la pagina, esta funcion creara tanto la lista principal de empresas como
 //la lista que contiene la informacion de cada empresa
 ListView listaEmpresas() {
 return ListView.builder(
-  itemCount: listadoEmpresas.length,
+  itemCount: globales.listaEmpresas.length,
   itemBuilder: ((context, index) {
     //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
     int numeroEmpresa = index;
-     
     return Container(
       alignment: Alignment.center,
       height: 200,
@@ -260,17 +222,13 @@ return ListView.builder(
  spreadRadius: 12,blurRadius: 7, offset: Offset(3, 3),),],
         color: Colors.grey[200],
         border:  Border(top: BorderSide.none, left: BorderSide.none, right: BorderSide.none, bottom: BorderSide(color: Colors.blueGrey,width: 4))),
-      child: Stack(
-        
+      child: TextButton(
         //Lo unico importante en esta linea es el valor que tiene el Text, este equivale al nombre que tiene el objeto empresa de la lista, al cual accedemos en funcion del index de la lista
-        children: [ 
-         
-          TextButton(
-            child: Text(listadoEmpresas[numeroEmpresa].nombre, style: TextStyle(fontSize: 50, color: Colors.blueGrey, fontWeight: FontWeight.bold,
-          shadows: <Shadow>[Shadow( offset: Offset(2, 2), blurRadius: 10.0, color: Colors.black),],
-          ),
-            ),      
+        child: Text(globales.listaEmpresas[numeroEmpresa].nombre, style: TextStyle(fontSize: 50, color: Colors.blueGrey, fontWeight: FontWeight.bold,
+        shadows: <Shadow>[Shadow( offset: Offset(2, 2), blurRadius: 10.0, color: Colors.black),],
+      ),
       
+      ),
       onPressed: () {
         showDialog(
         context: context,
@@ -315,18 +273,11 @@ return ListView.builder(
           });
         },
       );
-      }),
-      
-        
-       
-      retornarBottonRefresco(listadoEmpresas, index),
-    
-          ]));
+      })
+          );
         }));
       }
-
-   String dropdownValue = listadoCursos.first;
-
+  
   @override
   Widget build(BuildContext context) {
       
@@ -335,8 +286,6 @@ return ListView.builder(
       heightA = size.height;
       widthA = size.width;
     });
-
-    
     
     return Scaffold(
     appBar: AppBar(
@@ -344,38 +293,6 @@ return ListView.builder(
       title: Text('Información Empresas'),
       leading: MenuWidget(),
     ),
-    body: Stack(children: [
-
-      
-      Container(child: 
-      listaEmpresas(),
-      ),
-       Container(
-        width: 80,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.blueGrey, width: 4)),
-        child:
-       DropdownButton<String>(
-      value: dropdownValue,
-     
-      elevation: 0,
-      style: const TextStyle(color: Colors.black, fontSize: 10),
-      
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: listadoCursos.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),),
-  
-    ],)
+    body: listaEmpresas()
   );
 }}
