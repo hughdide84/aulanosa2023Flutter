@@ -28,6 +28,11 @@ late List<Curso> listaCursos;
 // Variable para el id de Usuario 
 late int idUsuario;
 
+// Variable para guardar el idCurso
+late int idCurso;
+
+// Variable para guardar el idEstudio
+late int idEstudio;
 
 
 
