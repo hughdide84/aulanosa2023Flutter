@@ -1,4 +1,5 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_typing_uninitialized_variables, prefer_const_constructors, annotate_overrides, unused_import, unnecessary_import, non_constant_identifier_names, prefer_interpolation_to_compose_strings, prefer_const_literals_to_create_immutables, body_might_complete_normally_nullable, avoid_unnecessary_containers, sort_child_properties_last, unused_element, curly_braces_in_flow_control_structures
+import 'package:aulanosa_app/objetosNecesarios/mensaje.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -82,6 +83,27 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
   bool retornarCalendario = true;
   bool retornarTutoria = false;
   final _formKey = GlobalKey<FormState>();
+
+  
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));
+   Mensaje mensaje1 = Mensaje(id: 1, idUsuario: 1, asunto: "Este es el asunto del mensaje1", texto: "Texto del mensaje1", fecha: DateTime.utc(04, 3, 2023));),
   
   
   
