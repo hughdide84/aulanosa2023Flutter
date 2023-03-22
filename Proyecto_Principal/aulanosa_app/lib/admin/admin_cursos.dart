@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sized_box_for_whitespace, prefer_collection_literals, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sized_box_for_whitespace, prefer_collection_literals, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings
 
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
@@ -58,7 +58,12 @@ class _AdminCursosState extends State<AdminCursos> {
                 setState(() {
                   clickado = true;
                   tituloCurso = globales.listaCursos[index].nombre;
-                  estadoCurso = globales.listaCursos[index].estado;
+                  if(globales.listaCursos[index].estado == "a"){
+                  estadoCurso = "activo";
+                  }
+                   if(globales.listaCursos[index].estado == "b"){
+                  estadoCurso = "inactivo";
+                  }
                   fechaFin = globales.listaCursos[index].fin;
                   fechaInicio = globales.listaCursos[index].inicio;
                 });
@@ -104,7 +109,7 @@ class _AdminCursosState extends State<AdminCursos> {
           decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
           width: 250,
-          child:Text("Fecha de inicio: " + fechaInicio.toIso8601String(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
+          child:Text("Fecha de inicio: " + fechaInicio.day.toString() + "-" + fechaInicio.month.toString() + "-" + fechaInicio.year.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
         ),
         SizedBox(height: 40,),
         Container(
@@ -112,7 +117,7 @@ class _AdminCursosState extends State<AdminCursos> {
           decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
           width: 250,
-          child:Text("Fecha de terminacion: " + fechaFin.toIso8601String(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
+          child:Text("Fecha de terminacion: " + fechaFin.day.toString() + "-" + fechaFin.month.toString() + "-" + fechaFin.year.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
         ),
       ],)
     );
