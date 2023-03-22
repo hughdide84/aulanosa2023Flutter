@@ -25,6 +25,8 @@ late List<Empresa> listaEmpresas;
 // Variable global que contiene la lista de cursos //
 late List<Curso> listaCursos;
 
+// Variable para el id de Usuario 
+late int idUsuario;
 
 
 
