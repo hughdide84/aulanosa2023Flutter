@@ -406,16 +406,46 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                 return 'Please enter some text';
               }
             },
-                
-              ),
+            ),
+              TextFormField(
+                  decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Escriba el asunto"
+
+                 ),
+                 validator: (value) {
+              if (value!.isEmpty) {
+                return 'Escriba el asunto';
+              }
+            },
+            ),
+              TextFormField(
+                  decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Escriba el titulo de la tutoria"
+
+                 ),
+                 validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter some text';
+              }
+            },
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 200),
+               padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+                border: Border.all(color: Colors.white, width: 3,)),
+              child: Text( "Fecha tutoria: " + diaSeleccionado.year.toString() + "-" + diaSeleccionado.month.toString() + "-" + diaSeleccionado.day.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)))
             
         ],
       ),
     ),
+  
+    ), 
     
-
-
-         ), Padding(
+    Padding(
           padding: EdgeInsets.all(20),
           child: Container(
           alignment: Alignment.center,
