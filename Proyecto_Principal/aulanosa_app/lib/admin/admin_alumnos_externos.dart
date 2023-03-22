@@ -2,6 +2,8 @@ import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
+import 'package:http/http.dart' as http;
 
 // Página editar/mostrar alumnos externos
 class AlumnosExternos extends StatefulWidget {
@@ -10,6 +12,9 @@ class AlumnosExternos extends StatefulWidget {
   @override
   State<AlumnosExternos> createState() => _AlumnosExternosState();
 }
+
+List<AlumnoExterno> listadoAlumnos = [];
+String urlListaAlumnosExternos='http://10.0.2.2:8080/api/alumnoExterno';
 
 class _AlumnosExternosState extends State<AlumnosExternos> {
   AlumnoExterno alumno1 = AlumnoExterno(
@@ -21,7 +26,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       telefono: 'telefono',
       universidad: 'universidad',
       titulacion: 'titulacion',
-      especialidad: 'especialidad',
+      especialidad: 'cocina',
       cv: 'cv',
       convenio: 'convenio',
       evaluacion: 'evaluacion',
@@ -31,12 +36,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       id: 1,
       idCurso: 1,
       tipo: 'a',
-      nombre: 'nombre',
+      nombre: 'suso',
       email: 'email',
       telefono: 'telefono',
       universidad: 'universidad',
       titulacion: 'titulacion',
-      especialidad: 'especialidad',
+      especialidad: 'filosofia',
       cv: 'cv',
       convenio: 'convenio',
       evaluacion: 'evaluacion',
@@ -46,12 +51,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       id: 1,
       idCurso: 1,
       tipo: 'a',
-      nombre: 'nombre',
+      nombre: 'pablo',
       email: 'email',
       telefono: 'telefono',
       universidad: 'universidad',
       titulacion: 'titulacion',
-      especialidad: 'especialidad',
+      especialidad: 'programacion',
       cv: 'cv',
       convenio: 'convenio',
       evaluacion: 'evaluacion',
@@ -61,12 +66,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       id: 1,
       idCurso: 1,
       tipo: 'a',
-      nombre: 'nombre',
+      nombre: 'marcos',
       email: 'email',
       telefono: 'telefono',
       universidad: 'universidad',
       titulacion: 'titulacion',
-      especialidad: 'especialidad',
+      especialidad: 'matematicas',
       cv: 'cv',
       convenio: 'convenio',
       evaluacion: 'evaluacion',
@@ -76,7 +81,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       id: 1,
       idCurso: 1,
       tipo: 'a',
-      nombre: 'nombre',
+      nombre: 'daniel',
       email: 'email',
       telefono: 'telefono',
       universidad: 'universidad',
@@ -91,20 +96,19 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       id: 1,
       idCurso: 1,
       tipo: 'a',
-      nombre: 'nombre',
+      nombre: 'pablo',
       email: 'email',
       telefono: 'telefono',
       universidad: 'universidad',
       titulacion: 'titulacion',
-      especialidad: 'especialidad',
+      especialidad: 'aire libre',
       cv: 'cv',
       convenio: 'convenio',
       evaluacion: 'evaluacion',
       horario: 'horario');
 
   //Lista donde se almacenaran los objetos de la empresa que cada uno de ellos representaran
-  List<Empresa> listadoEmpresas = [];
-  List<AlumnoExterno> listadoAlumnos = [];
+
   var size, heightA, widthA;
   double alturaContainerInfoEmpresa = 0;
   bool containerAlumno = false;
@@ -142,6 +146,23 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
     return "sdf";
   }
 
+    Future<void> recuperarEmpresas() async {
+    
+    Uri myUri = Uri.parse('${urlListaAlumnosExternos}');
+
+    final respuestaApi = await http.get(myUri);
+
+    try{
+      globales.listaEmpresas= Empresa.devolverListaEmpresas(respuestaApi.body);
+      print(globales.listaEmpresas);
+      
+
+    }catch(excepcion){
+      print(excepcion);
+    }
+    
+  }
+
   //Funcion para controlar la altura del container que muestra la lista de alumnos
   double retornarAlturaContainerAlumno(index) {
     if (index == 7) {
@@ -155,12 +176,8 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    listadoAlumnos.add(alumno1);
-    listadoAlumnos.add(alumno2);
-    listadoAlumnos.add(alumno3);
-    listadoAlumnos.add(alumno4);
-    listadoAlumnos.add(alumno5);
-    listadoAlumnos.add(alumno6);
+   listadoAlumnos=globales.listaAlumnosExternos;
+
   }
 
   //Metodo para retornar la informacion de cada uno de los apartados de la empresa, es decir, direccion de trabajo, direccion social, etc
@@ -176,13 +193,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(1),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].nombre,
+          child: Text(globales.listaAlumnosExternos[index].nombre,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-    else if (tituloCarta == "tipo") {
+    } else if (tituloCarta == "tipo") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -192,13 +208,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].tipo,
+          child: Text(globales.listaAlumnosExternos[index].tipo,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "telefono") {
+    } else if (tituloCarta == "telefono") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -208,13 +223,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].telefono,
+          child: Text(globales.listaAlumnosExternos[index].telefono,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "email") {
+    } else if (tituloCarta == "email") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -224,13 +238,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].email,
+          child: Text(globales.listaAlumnosExternos[index].email,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "universidad") {
+    } else if (tituloCarta == "universidad") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -240,13 +253,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].universidad,
+          child: Text(globales.listaAlumnosExternos[index].universidad,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "titulacion") {
+    } else if (tituloCarta == "titulacion") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -256,13 +268,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].titulacion,
+          child: Text(globales.listaAlumnosExternos[index].titulacion,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "especialidad") {
+    } else if (tituloCarta == "especialidad") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -272,13 +283,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].especialidad,
+          child: Text(globales.listaAlumnosExternos[index].especialidad,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "evaluacion") {
+    } else if (tituloCarta == "evaluacion") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -288,13 +298,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].evaluacion,
+          child: Text(globales.listaAlumnosExternos[index].evaluacion,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
-    }
-     else if (tituloCarta == "horario") {
+    } else if (tituloCarta == "horario") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
@@ -304,13 +313,13 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.blueGrey, width: 3)),
-          child: Text(listadoAlumnos[index].horario,
+          child: Text('horario',
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
     }
-    
+
     return Container();
   }
 
@@ -318,7 +327,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
 //la lista que contiene la informacion de cada empresa
   ListView listaAlumnosExternos() {
     return ListView.builder(
-        itemCount: listadoAlumnos.length,
+        itemCount: globales.listaAlumnosExternos.length,
         itemBuilder: ((context, index) {
           //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
           int numeroEmpresa = index;
@@ -328,7 +337,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                 alignment: Alignment.center,
                 height: 100,
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.blueGrey,
                       spreadRadius: 12,
@@ -347,12 +356,12 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                 child: TextButton(
                     //Lo unico importante en esta linea es el valor que tiene el Text, este equivale al nombre que tiene el objeto empresa de la lista, al cual accedemos en funcion del index de la lista
                     child: Text(
-                      listadoAlumnos[numeroEmpresa].nombre,
+                      globales.listaAlumnosExternos[index].nombre,
                       style: TextStyle(
                         fontSize: 50,
                         color: Colors.blueGrey,
                         fontWeight: FontWeight.bold,
-                        shadows: <Shadow>[
+                        shadows: const <Shadow>[
                           Shadow(
                               offset: Offset(2, 2),
                               blurRadius: 10.0,
@@ -374,65 +383,62 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                                   itemCount: 8,
                                   itemBuilder: (context, index) {
                                     return Container(
-                                        alignment: Alignment.center,
-                                        margin: EdgeInsets.only(bottom: 20),
-                                        //Este metodo lo utilizamos para determinar que cuando se trate de la carta que mostrara la informacion de los alumnos
-                                        //que estan en la empresa esta se agrande, ya que el tamano que tienen las demas no sera suficiente
-                                        height: retornarAlturaContainerAlumno(
-                                            index),
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black,
-                                              spreadRadius: 2,
-                                              blurRadius: 7,
-                                              offset: Offset(3,
-                                                  3), // changes position of shadow
-                                            ),
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.grey[200],
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                                padding:
-                                                    EdgeInsets.only(top: 10),
-                                                decoration: BoxDecoration(
-                                                  border: Border(
-                                                      top: BorderSide.none,
-                                                      left: BorderSide.none,
-                                                      right: BorderSide.none,
-                                                      bottom: BorderSide(
-                                                          color:
-                                                              Colors.blueGrey,
-                                                          width: 4)),
-                                                ),
-                                                //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
-                                                //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
-                                                child: Text(
-                                                    determinarApartado(index),
-                                                    style: TextStyle(
-                                                      fontSize: 35,
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      //Este metodo lo utilizamos para determinar que cuando se trate de la carta que mostrara la informacion de los alumnos
+                                      //que estan en la empresa esta se agrande, ya que el tamano que tienen las demas no sera suficiente
+                                      height:
+                                          retornarAlturaContainerAlumno(index),
+                                      decoration: BoxDecoration(
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.black,
+                                            spreadRadius: 2,
+                                            blurRadius: 7,
+                                            offset: Offset(3,
+                                                3), // changes position of shadow
+                                          ),
+                                        ],
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.grey[200],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                  top: BorderSide.none,
+                                                  left: BorderSide.none,
+                                                  right: BorderSide.none,
+                                                  bottom: BorderSide(
                                                       color: Colors.blueGrey,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      shadows: <Shadow>[
-                                                        Shadow(
-                                                            offset:
-                                                                Offset(2, 2),
-                                                            blurRadius: 10.0,
-                                                            color:
-                                                                Colors.black),
-                                                      ],
-                                                    ))),
-                                            //Con este metodo gracias a la otra funcion y a la variable que indica el numero de empresa le pasamos todo esto para determinar que debe mostrar y sobre que empresa debe hacerlo
-                                            retornarInfo(
-                                                determinarApartado(index),
-                                                numeroEmpresa)
-                                          ],
-                                        ));
+                                                      width: 4)),
+                                            ),
+                                            //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
+                                            //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
+                                            child: Text(
+                                              determinarApartado(index),
+                                              style: TextStyle(
+                                                fontSize: 35,
+                                                color: Colors.blueGrey,
+                                                fontWeight: FontWeight.bold,
+                                                shadows: const <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2, 2),
+                                                      blurRadius: 10.0,
+                                                      color: Colors.black),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          //Con este metodo gracias a la otra funcion y a la variable que indica el numero de empresa le pasamos todo esto para determinar que debe mostrar y sobre que empresa debe hacerlo
+                                          retornarInfo(
+                                              determinarApartado(index),
+                                              numeroEmpresa)
+                                        ],
+                                      ),
+                                    );
                                   },
                                 ));
                           });
@@ -459,39 +465,181 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
         ],
       ),
       body: listaAlumnosExternos());
-      
-       
 }
 
-class DataSearch extends SearchDelegate{
+class DataSearch extends SearchDelegate {
+ String nombre='';
+ String email='';
+
   @override
   List<Widget>? buildActions(BuildContext context) => [
-    IconButton(
-      icon: Icon(Icons.clear),
-      onPressed: () => query = '',
-    ),
-  ];
+        IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+           
+            } 
+        ),
+      ];
 
   @override
   Widget? buildLeading(BuildContext context) => IconButton(
-    icon: AnimatedIcon(
-      icon: AnimatedIcons.menu_arrow,
-      progress: transitionAnimation,
-    ),
-    onPressed: () => close(context, null),
-  );
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.menu_arrow,
+          progress: transitionAnimation,
+        ),
+        onPressed: () => close(context, null),
+      );
 
   @override
-  Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
-  }
-  
+  Widget buildResults(BuildContext context) => Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.3,
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black,
+              spreadRadius: 2,
+              blurRadius: 7,
+              offset: Offset(3, 3), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey[200],
+        ),
+        child: Center(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide.none,
+                      left: BorderSide.none,
+                      right: BorderSide.none,
+                      bottom: BorderSide(color: Colors.blueGrey, width: 4)),
+                ),
+                //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
+                //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
+                child: Text(
+                  (query),
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.bold,
+                    shadows: const <Shadow>[
+                      Shadow(
+                          offset: Offset(2, 2),
+                          blurRadius: 10.0,
+                          color: Colors.black),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide.none,
+                      left: BorderSide.none,
+                      right: BorderSide.none,
+                      bottom: BorderSide(color: Colors.blueGrey, width: 4)),
+                ),
+                //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
+                //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
+                child: Text(
+                  (nombre),
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.bold,
+                    shadows: const <Shadow>[
+                      Shadow(
+                          offset: Offset(2, 2),
+                          blurRadius: 10.0,
+                          color: Colors.black),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide.none,
+                      left: BorderSide.none,
+                      right: BorderSide.none,
+                      bottom: BorderSide(color: Colors.blueGrey, width: 4)),
+                ),
+                //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
+                //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
+                child: Text(
+                  (email),
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.bold,
+                    shadows: const <Shadow>[
+                      Shadow(
+                          offset: Offset(2, 2),
+                          blurRadius: 10.0,
+                          color: Colors.black),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
+    final suggestionList = query.isEmpty
+        ? listadoAlumnos
+        :  listadoAlumnos
+                .where((p) =>
+                    p.nombre.toLowerCase().startsWith(query.toLowerCase()))
+                .toList() +
+            listadoAlumnos
+                .where((p) => p.especialidad
+                    .toLowerCase()
+                    .startsWith(query.toLowerCase()))
+                .toList();
+
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, index) => ListTile(
+        onTap: () {
+          query = suggestionList[index].especialidad;
+          nombre=suggestionList[index].nombre;
+          email=suggestionList[index].email;
+          showResults(context);
+        },
+        leading: Icon(Icons.person),
+        title: RichText(
+          text: TextSpan(
+            text: suggestionList[index].nombre.substring(0, query.length),
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+            children: [
+              TextSpan(
+                text: suggestionList[index].nombre.substring(query.length),
+                style: TextStyle(color: Colors.grey),
+              ),
+              const TextSpan(text: ' - '),
+              TextSpan(
+                text:
+                    suggestionList[index].especialidad.substring(query.length),
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
-
-
 }
