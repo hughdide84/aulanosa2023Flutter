@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
+import 'package:aulanosa_app/objetosNecesarios/filtro_Empresa.dart';
 import 'package:http/http.dart' as http;
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
@@ -25,9 +26,7 @@ class metodosCompartidos{
     // Uri de la direccion de la API que recupera una lista de datos por idCurso e idEstudios //
 
     Uri myUri = Uri.parse('${urlListaEmpresas}');
-
-    Uri myUri2 = Uri.parse("");
-
+    
     final respuestaApi = await http.get(myUri);
 
     try{
@@ -58,14 +57,17 @@ class metodosCompartidos{
 
 
 
-   Future<void> recuperarEmpresas2() async {
+   Future <void> recuperarEmpresasFiltradas(int idCurso, int idEstudios) async {
     
+    List<Empresa> listaEmpresasRecuperadas=[];
+
+
     // Uri de la direccion de la API que recupera una lista de datos por idCurso e idEstudios //
     
     Uri myUri = Uri.parse('${urlListaEmpresas}');
 
 
-    Uri myUri2 = Uri.parse('$urlIdEmpresa'+''+'');
+    Uri myUri2 = Uri.parse('$urlIdEmpresa'+'$idCurso'+'$idEstudios');
 
     // Recupero la lista de empresas para poder compararlas por id //
     final respuestaApi = await http.get(myUri);
@@ -74,16 +76,32 @@ class metodosCompartidos{
     // Despues recupero los datos filtrados de las empresas por idCurso y por idEstudios //
     // Es decir, filtrados por el año de curso que nos interesa y los estudios //
     final respuestaAPI2 = await http.get(myUri2);
-
-    try{
-
-      globales.listaEmpresas= Empresa.devolverListaEmpresas(respuestaApi.body);
-
     
+    try{
+      List<Empresa> listaEmpresas = Empresa.devolverListaEmpresas(respuestaApi.body);
+      //globales.listaEmpresas= Empresa.devolverListaEmpresas(respuestaApi.body);
+      List<FiltroEmpresa> listaEmpresasFiltradas = FiltroEmpresa.devolverListaFiltroEmpresas(respuestaAPI2.body);
+
+      // Itero la lista de empresas que nos devuelve la primera direccion de la API //
+      // Con la siguiente lista de empresas que nos da un id de //
+      // la empresa que si cumple los filtro de idCurso e idEstudios //
+      // Una vez filtradas, actualizo la variable global que es la utilizo para mostrar //
+      // y actualizar info en el resto de la app //
+      for(var empresa in listaEmpresas){
+          for(var empresaFiltrada in listaEmpresasFiltradas){
+              if(empresa.id==empresaFiltrada.idEmpresa){
+                listaEmpresasRecuperadas.add(empresa);
+              }
+          }
+
+      }
+      // Actualizo la variable global para la lista de empresas que se muestra //
+      globales.listaEmpresas=listaEmpresasRecuperadas;
 
     }catch(excepcion){
       print(excepcion);
     }
+    
     
   }
 
