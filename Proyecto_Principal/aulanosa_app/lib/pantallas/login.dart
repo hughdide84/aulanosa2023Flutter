@@ -250,12 +250,14 @@ class Login2 extends State<Login>{
                         if(globales.roll=="ALUMNO"){
                           await recuperarDatosAlumno(nombreUsuario);
                           await recuperarDatosCurso(alumnoUsuario.idCurso);
+                        
 
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
 
                         }else if(globales.roll=="ADMIN"){
                           await metodosCompartidos().recuperarEmpresas();
                           await metodosCompartidos().recuperarCursos();
+                          await metodosCompartidos().recuperarAlumnosExternos();
                           
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
@@ -408,6 +410,8 @@ class Login2 extends State<Login>{
       
 
   }
+
+  
 
 
 

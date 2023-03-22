@@ -1,4 +1,5 @@
 // Variable global que transporta entre clases la información del roll del usuario //
+import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
 
@@ -20,6 +21,9 @@ String estadoCurso="Sin Info";
 
 // Variable global que contiene la lista de empresas //
 late List<Empresa> listaEmpresas;
+
+// Variable global que contiene la lista de alumnos externos //
+late List<AlumnoExterno> listaAlumnosExternos;
 
 
 // Variable global que contiene la lista de cursos //
