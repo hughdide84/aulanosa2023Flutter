@@ -256,7 +256,7 @@ class Login2 extends State<Login>{
                         }else if(globales.roll=="ADMIN"){
                           await metodosCompartidos().recuperarEmpresas();
                           await metodosCompartidos().recuperarCursos();
-                          print(globales.listaCursos);
+                          
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }
                       },
@@ -339,7 +339,7 @@ class Login2 extends State<Login>{
         }
       }catch(excepcion){
         print(excepcion);
-        //Notififcaciones().errorInicioSesion(context);
+       
 
       }
         
@@ -373,7 +373,7 @@ class Login2 extends State<Login>{
       }catch(excepcion){
 
         print(excepcion);
-        print("NO SE HAN RECUPERADO LOS DATOS DEL ALUMNO");
+       
       
       }
       
@@ -402,7 +402,7 @@ class Login2 extends State<Login>{
       }catch(excepcion){
 
         print(excepcion);
-        print("NO SE HAN RECUPERADO LOS DATOS DEL CURSO");
+        
       
       }
       
