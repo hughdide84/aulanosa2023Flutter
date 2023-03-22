@@ -16,7 +16,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
       id: 1,
       idCurso: 1,
       tipo: 'a',
-      nombre: 'nombre',
+      nombre: 'roberto',
       email: 'email',
       telefono: 'telefono',
       universidad: 'universidad',
@@ -174,7 +174,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: Colors.blueGrey,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(1),
               border: Border.all(color: Colors.blueGrey, width: 3)),
           child: Text(listadoAlumnos[index].nombre,
               style: TextStyle(
@@ -449,6 +449,49 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
         backgroundColor: Color.fromARGB(255, 48, 92, 174),
         title: Text('Alumnos Externos'),
         leading: MenuWidget(),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: DataSearch());
+            },
+          ),
+        ],
       ),
       body: listaAlumnosExternos());
+      
+       
+}
+
+class DataSearch extends SearchDelegate{
+  @override
+  List<Widget>? buildActions(BuildContext context) => [
+    IconButton(
+      icon: Icon(Icons.clear),
+      onPressed: () => query = '',
+    ),
+  ];
+
+  @override
+  Widget? buildLeading(BuildContext context) => IconButton(
+    icon: AnimatedIcon(
+      icon: AnimatedIcons.menu_arrow,
+      progress: transitionAnimation,
+    ),
+    onPressed: () => close(context, null),
+  );
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    throw UnimplementedError();
+  }
+  
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    throw UnimplementedError();
+  }
+
+
 }
