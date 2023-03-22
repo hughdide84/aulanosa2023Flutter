@@ -47,23 +47,18 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
               child: Text("Lista de eventos", style:TextStyle(color: Colors.white, fontWeight: FontWeight.bold, decoration: TextDecoration.none, ), textAlign: TextAlign.center,)
             );
         }
-    else {
-      return Card(
-        margin: EdgeInsets.only(top: 20),
-        child: Container(
-           padding: EdgeInsets.all(10),
-          height: 200,
-          child: Stack(children: [
-            Row(children: [
-              Container(
-               
-                decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
-                child: Text(diaSeleccionado.day.toString() + "-" + diaSeleccionado.month.toString() + "-" + diaSeleccionado.year.toString(), 
-              style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.bold),
-              
-              ),),
-            
-            ],),
+        else {
+          return Card(
+            margin: EdgeInsets.only(top: 20),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 200,
+              child: Stack(children: [
+                Row(children: [
+                Container(
+                  decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
+                  child: Text(diaSeleccionado.day.toString() + "-" + diaSeleccionado.month.toString() + "-" + diaSeleccionado.year.toString(), 
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.bold),),),],),
               Container(
                 decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
                 alignment: Alignment.topCenter,
