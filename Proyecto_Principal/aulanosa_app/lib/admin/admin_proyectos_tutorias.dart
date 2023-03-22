@@ -5,6 +5,8 @@ import 'package:table_calendar/table_calendar.dart';
 
  String asunto = "";
  String titulo = "";
+ var eventos = "";
+ int cantidadDiasMes = 0;
 
 class TutoriasAdmin extends StatefulWidget {
   const TutoriasAdmin({super.key});
@@ -96,6 +98,58 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
     
     DropdownButtonFormField(items: <DropdownMenuItem>[], onChanged: (value) {});
     
+    int determinarCantidadDiasMes(DateTime dia) {
+      int cantidad;
+      if(dia.month == 1){
+        cantidad = 31;
+        return cantidad;
+      }
+      if(dia.month == 2){
+        cantidad = 28;
+        return cantidad;
+      }
+      if(dia.month == 3){
+        cantidad = 31;
+        return cantidad;
+      }
+      if(dia.month == 4){
+        cantidad = 30;
+        return cantidad;
+      }
+      if(dia.month == 5){
+        cantidad = 31;
+        return cantidad;
+      }
+      if(dia.month == 6){
+        cantidad = 30;
+        return cantidad;
+      }
+      if(dia.month == 7){
+        cantidad = 31;
+        return cantidad;
+      }
+      if(dia.month == 8){
+        cantidad = 31;
+        return cantidad;
+      }
+      if(dia.month == 9){
+        cantidad = 30;
+        return cantidad;
+      }
+      if(dia.month == 10){
+        cantidad = 31;
+        return cantidad;
+      }
+      if(dia.month == 11){
+        cantidad = 30;
+        return cantidad;
+      }
+      if(dia.month == 12){
+        cantidad = 31;
+        return cantidad;
+      }
+      return 0;
+    }
 
     //Estructura del calendario
     Widget calendario() {
@@ -234,7 +288,19 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                   */
                   markerBuilder: (context, day, events) {
                     //Cantidad de "citas"
-                    var citas = "5";
+                     if(day.day == 4){
+                        eventos = "3";
+                      }
+                    
+                    //Recorro todos los dias el mes en el que estoy
+                    for(int i = 0; i < determinarCantidadDiasMes(hoy); i ++){
+                      if(day.day == i){
+                        eventos = "3";
+                      }
+                      if(i == 10)
+                      eventos = "10";
+                    }
+                    
                     return Align(
                         alignment: Alignment.bottomRight,
                         child: Container(
@@ -243,7 +309,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.cyan),
                             child: Text(
-                              citas,
+                              eventos,
                               style: TextStyle(
                                   color: Color.fromARGB(255, 48, 92, 174),
                                   fontWeight: FontWeight.bold),
@@ -257,6 +323,8 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
         ),
       );
     }
+
+
 
     
 
@@ -295,8 +363,8 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                 */
                 focusedDay: hoy,
                 //Los valores fe firstDay y lastDay son de prueba,
-                firstDay: DateTime.utc(2010, 01, 1),
-                lastDay: DateTime.utc(2040, 12, 31),
+                firstDay: DateTime.utc(1, hoy.month, hoy.year),
+                lastDay: DateTime.utc(20100, 12, 31),
                 //Definimos el estilo de los dias de la semana y fin de semana, colores, sombras, fuentes, etc
                 daysOfWeekStyle: DaysOfWeekStyle(
                     weekendStyle: TextStyle(
@@ -390,6 +458,31 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                 modificarlos
                 */
                 calendarBuilders: CalendarBuilders(
+                   markerBuilder: (context, day, events) {
+                    //Cantidad de "citas"
+                    // AQUI va a haber que cambiarlo en funcion a lo que recuperemos de la API //
+                    //Recorro todos los dias el mes en el que estoy
+                  
+                      
+                    if(day.day == 2) {eventos = "2";
+                    
+                    
+                    return Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.cyan),
+                            child: Text(
+                              eventos,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 48, 92, 174),
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            )));
+                    }
+                  },
                   /*Modifico el metodo markerBuilder, este metodo es el que me permite agregarle
                   a cada celda del calendario contenido, en este caso le agrego un numero ya definido
                   este numero equivaldra en la version final al numero de examenes que tenga el alumno 
@@ -401,6 +494,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
             ),
             FloatingActionButton(
         onPressed: () {
+     print(hoy.month);
           setState(() {
             retornarCalendario = false;
             retornarTutoria = true;
