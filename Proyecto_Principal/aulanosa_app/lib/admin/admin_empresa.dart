@@ -206,35 +206,9 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
     }
     return Container();
   }
-
-
-   Container retornarBottonRefresco(List<Empresa> listaEmpresas, int index) {
-    int fin = listaEmpresas.length - 1;
-    if( index == fin){
-      return Container(
-        alignment: Alignment.center,
-      margin: EdgeInsets.only(left: 100, top: 100),
-       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-        width: 40,
-        height: 40,
-        
-        child: IconButton(
-          alignment: Alignment.center,
-          
-          icon: Icon(Icons.refresh, color: Colors.blueGrey,  size: 30,),onPressed: () => {
-
-        },));
-    }
-  else  return Container(
-      height: 1,
-      width: 1,
-    );
-  }
 //Metodo para crear la estructura de toda la pagina, esta funcion creara tanto la lista principal de empresas como
 //la lista que contiene la informacion de cada empresa
-ListView listadoEmpresas() {
+ListView listaEmpresas() {
 return ListView.builder(
   itemCount: globales.listaEmpresas.length,
   itemBuilder: ((context, index) {
@@ -299,13 +273,10 @@ return ListView.builder(
           });
         },
       );
-      }),
-       retornarBottonRefresco(listaEmpresas, index),
+      })
           );
         }));
       }
-
-  String dropdownValue = listaCursos.first;
   
   @override
   Widget build(BuildContext context) {
@@ -322,38 +293,6 @@ return ListView.builder(
       title: Text('Información Empresas'),
       leading: MenuWidget(),
     ),
-    body: Stack(children: [
-
-      
-      Container(child: 
-      listadoEmpresas(),
-      ),
-       Container(
-        width: 80,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.blueGrey, width: 4)),
-        child:
-       DropdownButton<String>(
-      value: dropdownValue,
-     
-      elevation: 0,
-      style: const TextStyle(color: Colors.black, fontSize: 10),
-      
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: listadoCursos.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),),
-  
-    ],)
+    body: listaEmpresas()
   );
 }}
