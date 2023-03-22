@@ -15,7 +15,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
   late double alturaPantalla;
   late double anchoPantalla;
   DateTime hoy = DateTime.now();
-  late DateTime diaSeleccionado;
+   DateTime diaSeleccionado = DateTime.now();
  
   
 
@@ -32,6 +32,8 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
   bool retornarCalendario = true;
   bool retornarTutoria = false;
   final _formKey = GlobalKey<FormState>();
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
       alturaPantalla = size.height;
       anchoPantalla = size.width;
     });
-    
+    String asunto = "";
     
     DropdownButtonFormField(items: <DropdownMenuItem>[], onChanged: (value) {});
     
@@ -344,24 +346,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                   este numero equivaldra en la version final al numero de examenes que tenga el alumno 
                   ese dia, si no tiene obviamente no aparecedera nada
                   */
-                  markerBuilder: (context, day, events) {
-                    //Cantidad de "citas"
-                    var citas = "5";
-                    return Align(
-                        alignment: Alignment.bottomRight,
-                        child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.cyan),
-                            child: Text(
-                              citas,
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 48, 92, 174),
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            )));
-                  },
+                
                 ),
               ),
             ),
@@ -383,10 +368,12 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
         child: SingleChildScrollView(
         child: Column(children: [
           Container(
+          
           margin: EdgeInsets.only(),
           decoration: BoxDecoration(
-            color: Colors.grey[200],
-            border: Border.all(color: Colors.blueGrey, width: 4)
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.blueGrey,
+            border: Border.all(color: Colors.white, width: 4)
           ),
         height: alturaPantalla * 0.6,
         width: 500,
@@ -397,10 +384,8 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
             children: <Widget>[
               TextFormField(
                   decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Escriba el titulo de la tutoria"
-
-                 ),
+                  hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  hintText: "Escriba el titulo de la tutoria"),
                  validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter some text';
@@ -408,20 +393,25 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
             },
             ),
               TextFormField(
+                
                   decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Escriba el asunto"
-
+                  hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  hintText: "Escriba el asunto",
+              
                  ),
                  validator: (value) {
+                  
               if (value!.isEmpty) {
                 return 'Escriba el asunto';
               }
             },
+            onSaved: (value) =>  {
+                asunto = value!
+            },
             ),
               TextFormField(
                   decoration: InputDecoration(
-                  border: InputBorder.none,
+                  hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                   hintText: "Escriba el titulo de la tutoria"
 
                  ),
@@ -455,6 +445,8 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
               setState(() {
                 retornarTutoria = false;
                 retornarCalendario = true;
+                //Aqui se tendria que llamar al metodo para insertar datos
+                print(diaSeleccionado);
               });
              
             }),

@@ -32,7 +32,6 @@ class _AdminCursosState extends State<AdminCursos> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
    Widget estadoCursos(){
