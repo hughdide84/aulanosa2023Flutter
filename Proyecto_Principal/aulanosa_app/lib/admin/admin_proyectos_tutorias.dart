@@ -3,6 +3,9 @@ import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+ String asunto = "";
+ String titulo = "";
+
 class TutoriasAdmin extends StatefulWidget {
   const TutoriasAdmin({super.key});
 
@@ -11,19 +14,64 @@ class TutoriasAdmin extends StatefulWidget {
 }
 
 class TutoriasAdminState extends State<TutoriasAdmin> {
+
   var size, heightA, widthA;
   late double alturaPantalla;
   late double anchoPantalla;
   DateTime hoy = DateTime.now();
-   DateTime diaSeleccionado = DateTime.now();
- 
-  
+  DateTime diaSeleccionado = DateTime.now();
 
-  void dia_seleccionadoAdmin(DateTime dia, DateTime diaFocus) {
+  List<String> listaEventos = [];
+   
+  //Metodo que se llamara cuando seleccionemos cualquier dia
+  dia_seleccionadoAdmin(DateTime dia, DateTime diaFocus) {
     setState(() {
       hoy = dia;
     });
     diaSeleccionado = dia;
+    showDialog(context: context, builder: (BuildContext context) {
+      return StatefulBuilder(builder:(context, StateSetter setState) {
+        return Container(padding: EdgeInsets.all(10),
+        child: ListView.builder(
+          itemCount: 4,
+          itemBuilder: (context, index) {
+          
+          if(index == 0) {
+            return Container(
+            alignment:Alignment.center,
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text("Lista de eventos", style:TextStyle(color: Colors.white, fontWeight: FontWeight.bold, decoration: TextDecoration.none, ), textAlign: TextAlign.center,)
+            );
+        }
+        else {
+          return Card(
+            margin: EdgeInsets.only(top: 20),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 200,
+              child: Stack(children: [
+                Row(children: [
+                Container(
+                  decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
+                  child: Text(diaSeleccionado.day.toString() + "-" + diaSeleccionado.month.toString() + "-" + diaSeleccionado.year.toString(), 
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.bold),),),],),
+              Container(
+                decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
+                alignment: Alignment.topCenter,
+                margin: EdgeInsets.only(top: 80),
+                child: Text("Informacion evento", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,  color: Colors.blueGrey))
+              )
+          ],)
+)
+      );
+    }
+        },));
+      },);
+    });
   }
 
   double topCalendario = 2;
@@ -32,6 +80,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
   bool retornarCalendario = true;
   bool retornarTutoria = false;
   final _formKey = GlobalKey<FormState>();
+  
   
   
 
@@ -43,7 +92,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
       alturaPantalla = size.height;
       anchoPantalla = size.width;
     });
-    String asunto = "";
+    
     
     DropdownButtonFormField(items: <DropdownMenuItem>[], onChanged: (value) {});
     
@@ -386,41 +435,28 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                   decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                   hintText: "Escriba el titulo de la tutoria"),
-                 validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter some text';
-              }
-            },
+                  validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter some text';
+                    }
+                  },
+                  onSaved: (value) => {
+                    titulo = value!
+                  },
             ),
               TextFormField(
-                
-                  decoration: InputDecoration(
+                decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  hintText: "Escriba el asunto",
-              
-                 ),
+                  hintText: "Escriba el asunto",),
                  validator: (value) {
-                  
-              if (value!.isEmpty) {
-                return 'Escriba el asunto';
-              }
-            },
-            onSaved: (value) =>  {
-                asunto = value!
-            },
-            ),
-              TextFormField(
-                  decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  hintText: "Escriba el titulo de la tutoria"
-
-                 ),
-                 validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter some text';
-              }
-            },
-            ),
+                  if (value!.isEmpty) {
+                    return 'Escriba el asunto';
+                  }},
+                  onSaved: (value) =>  {
+                    asunto = value!
+                    },
+              ),
+            
             Container(
               margin: EdgeInsets.only(top: 200),
                padding: EdgeInsets.all(20),
@@ -442,17 +478,16 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
           decoration: BoxDecoration(border: Border.all(color: Colors.blueGrey, width: 4)),
           child: TextButton(
             onPressed: (() {
+              _formKey.currentState!.save();
+              print(asunto);
               setState(() {
                 retornarTutoria = false;
                 retornarCalendario = true;
                 //Aqui se tendria que llamar al metodo para insertar datos
-                print(diaSeleccionado);
               });
-             
-            }),
+              }),
             child: Text("Crear tutoria"))))])));
-
-      }
+            }
       return Container();
     }
 
