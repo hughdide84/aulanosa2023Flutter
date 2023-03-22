@@ -173,8 +173,8 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                             
                             //Descripcion
                             Container(
-                              height: MediaQuery.sizeOf(context).height *0.1,
-                              width: MediaQuery.sizeOf(context).width*0.6,
+                              height: MediaQuery.of(context).size.height *0.1,
+                              width: MediaQuery.of(context).size.width*0.6,
                               margin: EdgeInsets.all(5),
                               child: Align(
                                 alignment: Alignment.center,
