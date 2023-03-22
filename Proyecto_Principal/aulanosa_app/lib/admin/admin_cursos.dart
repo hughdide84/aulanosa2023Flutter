@@ -116,7 +116,7 @@ class _AdminCursosState extends State<AdminCursos> {
           decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
           width: 250,
-          child:Text("Fecha de terminacion: " + fechaFin.day.toString() + "-" + fechaFin.month.toString() + "-" + fechaFin.year.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
+          child:Text("Fecha de fin: " + fechaFin.day.toString() + "-" + fechaFin.month.toString() + "-" + fechaFin.year.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey )),
         ),
       ],)
     );
