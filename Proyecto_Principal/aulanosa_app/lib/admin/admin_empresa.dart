@@ -26,11 +26,7 @@ String urlListaEmpresas="http://10.0.2.2:8080/api/empresa";
 
 class _AdminEmpresaState extends State<AdminEmpresa> {
 
-  //Objetos de ejemplo, hacen la misma funcion que si tuvieramos que crear objectos para guardar la informacion proveniente de la BBDD
-
-  
-
-
+  final formKey = GlobalKey<FormState>();
 
   //Lista donde se almacenaran los objetos de la empresa que cada uno de ellos representaran 
   //List<Empresa> globales.listaEmpresas = [];
@@ -302,6 +298,38 @@ return ListView.builder(
     floatingActionButton: FloatingActionButton(onPressed: () {
        //Notififcaciones().contrasenaIncorrecta(context);
        //metodosCompartidos().recuperarEmpresasFiltradas(globales.idCurso, globales.idEstudio);
+       showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content:Form(
+                key: formKey,
+                child:
+                  Container(
+                    height: heightA*0.6,
+                    width: widthA*0.4,
+                    child: 
+                      Stack(
+                        children: [
+                          Container(
+                            child: Text("Filtros", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                          ),
+                          Container(
+                            child: Text("Filtrar por nombre del curso", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                          ),
+                          TextFormField(
+                            style:TextStyle(fontWeight: FontWeight.w500,fontSize: 20),
+                            decoration: const InputDecoration(
+                            ),
+                            onSaved: (value){
+                              globales.idCurso=value! as int;
+                            },
+                          ),
+                        ],
+                      ),) ,)
+          );
+        },
+       );
        
     },
     

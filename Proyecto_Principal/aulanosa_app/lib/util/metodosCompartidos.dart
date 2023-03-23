@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
+import 'package:aulanosa_app/objetosNecesarios/estudio.dart';
 import 'package:aulanosa_app/objetosNecesarios/filtro_Empresa.dart';
 import 'package:http/http.dart' as http;
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
@@ -20,6 +21,9 @@ String urlListaAlumnosExternos ="http://10.0.2.2:8080/api/alumnoExterno/";
 // Variable que guarda la direccion de la API para recuperar unas empresas filtradas
 String urlIdEmpresa ="http://10.0.2.2:8080/api/empresa/alumno/";
 
+
+// Variable que guarda la direccion de la API para recuperar la info sobre estudios //
+String urlEstudios ="http://10.0.2.2:8080/api/estudios/all";
 
 
 
@@ -44,6 +48,7 @@ class metodosCompartidos{
     
   }
 
+  // Método para recuperar info cursos //
   Future<void> recuperarCursos() async{
     Uri myUri = Uri.parse('$urlListaCursos');
 
@@ -58,6 +63,7 @@ class metodosCompartidos{
     }
   }
 
+  // Metodo para recuperar informacion alumnos externos //
    Future<void> recuperarAlumnosExternos() async{
     Uri myUri = Uri.parse('$urlListaAlumnosExternos');
 
@@ -123,6 +129,27 @@ class metodosCompartidos{
     }
     
     
+  }
+
+
+
+  Future<List<Estudio>> recuperarEstudios() async{
+
+    List<Estudio> listaEstudios =[];
+    Uri myUri = Uri.parse('$urlEstudios');
+
+    final respuestaApi=await http.get(myUri);
+
+    try{
+      listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
+      
+
+
+    }catch(excepcion){
+      print(excepcion);
+      print("Algo ha ido mal");
+    }
+    return listaEstudios;
   }
 
 }
