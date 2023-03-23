@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_typing_uninitialized_variables, prefer_const_constructors, annotate_overrides, unused_import, unnecessary_import, non_constant_identifier_names, prefer_interpolation_to_compose_strings, prefer_const_literals_to_create_immutables, body_might_complete_normally_nullable, avoid_unnecessary_containers, sort_child_properties_last, unused_element, curly_braces_in_flow_control_structures
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_typing_uninitialized_variables, prefer_const_constructors, annotate_overrides, unused_import, unnecessary_import, non_constant_identifier_names, prefer_interpolation_to_compose_strings, prefer_const_literals_to_create_immutables, body_might_complete_normally_nullable, avoid_unnecessary_containers, sort_child_properties_last, unused_element, curly_braces_in_flow_control_structures, prefer_is_empty, unrelated_type_equality_checks
 import 'package:aulanosa_app/globals/variable_global.dart';
 import 'package:aulanosa_app/objetosNecesarios/mensaje.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
@@ -25,11 +25,6 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
   DateTime hoy = DateTime.now();
   DateTime diaSeleccionado = DateTime.now();
   
-
-  
-   
-  
-
   double topCalendario = 2;
   bool crearTutoria = false;
   List<Mensaje> listadoTotalMensajes = [];
@@ -62,7 +57,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
   List<Mensaje> listaEventos = [];
   @override
   void initState() {
-    // TODO: implement initState
+  
     super.initState();
     listaEventos.add(mensaje1);
     listaEventos.add(mensaje2);
@@ -101,44 +96,68 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
     void retornarLista(List<Mensaje>listadoMensajes, DateTime dia) {
       List<Mensaje> listadoMensajesDia = [];
       for(int i = 0; i < listadoMensajes.length; i ++){
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 1, (DateTime.now().year).toInt())){
+        if(diaSeleccionado.month == 1){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 2, (DateTime.now().year).toInt())){
+        }
+       if(diaSeleccionado.month == 2){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 3, (DateTime.now().year).toInt())){
+       }
+        if(diaSeleccionado.month == 3){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
+           }
         }
 
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 4, (DateTime.now().year).toInt())){
+       if(diaSeleccionado.month == 4){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 5, (DateTime.now().year).toInt())){
+        }
+       if(diaSeleccionado.month == 5){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 6, (DateTime.now().year).toInt())){
+        }
+        if(diaSeleccionado.month == 6){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 7, (DateTime.now().year).toInt())){
+        }
+        if(diaSeleccionado.month == 7){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 8, (DateTime.now().year).toInt())){
+        }
+        if(diaSeleccionado.month == 8){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 9, (DateTime.now().year).toInt())){
+        }
+        if(diaSeleccionado.month == 9){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 10, (DateTime.now().year).toInt())){
+        }
+        if(diaSeleccionado.month == 10){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
+        }
 
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 11, (DateTime.now().year).toInt())){
+        if(diaSeleccionado.month == 11){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
-        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), 12, (DateTime.now().year).toInt())){
+        }
+       if(diaSeleccionado.month == 12){
+        if(listadoMensajes[i].fecha == DateTime.utc((dia.day).toInt(), diaSeleccionado.month, (DateTime.now().year).toInt())){
           listadoMensajesDia.add(listadoMensajes[i]);
            }
+        }
    
    }
      showDialog(context: context, builder: (BuildContext context) {
@@ -147,32 +166,26 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
         child: ListView.builder(
           itemCount: listadoMensajesDia.length,
           itemBuilder: (context, index) {
-          
-        
-        
-          return Card(
-            margin: EdgeInsets.only(top: 20),
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 200,
-              child: Stack(children: [
-                Row(children: [
-                Container(
-                  decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
-                  child: Text(diaSeleccionado.day.toString() + "-" + diaSeleccionado.month.toString() + "-" + diaSeleccionado.year.toString(), 
-                  style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.bold),),),],),
-              Container(
-                decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.only(top: 80),
-                child: Text(listadoMensajesDia[index].asunto, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,  color: Colors.blueGrey))
-              )
-          ],)
-)
-      );
-      
-    
-    }
+            return Card(
+                margin: EdgeInsets.only(top: 20),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  height: 200,
+                  child: Stack(children: [
+                    Row(children: [
+                      Container(
+                        decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
+                        child: Text(diaSeleccionado.day.toString() + "-" + diaSeleccionado.month.toString() + "-" + diaSeleccionado.year.toString(), 
+                        style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.bold),),),],),
+                      Container(
+                        decoration: BoxDecoration( border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 3), top: BorderSide.none, left: BorderSide.none, right: BorderSide.none)),
+                        alignment: Alignment.topCenter,
+                        margin: EdgeInsets.only(top: 80),
+                        child: Text(listadoMensajesDia[index].asunto, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,  color: Colors.blueGrey)))
+                        ],)
+                        )
+                      );
+          }
         ,));
       },);
     });
@@ -187,6 +200,8 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
     diaSeleccionado = dia;
    retornarLista(listaEventos, diaSeleccionado);
   }
+
+ 
   
   Widget retornarContenido() {
       if(retornarCalendario) {
@@ -306,7 +321,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                         ),
                       ]),
                 ),
-
+                 
                 selectedDayPredicate: (dia) => isSameDay(dia, hoy),
                 /*Esta funcion nos servira para que cuando nosotros pulsemos un dia determinado 
                 llame a esta funcion, la cual cambia el estado del dia seleccionado para que se le apliquen
@@ -324,13 +339,83 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                     // AQUI va a haber que cambiarlo en funcion a lo que recuperemos de la API //
                     //Recorro todos los dias el mes en el que estoy
                     eventos = 0;
+                    //ATENCION FUTUROS PROGRAMADORES QUE VAIS A VER ESTA PARTE DEL CODIGO
+                    //Es el ultimo dia que tenemos para entregar esto, por lo que no tengais en cuenta los ifs anidados
+                    //estamos cansados asi que cualquier cosa nos vale con tal de que funcione
+                    //Pd: Animo con el calendario :)
                     for(int i = 0; i < listaEventos.length; i ++) {
-                      
-                    if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+
+                    if(diaSeleccionado.month == 1){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
                      eventos = eventos + 1;
                      }
-                     
+                     }
+                    if(diaSeleccionado.month == 2){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 3){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 4){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 5){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 6){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 7){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 8){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 9){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 10){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 10){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 11){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
+                    if(diaSeleccionado.month == 12){
+                      if(DateTime.utc((day.day).toInt(), diaSeleccionado.month, diaSeleccionado.year) == listaEventos[i].fecha){
+                     eventos = eventos + 1;
+                     }
+                     }
                     }
+                    
+                    //Comprobamos si la cantidad de eventos es distinta de cero, para mostrar o no la cantidad
+                    if(eventos == 0) {
+                      return Container();
+                    }else{
                     
                     return Align(
                         alignment: Alignment.bottomRight,
@@ -346,6 +431,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                                   fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             )));
+                    }
                         
               }
 
@@ -358,9 +444,9 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                 
                 ),
                 onDaySelected: dia_seleccionadoAdmin,
-                onPageChanged: (focusedDay) => {
-        
-                },
+                
+
+               
                
                 
               ),
