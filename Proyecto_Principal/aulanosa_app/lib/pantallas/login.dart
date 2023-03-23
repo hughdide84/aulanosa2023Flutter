@@ -53,6 +53,9 @@ class Login2 extends State<Login>{
   // Variable para guardar el nombre de usuario que insertar el usuario //
   String nombreUsuario ="";
 
+  //boleano que se pone a true si le hemos dado una vez al boton del login
+  bool esperarLogin = false;
+
   @override
   Widget build(BuildContext context) {
     
@@ -240,26 +243,28 @@ class Login2 extends State<Login>{
                     InkWell(
                       onTap: () async {
 
-                        // ignore: unrelated_type_equality_checks
-                        
-                        formKey.currentState!.save();
-                        
-                        await comprobarUsuario(nombreUsuario, context);
-                        globales.nombreUsuario=nombreUsuario;
-
-                        if(globales.roll=="ALUMNO"){
-                          await recuperarDatosAlumno(nombreUsuario);
-                          await recuperarDatosCurso(alumnoUsuario.idCurso);
-                        
-
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
-
-                        }else if(globales.roll=="ADMIN"){
-                          await metodosCompartidos().recuperarEmpresas();
-                          await metodosCompartidos().recuperarCursos();
-                          await metodosCompartidos().recuperarAlumnosExternos();
+                        if(!esperarLogin){
+                          esperarLogin= true;
+                          // ignore: unrelated_type_equality_checks
+                          formKey.currentState!.save();
                           
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                          await comprobarUsuario(nombreUsuario, context);
+                          globales.nombreUsuario=nombreUsuario;
+
+                          if(globales.roll=="ALUMNO"){
+                            await recuperarDatosAlumno(nombreUsuario);
+                            await recuperarDatosCurso(alumnoUsuario.idCurso);
+                          
+
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+
+                          }else if(globales.roll=="ADMIN"){
+                            await metodosCompartidos().recuperarEmpresas();
+                            await metodosCompartidos().recuperarCursos();
+                            await metodosCompartidos().recuperarAlumnosExternos();
+                            
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
+                          }
                         }
                       },
                       child: Container(
@@ -336,11 +341,14 @@ class Login2 extends State<Login>{
           globales.roll=usuarioEntrada.rol;
           
         }else{
+          esperarLogin = false;
           globales.roll="";
           Notififcaciones().contrasenaIncorrecta(context);
         }
       }catch(excepcion){
         print(excepcion);
+        esperarLogin = false;
+        Notififcaciones().usuarioIncorrecto(context);
        
 
       }
