@@ -243,7 +243,7 @@ class Login2 extends State<Login>{
 
                           if(globales.roll=="ALUMNO"){
                             await recuperarDatosAlumno(nombreUsuario);
-                            await recuperarDatosCurso(alumnoUsuario.idCurso);
+                            //await recuperarDatosCurso(alumnoUsuario.idCurso);
 
                             Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
 
@@ -358,16 +358,17 @@ class Login2 extends State<Login>{
       final respuestaApi=await http.get(myUri);
      
       try{
-        Alumno alumnoRecuperado = Alumno.devolverAlumno(respuestaApi.body);
-        alumnoUsuario.id=alumnoRecuperado.id;
-        alumnoUsuario.nombre= alumnoRecuperado.nombre;
-        alumnoUsuario.idCurso= alumnoRecuperado.idCurso;
-        alumnoUsuario.idEmpresa= alumnoRecuperado.idEmpresa;
-        alumnoUsuario.idEstudios=alumnoRecuperado.idEstudios;
-        alumnoUsuario.carta=alumnoRecuperado.carta;
-        alumnoUsuario.inicioPr=alumnoRecuperado.inicioPr;
-        alumnoUsuario.finPr=alumnoRecuperado.finPr;
-        alumnoUsuario.usuario=alumnoRecuperado.usuario;
+        
+        // Alumno alumnoRecuperado = Alumno.devolverAlumno(respuestaApi.body);
+        // alumnoUsuario.id=alumnoRecuperado.id;
+        // alumnoUsuario.nombre= alumnoRecuperado.nombre;
+        // alumnoUsuario.idCurso= alumnoRecuperado.idCurso;
+        // alumnoUsuario.idEmpresa= alumnoRecuperado.idEmpresa;
+        // alumnoUsuario.idEstudios=alumnoRecuperado.idEstudios;
+        // alumnoUsuario.carta=alumnoRecuperado.carta;
+        // alumnoUsuario.inicioPr=alumnoRecuperado.inicioPr;
+        // alumnoUsuario.finPr=alumnoRecuperado.finPr;
+        // alumnoUsuario.usuario=alumnoRecuperado.usuario;
         
 
       }catch(excepcion){

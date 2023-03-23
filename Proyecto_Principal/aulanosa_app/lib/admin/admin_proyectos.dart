@@ -1,5 +1,6 @@
 import 'package:aulanosa_app/globals/variable_global.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
+import 'package:aulanosa_app/util/metodosCompartidos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -62,7 +63,6 @@ class _AdminProyectosState extends State<AdminProyectos> {
                       );
                       })    
                 )
-              
             ),
             ),
 
@@ -115,13 +115,12 @@ class _AdminProyectosState extends State<AdminProyectos> {
                                         ),
                                         child: GestureDetector(
                                           onTap: () {
-                                            setState(() {
                                               dialogoEmergente(context);
-                                            });
                                           },
                                           child: Container(
                                           margin: EdgeInsets.only(left: 5),
-                                          child: Text('ALUMNO',
+                                          // AQUI VA EL NOMBRE DEL ALUMNO //
+                                          child: Text(globales.listaAlumnos[index].nombre,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 24
@@ -143,6 +142,14 @@ class _AdminProyectosState extends State<AdminProyectos> {
                 ),
               
             ),
+            Container(
+              width: 20,
+              height: 20,
+              child:IconButton(
+              onPressed: (){
+              metodosCompartidos().recuperarAlumnos();
+              }, icon: Icon(Icons.abc)) ,)
+            
           ],
         ),
       )
@@ -150,7 +157,7 @@ class _AdminProyectosState extends State<AdminProyectos> {
     
   }
     
- 
+ // MUCHISIMA SUERTE A LAS PERSONAS QUE PILLEN ESTE PROYECTO EL AÑO QUE VIENE // 
  
 }
 
@@ -188,19 +195,7 @@ void dialogoEmergente(BuildContext context){
 
 }
 
-class ListaProyectos {
-  
-  ListaProyectos(this.documento, this.presentacion, this.notaDoc, this.notaPres, this.notaFinal);
 
-final String documento;
-final String presentacion;
-final int notaDoc;
-final int notaPres;
-final int notaFinal;
-
-
-
-}
 
 // Align(
                   //   alignment: Alignment.center,

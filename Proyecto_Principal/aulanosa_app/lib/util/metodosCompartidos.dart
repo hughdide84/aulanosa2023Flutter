@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:aulanosa_app/objetosNecesarios/alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
@@ -141,7 +142,7 @@ class metodosCompartidos{
     final respuestaApi=await http.get(myUri);
 
     try{
-      globales.listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
+      globales.listaEstudios = Estudios.devolverListaAlumnos(respuestaApi.body);
 
     }catch(excepcion){
       print(excepcion);
@@ -149,5 +150,32 @@ class metodosCompartidos{
     }
     
   }
+
+    // Método para recuperar los alumnos al completo sin filtros //
+    Future<void> recuperarAlumnos()async{
+      
+      late List<Alumno> listaAlumnosIntermedia;
+      Uri myUri = Uri.parse("");
+
+      final respuestaApi= await http.get(myUri);
+
+      try{
+        // relleno la lista de alumnos global sin necesidad de declarar como late en un principio //
+        // Ya que en este caso, como deberia de ser en todos aunque no lo se //
+        // Voy a recuperar los datos en la propia clase que los muestra y no en el login //
+        // Ya que sino, lo voy a realentizar mas //
+
+        listaAlumnosIntermedia= Alumno.devolverListaAlumnos(respuestaApi.body);
+        for(var alumno in listaAlumnosIntermedia){
+          globales.listaAlumnos.add(alumno);
+        }
+        
+
+      }catch(excepcion){
+
+        print(excepcion);
+      }
+
+    }
 
 }

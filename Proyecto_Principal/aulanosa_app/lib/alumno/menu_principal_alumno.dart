@@ -17,11 +17,11 @@ class AlumnoPrincipal extends StatefulWidget {
 }
 
 
-
+/*
 Alumno alumnoUsuario = Alumno(
-    id: 0, idCurso: 0, idEmpresa: 0, idEstudios: 0, cv: 'hola', nombre: 'Prueba', carta: 'hola', finPr: DateTime.parse('2023-03-20T10:27:09.798Z'), inicioPr: DateTime.parse('2023-03-20T10:27:09.798Z'),
+    id: 0, idCurso: 0, idEmpresa: 0, idEstudios: 0, cv: 'hola', nombre: 'Prueba', carta: 'hola', finPr: DateTime.parse('2023-03-20T10:27:09.798Z'), inicioPr: DateTime.parse('2023-03-20T10:27:09.798Z'), curso: null,
 );
-
+*/
 
 class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
 
@@ -127,7 +127,7 @@ class _AlumnoPrincipalState extends State<AlumnoPrincipal> {
 
                         SizedBox(height: heightA * 0.035),
 
-                        Text(alumnoUsuario.nombre,
+                        Text("nombre alumno",
                           style: TextStyle(
                             fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold
                           ),

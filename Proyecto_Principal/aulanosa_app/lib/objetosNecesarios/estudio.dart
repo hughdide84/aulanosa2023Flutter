@@ -1,18 +1,18 @@
 // To parse this JSON data, do
 //
-//     final estudio = estudioFromJson(jsonString);
+//     final Estudios = EstudiosFromJson(jsonString);
 
 import 'dart:convert';
 
-Estudio estudioFromJson(String str) => Estudio.fromJson(json.decode(str));
+Estudios EstudiosFromJson(String str) => Estudios.fromJson(json.decode(str));
 
-List<Estudio> estudiosFromJson(String str) =>
-    List<Estudio>.from(json.decode(str).map((x) => Estudio.fromJson(x)));
+List<Estudios> EstudiossFromJson(String str) =>
+    List<Estudios>.from(json.decode(str).map((x) => Estudios.fromJson(x)));
 
-String estudioToJson(Estudio data) => json.encode(data.toJson());
+String EstudiosToJson(Estudios data) => json.encode(data.toJson());
 
-class Estudio {
-    Estudio({
+class Estudios {
+    Estudios({
         required this.id,
         required this.nombre,
         required this.fct,
@@ -26,16 +26,16 @@ class Estudio {
 
 
   // Métodos para devolver objetos alumno pasandole el string que formateo desde el json de la api //
-  static Estudio devolverAlumno(String datos){
-    return estudioFromJson(datos);
+  static Estudios devolverAlumno(String datos){
+    return EstudiosFromJson(datos);
   } 
   
-  static List<Estudio> devolverListaAlumnos(String datos){
-    return  estudiosFromJson(datos);
+  static List<Estudios> devolverListaAlumnos(String datos){
+    return  EstudiossFromJson(datos);
   } 
 
 
-    factory Estudio.fromJson(Map<String, dynamic> json) => Estudio(
+    factory Estudios.fromJson(Map<String, dynamic> json) => Estudios(
         id: json["id"],
         nombre: json["nombre"],
         fct: json["fct"],
