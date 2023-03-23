@@ -6,6 +6,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 import 'package:http/http.dart' as http;
 
+
+
+String cursoNombre ="";
+String estudiosNombre ="";
+String empresaNombre="";
+
 //Pagina para editar/mostrar AdminAlumnos
 class AdminAlumnos extends StatefulWidget {
   const AdminAlumnos({super.key});
@@ -55,10 +61,12 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    
     listadoAlumnos = globales.listaAlumnos;
   }
   @override
   Widget build(BuildContext context) => Scaffold(
+    
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 48, 92, 174),
           title: const Text('Alumnos'),
@@ -564,6 +572,29 @@ int estudios=0;
         ),
       ),
     );
+  }
+
+  void mostrarCursoEstudiosAlumno(Alumno alumno){
+
+    for(var curso in globales.listaCursos){
+
+      if(curso.id==alumno.idCurso){
+            cursoNombre =  curso.nombre;
+        }
+    }
+    /*
+    for(var estudios in globales.listaEstudios){
+        if(estudios.id==alumno.idEstudios){
+            estudiosNombre= estudios.nombre;
+         }
+    }
+    */
+    for(var empresa in globales.listaEmpresas){
+        if(empresa.id==alumno.idEmpresa){
+          empresaNombre= empresa.nombre;
+        }
+
+    }
   }
 
 }
