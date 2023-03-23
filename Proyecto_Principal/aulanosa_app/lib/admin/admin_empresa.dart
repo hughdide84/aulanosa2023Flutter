@@ -19,6 +19,8 @@ class AdminEmpresa extends StatefulWidget {
   State<AdminEmpresa> createState() => _AdminEmpresaState();
 }
 
+metodosCompartidos metodos = metodosCompartidos();
+
 String urlListaEmpresas = "http://10.0.2.2:8080/api/empresa";
 
 class _AdminEmpresaState extends State<AdminEmpresa> {
@@ -31,21 +33,21 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   bool containerAlumno = false;
   String infoContainerEmpresa = "";
   // Variable para mostrar el filtro seleccionado 'curso' por el usuario dentro del boton "filtros" //
-  String filtroCurso="";
+  String filtroCurso = "";
 
   // Variable para mostrar el filtro seleccionado 'estudio' por el usuario dentro del boton "filtros" //
-  String filtroEstudio="";
+  String filtroEstudio = "";
 
   //Metodo para determinar que apartado tiene que mostrar dentro de cada empresa
   String determinarApartado(int index) {
     if (index == 0) {
-      return "Direccion social";
+      return "Dirección social";
     }
     if (index == 1) {
-      return "Direccion trabajo";
+      return "Dirección trabajo";
     }
     if (index == 2) {
-      return "Cif";
+      return "CIF";
     }
     if (index == 3) {
       return "Representante";
@@ -86,48 +88,51 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   //Metodo para retornar la informacion de cada uno de los apartados de la empresa, es decir, direccion de trabajo, direccion social, etc
   Container retornarInfo(String tituloCarta, int index) {
     //Dependiendo de cual sea el titulo de la carta este metodo retornara una informacion u otra
-    if (tituloCarta == "Direccion trabajo") {
+    if (tituloCarta == "Dirección trabajo") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
           margin: EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Color.fromARGB(255, 72, 122, 216),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blueGrey, width: 3)),
+              border: Border.all(
+                  color: Color.fromARGB(255, 72, 122, 216), width: 3)),
           child: Text(globales.listaEmpresas[index].direccionTrabajo,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
     }
-    if (tituloCarta == "Direccion social") {
+    if (tituloCarta == "Dirección social") {
       return Container(
           width: 320,
           padding: EdgeInsets.all(5),
           margin: EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Color.fromARGB(255, 72, 122, 216),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blueGrey, width: 3)),
+              border: Border.all(
+                  color: Color.fromARGB(255, 72, 122, 216), width: 3)),
           child: Text(globales.listaEmpresas[index].direccionSocial,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
     }
-    if (tituloCarta == "Cif") {
+    if (tituloCarta == "CIF") {
       return Container(
           width: 250,
           padding: EdgeInsets.all(5),
           margin: EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Color.fromARGB(255, 72, 122, 216),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blueGrey, width: 3)),
+              border: Border.all(
+                  color: Color.fromARGB(255, 72, 122, 216), width: 3)),
           child: Text(globales.listaEmpresas[index].cif,
               style: TextStyle(
                   fontSize: 18,
@@ -141,9 +146,10 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           margin: EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Color.fromARGB(255, 72, 122, 216),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blueGrey, width: 3)),
+              border: Border.all(
+                  color: Color.fromARGB(255, 72, 122, 216), width: 3)),
           child: Text(globales.listaEmpresas[index].representante,
               style: TextStyle(
                   fontSize: 18,
@@ -154,9 +160,10 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
       return Container(
           width: 250,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Color.fromARGB(255, 72, 122, 216),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blueGrey, width: 3)),
+              border: Border.all(
+                  color: Color.fromARGB(255, 72, 122, 216), width: 3)),
           padding: EdgeInsets.all(5),
           margin: EdgeInsets.only(top: 40),
           child: Row(
@@ -178,7 +185,8 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           margin: EdgeInsets.only(top: 20),
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
-              color: Colors.blueGrey, borderRadius: BorderRadius.circular(10)),
+              color: Color.fromARGB(255, 72, 122, 216),
+              borderRadius: BorderRadius.circular(10)),
           child: Column(
             children: [
               SizedBox(height: 10),
@@ -220,119 +228,148 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
 //la lista que contiene la informacion de cada empresa
   ListView listaEmpresas() {
     return ListView.builder(
-      // OJO CON ESTO, ANTES ERA itemCount = 8, era constante no variable // 
-        itemCount: globales.listaEmpresas.length,
-        itemBuilder: ((context, index) {
-          //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
-          int numeroEmpresa = index;
-          return Container(
-              alignment: Alignment.center,
-              height: 200,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 72, 122, 216),
-                      spreadRadius: 12,
-                      blurRadius: 7,
-                      offset: Offset(3, 3),
-                    ),
-                  ],
-                  color: Colors.grey[200],
-                  border: Border(
-                      top: BorderSide.none,
-                      left: BorderSide.none,
-                      right: BorderSide.none,
-                      bottom: BorderSide(color: Colors.blueGrey, width: 4))),
-              child: TextButton(
-                  //Lo unico importante en esta linea es el valor que tiene el Text, este equivale al nombre que tiene el objeto empresa de la lista, al cual accedemos en funcion del index de la lista
-                  child: Text(
-                    globales.listaEmpresas[numeroEmpresa].nombre,
-                    style: TextStyle(
-                      fontSize: 50,
-                      color: Colors.blueGrey,
-                      fontWeight: FontWeight.bold,
-                      shadows: <Shadow>[
-                        Shadow(
-                            offset: Offset(2, 2),
-                            blurRadius: 10.0,
-                            color: Colors.black),
-                      ],
-                    ),
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (BuildContext context) {
-                        return StatefulBuilder(
-                            builder: (context, StateSetter setState) {
-                          return Padding(
-                              padding:
-                                  EdgeInsets.only(left: 20, right: 20, top: 20),
-                              child: ListView.builder(
-                                itemCount: globales.listaEmpresas.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                      alignment: Alignment.center,
-                                      margin: EdgeInsets.only(bottom: 20),
-                                      //Este metodo lo utilizamos para determinar que cuando se trate de la carta que mostrara la informacion de los alumnos
-                                      //que estan en la empresa esta se agrande, ya que el tamano que tienen las demas no sera suficiente
-                                      height:
-                                          retornarAlturaContainerEmpresa(index),
-                                      decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black,
-                                            spreadRadius: 2,
-                                            blurRadius: 7,
-                                            offset: Offset(3,
-                                                3), // changes position of shadow
-                                          ),
-                                        ],
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.grey[200],
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                              padding: EdgeInsets.only(top: 10),
-                                              decoration: BoxDecoration(
-                                                border: Border(
-                                                    top: BorderSide.none,
-                                                    left: BorderSide.none,
-                                                    right: BorderSide.none,
-                                                    bottom: BorderSide(
-                                                        color: Colors.blueGrey,
-                                                        width: 4)),
-                                              ),
-                                              //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
-                                              //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
-                                              child: Text(
-                                                  determinarApartado(index),
-                                                  style: TextStyle(
-                                                    fontSize: 35,
-                                                    color: Colors.blueGrey,
-                                                    fontWeight: FontWeight.bold,
-                                                    shadows: <Shadow>[
-                                                      Shadow(
-                                                          offset: Offset(2, 2),
-                                                          blurRadius: 10.0,
-                                                          color: Colors.black),
-                                                    ],
-                                                  ))),
-                                          //Con este metodo gracias a la otra funcion y a la variable que indica el numero de empresa le pasamos todo esto para determinar que debe mostrar y sobre que empresa debe hacerlo
-                                          retornarInfo(
-                                              determinarApartado(index),
-                                              numeroEmpresa)
-                                        ],
-                                      ));
+      // OJO CON ESTO, ANTES ERA itemCount = 8, era constante no variable //
+      itemCount: globales.listaEmpresas.length,
+      itemBuilder: ((context, index) {
+        //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
+        int numeroEmpresa = index;
+        return InkWell(
+          onTap: () {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return StatefulBuilder(
+                    builder: (context, StateSetter setState) {
+                  return Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                      child: Stack(
+                        children: [
+                          ListView.builder(
+                            itemCount: globales.listaEmpresas.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.only(bottom: 20),
+                                //Este metodo lo utilizamos para determinar que cuando se trate de la carta que mostrara la informacion de los alumnos
+                                //que estan en la empresa esta se agrande, ya que el tamano que tienen las demas no sera suficiente
+                                height: retornarAlturaContainerEmpresa(index),
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    // BoxShadow(
+                                    //   color: Colors.black,
+                                    //   spreadRadius: 2,
+                                    //   blurRadius: 7,
+                                    //   offset: Offset(
+                                    //       3, 3), // changes position of shadow
+                                    // ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.grey[200],
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        padding: EdgeInsets.only(top: 10),
+                                        decoration: BoxDecoration(
+                                            // border: Border(
+                                            //   top: BorderSide.none,
+                                            //   left: BorderSide.none,
+                                            //   right: BorderSide.none,
+                                            //   bottom: BorderSide(
+                                            //       color: Color.fromARGB(
+                                            //           255, 72, 122, 216),
+                                            //       width: 4),
+                                            // ),
+                                            ),
+                                        //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
+                                        //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
+                                        child: Text(determinarApartado(index),
+                                            style: TextStyle(
+                                              fontSize: 35,
+                                              color: Color.fromARGB(
+                                                  255, 72, 122, 216),
+                                              fontWeight: FontWeight.bold,
+                                              // shadows: <Shadow>[
+                                              //   Shadow(
+                                              //       offset: Offset(2, 2),
+                                              //       blurRadius: 10.0,
+                                              //       color: Colors.black),
+                                              // ],
+                                            ))),
+                                    //Con este metodo gracias a la otra funcion y a la variable que indica el numero de empresa le pasamos todo esto para determinar que debe mostrar y sobre que empresa debe hacerlo
+                                    retornarInfo(determinarApartado(index),
+                                        numeroEmpresa)
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+
+                          //boton que se encuentra en la parte superior izquierda del showdialog para cerrarlo
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Container(
+                              margin: const EdgeInsets.all(5),
+                              child: FloatingActionButton(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 48, 92, 174),
+                                onPressed: () {
+                                  Navigator.pop(context);
                                 },
-                              ));
-                        });
-                      },
-                    );
-                  }));
-        }));
+                                child: const Icon(
+                                  Icons.arrow_back,
+                                  size: 30,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ));
+                });
+              },
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 10, right: 20, left: 20, bottom: 10),
+            alignment: Alignment.center,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: Color.fromARGB(255, 72, 122, 216),
+              //     spreadRadius: 12,
+              //     blurRadius: 7,
+              //     offset: Offset(3, 3),
+              //   ),
+              // ],
+              color: Color.fromARGB(255, 72, 122, 216),
+              border: Border(
+                top: BorderSide.none,
+                left: BorderSide.none,
+                right: BorderSide.none,
+                // bottom: BorderSide(color: Color.fromARGB(255, 72, 122, 216), width: 4),
+              ),
+            ),
+            child: Text(
+              globales.listaEmpresas[numeroEmpresa].nombre,
+              style: TextStyle(
+                fontSize: 27,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                shadows: <Shadow>[
+                  Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 10.0,
+                      color: Colors.black),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
   }
 
   @override
@@ -344,6 +381,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
     });
 
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 48, 92, 174),
         title: Text('Información Empresas'),
@@ -354,119 +392,212 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
         onPressed: () {
           //metodosCompartidos().recuperarEmpresasFiltradas(globales.idCurso, globales.idEstudio);
           showDialog(
-            context:  context,
-            builder: (Buiildcontext) {
-              return StatefulBuilder(builder: (context, setState) {
-                return  Container(
-                  height: heightA * 0.6,
-                  width: widthA * 0.4,
-                  
-                  //color: Colors.blue,
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
+            context: context,
+            builder: (context) {
+              return StatefulBuilder(
+                builder: (context, setState) {
+                  return Container(
+                    height: heightA,
+                    width: widthA,
+                    //color: Colors.pink,
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(top: 20, bottom: 20),
                           alignment: Alignment.center,
-                          height: heightA*0.1,
+                          height: heightA * 0.1,
                           width: widthA,
-                          child: Column(
-                            children: [
-                              Container(
-                                margin:EdgeInsets.only(top:heightA*0.05) ,
-                                child:Text(
+                          color: Color.fromARGB(255, 48, 92, 174),
+                          child: Stack(
+                            children: <Widget>[
+                              Text(
                                 "Filtros",
-                                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
-                              ), 
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    decoration: TextDecoration.none),
                               ),
-                              Row(
+                            ],
+                          ),
+                        ),
+
+                        FittedBox(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Curso: " + filtroCurso,
+                              style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+
+                        FittedBox(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Estudio: " + filtroEstudio,
+                              style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+
+                        // Container que contiene el texto de titulo curso//
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 30),
+                          child: Text(
+                            "Cursos",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                decoration: TextDecoration.none),
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: widthA * 0.8,
+                          height: heightA * 0.2,
+                          child: ListView.builder(
+                            itemCount: globales.listaCursos.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.all(5),
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      width: 4,
+                                      color: Color.fromARGB(255, 48, 92, 174)),
+                                ),
+                                child: TextButton(
+                                  // Aqui actualizo la variable para el filtro //
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        globales.idCurso =
+                                            globales.listaCursos[index].id;
+                                        print(globales.idCurso);
+                                        filtroCurso =
+                                            globales.listaCursos[index].nombre;
+                                      },
+                                    );
+                                  },
+                                  child:
+                                      Text(globales.listaCursos[index].nombre),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+
+                        // Container que contiene el texto de titulo estudio //
+                        Container(
+                          margin: EdgeInsets.only(top: 30),
+                          child: Text(
+                            "Estudios",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                decoration: TextDecoration.none),
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: widthA * 0.8,
+                          height: heightA * 0.2,
+                          child: ListView.builder(
+                            itemCount: globales.listaEstudios.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.all(5),
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      width: 4,
+                                      color: Color.fromARGB(255, 48, 92, 174)),
+                                ),
+                                child: TextButton(
+                                  // Aqui actualizo la variable para el filtro //
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        globales.idEstudio =
+                                            globales.listaEstudios[index].id;
+                                        print(globales.idEstudio);
+                                        filtroEstudio = globales
+                                            .listaEstudios[index].nombre;
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                      globales.listaEstudios[index].nombre),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        Material(
+                          child: InkWell(
+                            onTap: () async {
+                              setState(() {
+                                metodos.recuperarEmpresasFiltradas(
+                                  globales.idCurso, globales.idEstudio);
+                              },);
+                              Navigator.pop(context);
+                              
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 48, 92, 174),
+                              ),
+                              height: heightA * 0.07,
+                              width: widthA * 0.4,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, //Center Row contents horizontally,
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, //Center Row contents vertically,
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.only(left: widthA*0.05),
-                                child:
+                                  Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                  ),
                                   Text(
-                                    "Curso "+filtroCurso,
-                                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
-                                  ) ,
-                              ),
-                              Container(
-                                child:
-                                  Text(
-                                    "Estudio "+filtroEstudio,
-                                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
-                                  ) ,
-                              ),
+                                    "Filtrar",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18),
+                                  )
                                 ],
-                              ) 
-                          ],)
-                           
-                        ),
-                      ),
-
-                      // Container que contiene el texto de titulo curso//
-                      Container(
-                        margin: EdgeInsets.only(top: heightA*0.005),
-                        child: 
-                          Text("Cursos", style: TextStyle(fontWeight:FontWeight.w500, fontSize: 20),),
-                        ),
-                        
-                        SizedBox(
-                          height: heightA*0.2,
-                          child: 
-                            ListView.builder(
-                              itemCount: globales.listaCursos.length,
-                              itemBuilder:( context, index){
-                                return Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-                                  child: TextButton(
-                                    // Aqui actualizo la variable para el filtro //
-                                    onPressed: (){
-                                      globales.idCurso = globales.listaCursos[index].id;
-                                      print(globales.idCurso);
-                                    },
-                                    child: Text(globales.listaCursos[index].nombre)),
-                                );
-                            } , ),
-
-                        ),
-                        
-                      
-                      
-                      // Container que contiene el texto de titulo estudio //
-                      Container(
-                        margin: EdgeInsets.only(top: heightA*0.015),
-                        child: Text(
-                          "Estudios",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
-                        
-                      ),        
-                        SizedBox(
-                          height: heightA*0.2,
-                          child:
-                          ListView.builder(
-                          itemCount: globales.listaEstudios.length,
-                          itemBuilder:(context, index){
-                            return Container(
-                              height: 50,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-                              child: TextButton(
-                                
-                                // Aqui actualizo la variable para el filtro //
-                                onPressed: (){
-                                  globales.idEstudio = globales.listaEstudios[index].id;
-                                  print(globales.idEstudio);
-                                },
-                                child: Text(globales.listaEstudios[index].nombre, selectionColor: Colors.white)),
-                            );
-                          } , ),
+                              ),
+                            ),
+                          ),
                         )
                       ],
-                  )
-                );
-              },);
+                    ),
+                  );
+                },
+              );
             },
           );
         },
@@ -474,6 +605,4 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
       ),
     );
   }
-  
-  
 }
