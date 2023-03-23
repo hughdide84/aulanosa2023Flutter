@@ -33,6 +33,8 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
       return "Curso";
     } else if (index == 2) {
       return "Estudios";
+    }else if (index == 3) {
+      return "Empresa";
     }
     return '';
   }
@@ -40,18 +42,21 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
   //Funcion para controlar la altura del container que muestra la lista de alumnos
   double retornarAlturaContainerAlumno(index) {
     if (index == 1 ) {
-      return 2000;
-    } else {
       return 200;
-    }
+    } else if (index == 2 ){
+      return 200;
+    }else{
+      return 200;}
   }
 
 //Metodo para retornar la informacion de cada uno de los apartados del alumno externo, es decir, nombre, telefono, universidad, etc
-  Container retornarInfo(String tituloCarta, int index) {
+  Column retornarInfo(String tituloCarta, int index) {
     //Dependiendo de cual sea el titulo de la carta este metodo retornara una informacion u otra
     if (tituloCarta == "Nombre") {
-      return Container(
-        width: MediaQuery.of(context).size.width * 0.8,
+      return Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
         padding: const EdgeInsets.all(5),
         margin: const EdgeInsets.only(top: 40),
         alignment: Alignment.center,
@@ -66,10 +71,16 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
           style: const TextStyle(
               fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
         ),
+          )
+        ],
+        
       );
     } else if (tituloCarta == "Curso") {
-      return Container(
-          width: MediaQuery.of(context).size.width * 0.8,
+      return Column(
+        children: [
+           Text('nombre'),
+          Container(
+             width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
@@ -82,10 +93,18 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
               style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold)));
+                  fontWeight: FontWeight.bold))
+          ),
+        
+          
+        ]
+         );
     } else if (tituloCarta == "Estudios") {
-      return Container(
-          width: MediaQuery.of(context).size.width * 0.8,
+      return Column(
+        children: [
+          Text('nombre'),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
@@ -98,10 +117,35 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
               style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold)));
+                  fontWeight: FontWeight.bold))
+          )
+        ]
+          );
+    }else if (tituloCarta == "Empresa") {
+      return Column(
+        children: [
+          Text('nombre'),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+          padding: const EdgeInsets.all(5),
+          margin: const EdgeInsets.only(top: 40),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 105, 146, 221),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
+          child: Text('dato recogido',
+              style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),)
+          )
+        ]
+          );
     }
 
-    return Container();
+    return Column();
   }
 
   //Metodo para crear la estructura de toda la pagina, esta funcion creara tanto la lista principal de alumnos externos como
@@ -158,7 +202,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                             const EdgeInsets.only(left: 20, right: 20, top: 20),
                         child: Stack(children: [
                           ListView.builder(
-                            itemCount: 3,
+                            itemCount: 4,
                             itemBuilder: (context, index) {
                               return Container(
                                 alignment: Alignment.center,
