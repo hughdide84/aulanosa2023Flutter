@@ -14,8 +14,34 @@ class AlumnosExternos extends StatefulWidget {
 }
 
 //Lista donde se almacenaran los objetos de la empresa que cada uno de ellos representaran
-List<AlumnoExterno> listadoAlumnos = [];
+List<AlumnoExterno> listadoAlumnosExternos = [];
 String urlListaAlumnosExternos = 'http://10.0.2.2:8080/api/alumnoExterno/';
+String determinarApartado(int index) {
+  if (index == 0) {
+    return "Nombre";
+  } else if (index == 1) {
+    return "Tipo";
+  } else if (index == 2) {
+    return "Teléfono";
+  } else if (index == 3) {
+    return "Email";
+  } else if (index == 4) {
+    return "Universidad";
+  } else if (index == 5) {
+    return "Titulación";
+  } else if (index == 6) {
+    return "Especialidad";
+  } else if (index == 7) {
+    return "Evaluación";
+  } else if (index == 8) {
+    return "Horario";
+  } else if (index == 9) {
+    return "Inicio";
+  } else if (index == 10) {
+    return "Fin";
+  }
+  return '';
+}
 
 class _AlumnosExternosState extends State<AlumnosExternos> {
   double alturaContainerInfoEmpresa = 0;
@@ -23,32 +49,6 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
   String infoContainerEmpresa = "";
 
   //Metodo para determinar que apartado tiene que mostrar dentro de cada alumno externo
-  String determinarApartado(int index) {
-    if (index == 0) {
-      return "Nombre";
-    } else if (index == 1) {
-      return "Tipo";
-    } else if (index == 2) {
-      return "Teléfono";
-    } else if (index == 3) {
-      return "Email";
-    } else if (index == 4) {
-      return "Universidad";
-    } else if (index == 5) {
-      return "Titulación";
-    } else if (index == 6) {
-      return "Especialidad";
-    } else if (index == 7) {
-      return "Evaluación";
-    } else if (index == 8) {
-      return "Horario";
-    } else if (index == 9) {
-      return "Inicio";
-    } else if (index == 10) {
-      return "Fin";
-    }
-    return '';
-  }
 
 // Método para recuperar la lista de alumnos externos //
   Future<void> recuperarAlumnosExternos() async {
@@ -69,7 +69,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    listadoAlumnos = globales.listaAlumnosExternos;
+    listadoAlumnosExternos = globales.listaAlumnosExternos;
   }
 
   //Metodo para retornar la informacion de cada uno de los apartados del alumno externo, es decir, nombre, telefono, universidad, etc
@@ -77,32 +77,33 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
     //Dependiendo de cual sea el titulo de la carta este metodo retornara una informacion u otra
     if (tituloCarta == "Nombre") {
       return Container(
-        width: 320,
+        width: MediaQuery.of(context).size.width * 0.8,
         padding: const EdgeInsets.all(5),
         margin: const EdgeInsets.only(top: 40),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 105, 146, 221),
+          color: const Color.fromARGB(255, 105, 146, 221),
           borderRadius: BorderRadius.circular(10),
           border:
-            Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3),
+              Border.all(color: const Color.fromARGB(255, 105, 146, 221), width: 3),
         ),
         child: Text(
           globales.listaAlumnosExternos[index].nombre,
           style: const TextStyle(
-            fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+              fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       );
     } else if (tituloCarta == "Tipo") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].tipo,
               style: const TextStyle(
                   fontSize: 18,
@@ -110,14 +111,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Teléfono") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].telefono,
               style: const TextStyle(
                   fontSize: 18,
@@ -125,14 +127,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Email") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].email,
               style: const TextStyle(
                   fontSize: 18,
@@ -140,14 +143,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Universidad") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].universidad,
               style: const TextStyle(
                   fontSize: 18,
@@ -155,14 +159,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Titulación") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].titulacion,
               style: const TextStyle(
                   fontSize: 18,
@@ -170,14 +175,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Especialidad") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].especialidad,
               style: const TextStyle(
                   fontSize: 18,
@@ -185,14 +191,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Evaluación") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].evaluacion,
               style: const TextStyle(
                   fontSize: 18,
@@ -200,14 +207,15 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Horario") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: const Text('Horario',
               style: TextStyle(
                   fontSize: 18,
@@ -215,31 +223,33 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Inicio") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].inicio.split('T')[0],
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
     } else if (tituloCarta == "Fin") {
       return Container(
-          width: 320,
+          width: MediaQuery.of(context).size.width * 0.8,
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(top: 40),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 105, 146, 221),
+              color: const Color.fromARGB(255, 105, 146, 221),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color.fromARGB(255, 105, 146, 221), width: 3)),
+              border: Border.all(
+                  color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
           child: Text(globales.listaAlumnosExternos[index].fin.split('T')[0],
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold)));
@@ -306,7 +316,8 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                       return Padding(
                         padding:
                             const EdgeInsets.only(left: 20, right: 20, top: 20),
-                        child: Stack(children: [
+                        child: Stack(
+                          children: [
                           ListView.builder(
                             itemCount: 11,
                             itemBuilder: (context, index) {
@@ -315,15 +326,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                                 margin: const EdgeInsets.only(bottom: 20),
                                 height: 180,
                                 decoration: BoxDecoration(
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black,
-                                      spreadRadius: 2,
-                                      blurRadius: 7,
-                                      offset: Offset(
-                                          3, 3), // changes position of shadow
-                                    ),
-                                  ],
+                                  
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.grey[200],
                                 ),
@@ -331,16 +334,16 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                                   children: [
                                     Container(
                                       padding: const EdgeInsets.only(top: 10),
-                                    
+
                                       //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
                                       //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
                                       child: Text(
                                         determinarApartado(index),
                                         style: const TextStyle(
                                           fontSize: 35,
-                                          color: Color.fromARGB(255, 105, 146, 221),
+                                          color: Color.fromARGB(
+                                              255, 105, 146, 221),
                                           fontWeight: FontWeight.bold,
-                                          
                                         ),
                                       ),
                                     ),
@@ -357,14 +360,14 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                           Align(
                               alignment: Alignment.topLeft,
                               child: Container(
-                                margin: EdgeInsets.all(5),
+                                margin: const EdgeInsets.all(5),
                                 child: FloatingActionButton(
                                   backgroundColor:
-                                      Color.fromARGB(255, 72, 122, 216),
+                                      const Color.fromARGB(255, 72, 122, 216),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_back,
                                     size: 30,
                                   ),
@@ -399,7 +402,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 105, 146, 221),
+      backgroundColor: const Color.fromARGB(255, 105, 146, 221),
       body: listaAlumnosExternos());
 }
 
@@ -412,6 +415,11 @@ class DataSearch extends SearchDelegate {
   String email = '';
   String inicio = '';
   String fin = '';
+  String tipo = '';
+  String titulacion = '';
+  String evaluacion = '';
+  String horario = '';
+
 //Metodo de accion para limpiar la busqueda
   @override
   List<Widget>? buildActions(BuildContext context) => [
@@ -434,100 +442,532 @@ class DataSearch extends SearchDelegate {
 //Metodo para mostrar los resultados de la busqueda
   @override
   Widget buildResults(BuildContext context) => Container(
-        alignment: Alignment.center,
-        margin: const EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.3,
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              spreadRadius: 2,
-              blurRadius: 7,
-              offset: Offset(3, 3), // changes position of shadow
-            ),
-          ],
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.grey[200],
-        ),
-        child: Center(
+        alignment: Alignment.topCenter,
+        height: double.infinity,
+        color: Color.fromARGB(255, 72, 122, 216),
+        child: SingleChildScrollView(
           child: Column(
             children: [
+              //--------------------------------------------------------------------------------------------
               Container(
-                padding: const EdgeInsets.only(top: 10),
-                decoration: const BoxDecoration(
-                  border: Border(
-                      top: BorderSide.none,
-                      left: BorderSide.none,
-                      right: BorderSide.none,
-                      bottom: BorderSide(color: Color.fromARGB(255, 105, 146, 221), width: 4)),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
                 ),
-                //Aqui se muestra el nombre del alumno externo
-                child: Text(
-                  (nombre),
-                  style: const TextStyle(
-                    fontSize: 35,
-                    color: Color.fromARGB(255, 105, 146, 221),
-                    fontWeight: FontWeight.bold,
-                    shadows: <Shadow>[
-                      Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 10.0,
-                          color: Colors.black),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 10),
-                decoration: const BoxDecoration(
-                  border: Border(
-                      top: BorderSide.none,
-                      left: BorderSide.none,
-                      right: BorderSide.none,
-                      bottom: BorderSide(color: Color.fromARGB(255, 105, 146, 221), width: 4)),
-                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
 
-                //Aqui se muestra la especialidad del alumno externo
-                child: Text(
-                  (especialidad),
-                  style: const TextStyle(
-                    fontSize: 35,
-                    color: Color.fromARGB(255, 105, 146, 221),
-                    fontWeight: FontWeight.bold,
-                    shadows: <Shadow>[
-                      Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 10.0,
-                          color: Colors.black),
-                    ],
-                  ),
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Nombre'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        nombre,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 10),
-                decoration: const BoxDecoration(
-                  border: Border(
-                      top: BorderSide.none,
-                      left: BorderSide.none,
-                      right: BorderSide.none,
-                      bottom: BorderSide(color: Color.fromARGB(255, 105, 146, 221), width: 4)),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20,),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
                 ),
-                //Aqui se muestra la universidad del alumno externo
-                child: Text(
-                  (universidad),
-                  style: const TextStyle(
-                    fontSize: 35,
-                    color: Color.fromARGB(255, 105, 146, 221),
-                    fontWeight: FontWeight.bold,
-                    shadows: <Shadow>[
-                      Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 10.0,
-                          color: Colors.black),
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Tipo'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        tipo,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Teléfono'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        telefono,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Email'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        email,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Universidad'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        universidad,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Titulación'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        titulacion,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Especialidad'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        especialidad,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                 
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Evaluación'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        evaluacion,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Horario'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        horario,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                 
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Inicio'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        inicio,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                margin: const EdgeInsets.only(top: 20, bottom: 20),
+                height: 180,
+                decoration: BoxDecoration(
+                
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10,),
+
+                      //Aqui se muestra el nombre del alumno externo
+                      child: const Text(
+                        ('Fin'),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 105, 146, 221),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 105, 146, 221),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 105, 146, 221),
+                            width: 3),
+                      ),
+                      child: Text(
+                        fin,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    
+                  ],
+                ),
+              ),
+           
             ],
           ),
         ),
@@ -536,17 +976,17 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = query.isEmpty
-        ? listadoAlumnos
-        : listadoAlumnos
+        ? listadoAlumnosExternos
+        : listadoAlumnosExternos
                 .where((p) =>
                     p.nombre.toLowerCase().startsWith(query.toLowerCase()))
                 .toList() +
-            listadoAlumnos
+            listadoAlumnosExternos
                 .where((p) => p.especialidad
                     .toLowerCase()
                     .startsWith(query.toLowerCase()))
                 .toList() +
-            listadoAlumnos
+            listadoAlumnosExternos
                 .where((p) =>
                     p.universidad.toLowerCase().startsWith(query.toLowerCase()))
                 .toList();
@@ -556,8 +996,17 @@ class DataSearch extends SearchDelegate {
       itemBuilder: (context, index) => ListTile(
         onTap: () {
           nombre = suggestionList[index].nombre;
-          especialidad = suggestionList[index].especialidad;
+          tipo = suggestionList[index].tipo;
+          telefono = suggestionList[index].telefono;
+          email = suggestionList[index].email;
           universidad = suggestionList[index].universidad;
+          titulacion = suggestionList[index].titulacion;
+          especialidad = suggestionList[index].especialidad;
+          evaluacion = suggestionList[index].evaluacion;
+          horario = suggestionList[index].horario;
+          inicio = suggestionList[index].inicio.split('T')[0];
+          fin = suggestionList[index].fin.split('T')[0];
+
           showResults(context);
         },
         leading: const Icon(Icons.person),
