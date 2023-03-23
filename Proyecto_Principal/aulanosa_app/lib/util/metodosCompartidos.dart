@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
 import 'package:aulanosa_app/objetosNecesarios/filtro_Empresa.dart';
@@ -13,8 +14,13 @@ String urlListaEmpresas="http://10.0.2.2:8080/api/empresa";
 // Variable que contiene la dirección de la API para recuperar la lista de cursos //
 String urlListaCursos ="http://10.0.2.2:8080/api/curso/all";
 
+// Variable que contiene la dirección de la API para recuperar la lista de alumnos externos //
+String urlListaAlumnosExternos ="http://10.0.2.2:8080/api/alumnoExterno/";
+
 // Variable que guarda la direccion de la API para recuperar unas empresas filtradas
 String urlIdEmpresa ="http://10.0.2.2:8080/api/empresa/alumno/";
+
+
 
 
 class metodosCompartidos{
@@ -45,6 +51,20 @@ class metodosCompartidos{
 
     try{
       globales.listaCursos = Curso.devolverListaCursos(respuestaApi.body);
+
+    }catch(excepcion){
+      print(excepcion);
+
+    }
+  }
+
+   Future<void> recuperarAlumnosExternos() async{
+    Uri myUri = Uri.parse('$urlListaAlumnosExternos');
+
+    final respuestaApi = await http.get(myUri);
+
+    try{
+      globales.listaAlumnosExternos = AlumnoExterno.devolverListaAlumnosExternos(respuestaApi.body);
 
     }catch(excepcion){
       print(excepcion);

@@ -1,4 +1,6 @@
-
+// To parse this JSON data, do
+//
+//     final alumnoExterno = alumnoExternoFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -24,6 +26,8 @@ class AlumnoExterno {
     required this.convenio,
     required this.evaluacion,
     required this.horario,
+    required this.inicio,
+    required this.fin
   });
 
   int id;
@@ -39,6 +43,8 @@ class AlumnoExterno {
   String convenio;
   String evaluacion;
   String horario;
+  String inicio;
+  String fin;
 
   // Métodos para devolver objetos alumno pasandole el string que formateo desde el json de la api //
   static AlumnoExterno devolverAlumnoExterno(String datos){
@@ -64,6 +70,8 @@ class AlumnoExterno {
         convenio: json["convenio"],
         evaluacion: json["evaluacion"],
         horario: json["horario"],
+        inicio: json["inicio"],
+        fin: json["fin"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -79,6 +87,8 @@ class AlumnoExterno {
         "convenio": convenio,
         "evaluacion": evaluacion,
         "horario": horario,
+        "inicio": inicio,
+        "fin": fin,
 
     };
 }
