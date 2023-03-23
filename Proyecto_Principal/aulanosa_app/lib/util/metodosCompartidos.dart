@@ -131,8 +131,6 @@ class metodosCompartidos{
     
   }
 
-
-
   Future<List<Estudio>> recuperarEstudios() async{
 
     List<Estudio> listaEstudios =[];
@@ -142,7 +140,7 @@ class metodosCompartidos{
 
     try{
       listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
-      
+
 
 
     }catch(excepcion){
