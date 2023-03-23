@@ -36,7 +36,27 @@ class Notififcaciones{
             SizedBox(
               width: 20,
             ),
-            Text("Contraseña Incorrecta")
+            Text("La contraseña no es correcta")
+          ],
+    )  ,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snb);
+
+
+  }
+
+
+  void usuarioIncorrecto (BuildContext context){
+    final snb = SnackBar(
+      backgroundColor: Color.fromARGB(255, 230, 6, 6),
+    content:
+        Row(
+          children: const [
+            Icon(Icons.block_flipped),
+            SizedBox(
+              width: 20,
+            ),
+            Text("El usuario no existe")
           ],
     )  ,
     );
