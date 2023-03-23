@@ -63,26 +63,12 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
     return "sdf";
   }
 
-  //Funcion para controlar la altura del container que muestra la lista de alumnos
-  double retornarAlturaContainerAlumno(index) {
+  //Funcion para controlar la altura del container que muestra la lista de empresas //
+  double retornarAlturaContainerEmpresa(index) {
     if (index == 7) {
       return 600;
     } else
       return 200;
-  }
-
-  // Método para recuperar la lista de empresas //
-  Future<void> recuperarEmpresas() async {
-    Uri myUri = Uri.parse('${urlListaEmpresas}');
-
-    final respuestaApi = await http.get(myUri);
-
-    try {
-      globales.listaEmpresas = Empresa.devolverListaEmpresas(respuestaApi.body);
-      print(globales.listaEmpresas);
-    } catch (excepcion) {
-      print(excepcion);
-    }
   }
 
   //Utilizo el InitState porque quise cargar asi los objetos en la lista
@@ -229,6 +215,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
 //la lista que contiene la informacion de cada empresa
   ListView listaEmpresas() {
     return ListView.builder(
+      // OJO CON ESTO, ANTES ERA itemCount = 8, era constante no variable // 
         itemCount: globales.listaEmpresas.length,
         itemBuilder: ((context, index) {
           //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
@@ -278,7 +265,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                               padding:
                                   EdgeInsets.only(left: 20, right: 20, top: 20),
                               child: ListView.builder(
-                                itemCount: 8,
+                                itemCount: globales.listaEmpresas.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                       alignment: Alignment.center,
@@ -286,7 +273,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                                       //Este metodo lo utilizamos para determinar que cuando se trate de la carta que mostrara la informacion de los alumnos
                                       //que estan en la empresa esta se agrande, ya que el tamano que tienen las demas no sera suficiente
                                       height:
-                                          retornarAlturaContainerAlumno(index),
+                                          retornarAlturaContainerEmpresa(index),
                                       decoration: BoxDecoration(
                                         boxShadow: [
                                           BoxShadow(
@@ -365,10 +352,8 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           showDialog(
             context: context,
             builder: (context) {
-              return AlertDialog(
-                  content: Form(
-                key: formKey,
-                child: Container(
+              return StatefulBuilder(builder: (context, setState) {
+                return  Container(
                   height: heightA * 0.6,
                   width: widthA * 0.4,
                   child: Column(
@@ -393,11 +378,24 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                         child: 
                           Text("Cursos", style: TextStyle(fontWeight:FontWeight.w500, fontSize: 20),),
                         ),
-
                       Container(
-                        child:,
+                        margin: EdgeInsets.only(top:heightA*0.05),
+                        child:ListView.builder(
+                          itemCount: globales.listaCursos.length,
+                          itemBuilder:(context, index){
+                            return Container(
+                              height: heightA*0.03,
+                              decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
+                              child: TextButton(
+                                // Aqui actualizo la variable para el filtro //
+                                onPressed: (){
+                                  globales.idCurso = globales.listaCursos[index].id;
+                                },
+                                child: Text(globales.listaCursos[index].nombre)),
+                            );
+                          } , ),
                       ),
-
+                      
                       // Container que contiene el texto de titulo estudio //
                       Container(
                         margin: EdgeInsets.only(top: heightA*0.01),
@@ -407,10 +405,13 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                               fontWeight: FontWeight.w500, fontSize: 20),
                         ),
                       ),
+                      Container(
+                        child: ListView(),
+                      )
                     ],
                   )
-                ),
-              ));
+                );
+              },);
             },
           );
         },
