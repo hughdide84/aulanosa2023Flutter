@@ -28,6 +28,7 @@ late List<AlumnoExterno> listaAlumnosExternos;
 
 // Variable global que contiene la lista de cursos //
 late List<Curso> listaCursos;
+late List<Curso> listaCursosProyecto;
 
 // Variable para los nombres de los cursos //
 //late List<String> listaNombresCurso;
