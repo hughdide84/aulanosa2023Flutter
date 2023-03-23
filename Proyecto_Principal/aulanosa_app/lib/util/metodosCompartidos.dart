@@ -56,6 +56,7 @@ class metodosCompartidos{
 
     try{
       globales.listaCursos = Curso.devolverListaCursos(respuestaApi.body);
+      globales.listaCursosProyecto = Curso.devolverListaCursos(respuestaApi.body);
 
     }catch(excepcion){
       print(excepcion);
