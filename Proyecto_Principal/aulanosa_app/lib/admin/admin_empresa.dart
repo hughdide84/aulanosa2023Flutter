@@ -373,7 +373,6 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                   width: widthA * 0.4,
                   child: Column(
                     children: [
-
                       Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -384,54 +383,30 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                           child: Text(
                             "Filtros",
                             style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 20),
+                                fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
                           ),
-                      
                         ),
                       ),
+                      // Container que contiene el texto de titulo curso//
+                      Container(
+                        margin: EdgeInsets.only(top: heightA*0.01),
+                        child: 
+                          Text("Cursos", style: TextStyle(fontWeight:FontWeight.w500, fontSize: 20),),
+                        ),
 
                       Container(
-                        child: Text(
-                          "Cursos",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
+                        child:,
                       ),
+
+                      // Container que contiene el texto de titulo estudio //
                       Container(
+                        margin: EdgeInsets.only(top: heightA*0.01),
                         child: Text(
                           "Estudios",
                           style: TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 20),
                         ),
                       ),
-
-                      // Column(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     Container(
-                      //       child: Text(
-                      //         "Filtros",
-                      //         style: TextStyle(
-                      //             fontWeight: FontWeight.w500, fontSize: 20),
-                      //       ),
-                      //     ),
-                      //     Container(
-                      //       child: Text(
-                      //         "Cursos",
-                      //         style: TextStyle(
-                      //             fontWeight: FontWeight.w500, fontSize: 20),
-                      //       ),
-                      //     ),
-                      //     Container(
-                      //       child: Text(
-                      //         "Estudios",
-                      //         style: TextStyle(
-                      //             fontWeight: FontWeight.w500, fontSize: 20),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-
                     ],
                   )
                 ),
@@ -443,4 +418,76 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
       ),
     );
   }
+  
+  
 }
+/*
+// CLASE CREADA PARA EL DESPLIEGUE DE FILTROS // 
+class busquedaConFiltro extends SearchDelegate{
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+   IconButton(
+    onPressed:() {
+      close(context, null);
+    },
+    icon: Icon(Icons.arrow_back));
+  }
+
+  // Contiene el campo de texto donde se escribe
+  @override
+  Widget? buildLeading(BuildContext context) {
+    IconButton(
+      onPressed: (){
+        // Campo de texto para el filtro //
+        if(query.isEmpty){
+          close(context, null);
+        }else{
+          query='';
+        }
+    },
+      icon: Icon(Icons.clear));
+  }
+
+  // aqui se actualizan los resultados y se muestran //
+  // el usuario probablemente no vea los resultados aqui //
+  @override
+  Widget buildResults(BuildContext context) {
+    child:Text(
+      query,
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+    );
+
+    // esta linea va a cambiar, desde donde llame a esta funcion va a variar //
+    return buildResults(context);
+
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+
+    // esta lista tiene que estar rellenada de los datos nombre de cursos //
+    List<String> sugerencias=[
+      '2022-2023',
+      '2021-2022',
+      '2020-2021',
+    ];
+
+    return ListView.builder(
+      itemCount: sugerencias.length,
+      itemBuilder: (context, index) {
+        final sugerencia = sugerencias[index];
+        return ListTile(
+          title: Text(sugerencia),
+          // en este on tap es donde se recoge el valor que se marca como filtro //
+          onTap: (() {
+            query=sugerencia;
+
+            showResults(context);
+          }
+        ));
+      },
+    );
+  }
+
+  }
+  */

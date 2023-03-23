@@ -29,6 +29,9 @@ late List<AlumnoExterno> listaAlumnosExternos;
 // Variable global que contiene la lista de cursos //
 late List<Curso> listaCursos;
 
+// Variable para los nombres de los cursos //
+late List<String> listaNombresCurso;
+
 // Variable para el id de Usuario 
 late int idUsuario;
 
@@ -37,6 +40,7 @@ late int idCurso;
 
 // Variable para guardar el idEstudio
 late int idEstudio;
+
 
 
 
