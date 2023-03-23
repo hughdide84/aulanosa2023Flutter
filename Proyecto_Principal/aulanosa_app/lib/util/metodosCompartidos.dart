@@ -38,8 +38,6 @@ class metodosCompartidos{
     try{
       globales.listaEmpresas= Empresa.devolverListaEmpresas(respuestaApi.body);
 
-
-
     }catch(excepcion){
       print(excepcion);
     }
@@ -76,6 +74,8 @@ class metodosCompartidos{
 
 
 
+
+  // A este método le vamos a llamar para filtrar las empresas por curso y estudios //
 
    Future <void> recuperarEmpresasFiltradas(int idCurso, int idEstudios) async {
     

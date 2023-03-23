@@ -2,11 +2,14 @@
 
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
+import 'package:aulanosa_app/util/metodosCompartidos.dart';
+import 'package:aulanosa_app/util/notificaciones.dart';
 import 'package:http/http.dart' as http;
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:aulanosa_app/pantallas/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
+import 'package:aulanosa_app/util/notificaciones.dart';
 
 
 
@@ -286,13 +289,24 @@ return ListView.builder(
       heightA = size.height;
       widthA = size.width;
     });
-    
+
     return Scaffold(
+      
     appBar: AppBar(
       backgroundColor: Color.fromARGB(255, 48, 92, 174),
       title: Text('Información Empresas'),
       leading: MenuWidget(),
+
     ),
-    body: listaEmpresas()
+    body: listaEmpresas(),
+    floatingActionButton: FloatingActionButton(onPressed: () {
+       //Notififcaciones().contrasenaIncorrecta(context);
+       //metodosCompartidos().recuperarEmpresasFiltradas(globales.idCurso, globales.idEstudio);
+       
+    },
+    
+      child: Icon(Icons.add_chart_outlined),
+    ),
+
   );
 }}
