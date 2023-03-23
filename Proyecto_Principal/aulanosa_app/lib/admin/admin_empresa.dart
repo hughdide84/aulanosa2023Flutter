@@ -19,6 +19,8 @@ class AdminEmpresa extends StatefulWidget {
   State<AdminEmpresa> createState() => _AdminEmpresaState();
 }
 
+metodosCompartidos metodos = metodosCompartidos();
+
 String urlListaEmpresas = "http://10.0.2.2:8080/api/empresa";
 
 class _AdminEmpresaState extends State<AdminEmpresa> {
@@ -391,7 +393,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
           //metodosCompartidos().recuperarEmpresasFiltradas(globales.idCurso, globales.idEstudio);
           showDialog(
             context: context,
-            builder: (Buiildcontext) {
+            builder: (context) {
               return StatefulBuilder(
                 builder: (context, setState) {
                   return Container(
@@ -401,7 +403,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Container(
                           margin: EdgeInsets.only(top: 20, bottom: 20),
                           alignment: Alignment.center,
@@ -422,45 +424,39 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                           ),
                         ),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(left: widthA * 0.05),
-                              child: Text(
-                                "Curso: " + filtroCurso,
-                                style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Colors.white),
-                              ),
-                            ),
-                            Text(
-                              " | ",
+                        FittedBox(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Curso: " + filtroCurso,
                               style: TextStyle(
                                   decoration: TextDecoration.none,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 20,
                                   color: Colors.white),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Estudio: " + filtroEstudio,
-                                style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Colors.white),
-                              ),
+                          ),
+                        ),
+
+                        FittedBox(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Estudio: " + filtroEstudio,
+                              style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.white),
                             ),
-                          ],
+                          ),
                         ),
 
                         // Container que contiene el texto de titulo curso//
                         Container(
+                          alignment: Alignment.center,
                           margin: EdgeInsets.only(top: 30),
                           child: Text(
                             "Cursos",
@@ -490,9 +486,15 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                                 child: TextButton(
                                   // Aqui actualizo la variable para el filtro //
                                   onPressed: () {
-                                    globales.idCurso =
-                                        globales.listaCursos[index].id;
-                                    print(globales.idCurso);
+                                    setState(
+                                      () {
+                                        globales.idCurso =
+                                            globales.listaCursos[index].id;
+                                        print(globales.idCurso);
+                                        filtroCurso =
+                                            globales.listaCursos[index].nombre;
+                                      },
+                                    );
                                   },
                                   child:
                                       Text(globales.listaCursos[index].nombre),
@@ -533,9 +535,15 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                                 child: TextButton(
                                   // Aqui actualizo la variable para el filtro //
                                   onPressed: () {
-                                    globales.idEstudio =
-                                        globales.listaEstudios[index].id;
-                                    print(globales.idEstudio);
+                                    setState(
+                                      () {
+                                        globales.idEstudio =
+                                            globales.listaEstudios[index].id;
+                                        print(globales.idEstudio);
+                                        filtroEstudio = globales
+                                            .listaEstudios[index].nombre;
+                                      },
+                                    );
                                   },
                                   child: Text(
                                       globales.listaEstudios[index].nombre),
@@ -544,6 +552,47 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                             },
                           ),
                         ),
+
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        Material(
+                          child: InkWell(
+                            onTap: () async {
+                              setState(() {
+                                metodos.recuperarEmpresasFiltradas(
+                                  globales.idCurso, globales.idEstudio);
+                              },);
+                              Navigator.pop(context);
+                              
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 48, 92, 174),
+                              ),
+                              height: heightA * 0.07,
+                              width: widthA * 0.4,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, //Center Row contents horizontally,
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, //Center Row contents vertically,
+                                children: [
+                                  Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    "Filtrar",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   );
