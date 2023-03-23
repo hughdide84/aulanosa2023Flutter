@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, unused_import, prefer_const_constructors
 
+import 'package:aulanosa_app/admin/admin_alumnos_externos.dart';
 import 'package:aulanosa_app/admin/admin_cursos.dart';
 import 'package:aulanosa_app/admin/admin_empresa.dart';
 import 'package:aulanosa_app/admin/admin_proyectos_tutorias.dart';
