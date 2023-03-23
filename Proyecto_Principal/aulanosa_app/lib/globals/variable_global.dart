@@ -2,6 +2,7 @@
 import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
+import 'package:aulanosa_app/objetosNecesarios/estudio.dart';
 
 String roll="";
 
@@ -25,9 +26,17 @@ late List<Empresa> listaEmpresas;
 // Variable global que contiene la lista de alumnos externos //
 late List<AlumnoExterno> listaAlumnosExternos;
 
-
 // Variable global que contiene la lista de cursos //
 late List<Curso> listaCursos;
+
+// Variable para los nombres de los cursos //
+//late List<String> listaNombresCurso;
+
+// Variable global que contiene la lista de estudios //
+late List<Estudio> listaEstudios;
+
+// Variable para los nombres de los estudios //
+//late List<String> listaNombresEstudio;
 
 // Variable para el id de Usuario 
 late int idUsuario;
@@ -37,6 +46,7 @@ late int idCurso;
 
 // Variable para guardar el idEstudio
 late int idEstudio;
+
 
 
 
