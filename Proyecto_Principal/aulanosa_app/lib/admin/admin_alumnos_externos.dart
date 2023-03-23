@@ -262,7 +262,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
 //la lista que contiene la informacion de cada alumno externo
   ListView listaAlumnosExternos() {
     return ListView.builder(
-      itemCount: 11,
+      itemCount: globales.listaAlumnosExternos.length,
       itemBuilder: ((context, index) {
         //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
         int numeroAlumnoExterno = index;

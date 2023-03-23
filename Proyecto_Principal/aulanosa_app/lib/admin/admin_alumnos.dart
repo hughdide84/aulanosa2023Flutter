@@ -21,8 +21,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
           title: const Text('Alumnos'),
           leading: MenuWidget(),
         ),
-         backgroundColor: const Color.fromARGB(255, 105, 146, 221),
-        
+        backgroundColor: const Color.fromARGB(255, 105, 146, 221),
         body: listaAlumnos(),
       );
 
@@ -36,6 +35,15 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
       return "Estudios";
     }
     return '';
+  }
+
+  //Funcion para controlar la altura del container que muestra la lista de alumnos
+  double retornarAlturaContainerAlumno(index) {
+    if (index == 1 ) {
+      return 2000;
+    } else {
+      return 200;
+    }
   }
 
 //Metodo para retornar la informacion de cada uno de los apartados del alumno externo, es decir, nombre, telefono, universidad, etc
@@ -155,7 +163,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                               return Container(
                                 alignment: Alignment.center,
                                 margin: const EdgeInsets.only(bottom: 20),
-                                height: 180,
+                                height: retornarAlturaContainerAlumno(index),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.grey[200],
@@ -186,29 +194,28 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                             },
                           ),
                           Align(
-                            child:   Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                margin: const EdgeInsets.all(5),
-                                child: FloatingActionButton(
-                                  backgroundColor:
-                                      const Color.fromARGB(255, 72, 122, 216),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Icon(
-                                    Icons.arrow_back,
-                                    size: 30,
+                            child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Container(
+                                  margin: const EdgeInsets.all(5),
+                                  child: FloatingActionButton(
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 72, 122, 216),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_back,
+                                      size: 30,
+                                    ),
                                   ),
-                                ),
-                              )),
+                                )),
                           )
                         ]),
                       );
                     },
                   );
                 },
-                
               );
             },
           ),
