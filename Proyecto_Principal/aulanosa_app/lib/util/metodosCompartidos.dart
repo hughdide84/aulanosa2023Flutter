@@ -59,11 +59,12 @@ class metodosCompartidos{
       // Asignandola a una de las variables que necesito //
       globales.listaCursos = Curso.devolverListaCursos(respuestaApi.body);
       // Recorro la lista y voy cogiendo sus nombres //
+      /*
       for(var curso in globales.listaCursos){
         // Actualizo la variable global para los nombres de los cursos, usados en unos filtros //
         globales.listaNombresCurso.add(curso.nombre);
       }
-
+      */
     }catch(excepcion){
       print(excepcion);
 
@@ -138,23 +139,21 @@ class metodosCompartidos{
     
   }
 
-  Future<List<Estudio>> recuperarEstudios() async{
+  Future<void> recuperarEstudios() async{
 
-    List<Estudio> listaEstudios =[];
+   
     Uri myUri = Uri.parse('$urlEstudios');
 
     final respuestaApi=await http.get(myUri);
 
     try{
-      listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
-
-
+      globales.listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
 
     }catch(excepcion){
       print(excepcion);
-      print("Algo ha ido mal");
+     
     }
-    return listaEstudios;
+    
   }
 
 }

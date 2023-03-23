@@ -153,16 +153,6 @@ class Login2 extends State<Login>{
                                   nombreUsuario = value!;
                                   
                                 },
-                                // validator: (value) {
-                                //     if(value!.isEmpty){
-                                        
-                                //         return 'Campo vacio';
-                                //     }
-
-                                //   if(value.length < 3){
-                                //       return 'Campo no válido';
-                                //     }
-                                //   },
                               ),   
                             ),   
                           ],
@@ -258,6 +248,7 @@ class Login2 extends State<Login>{
                           await metodosCompartidos().recuperarEmpresas();
                           await metodosCompartidos().recuperarCursos();
                           await metodosCompartidos().recuperarAlumnosExternos();
+                          await metodosCompartidos().recuperarEstudios();
                           
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
                         }

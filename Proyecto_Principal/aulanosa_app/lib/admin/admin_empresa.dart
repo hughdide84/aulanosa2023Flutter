@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unused_local_variable, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_interpolation_to_compose_strings, curly_braces_in_flow_control_structures
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unused_local_variable, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_interpolation_to_compose_strings, curly_braces_in_flow_control_structures, non_constant_identifier_names
 
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
@@ -30,6 +30,11 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   double alturaContainerInfoEmpresa = 0;
   bool containerAlumno = false;
   String infoContainerEmpresa = "";
+  // Variable para mostrar el filtro seleccionado 'curso' por el usuario dentro del boton "filtros" //
+  String filtroCurso="";
+
+  // Variable para mostrar el filtro seleccionado 'estudio' por el usuario dentro del boton "filtros" //
+  String filtroEstudio="";
 
   //Metodo para determinar que apartado tiene que mostrar dentro de cada empresa
   String determinarApartado(int index) {
@@ -347,68 +352,118 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
       body: listaEmpresas(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //Notififcaciones().contrasenaIncorrecta(context);
           //metodosCompartidos().recuperarEmpresasFiltradas(globales.idCurso, globales.idEstudio);
           showDialog(
-            context: context,
-            builder: (context) {
+            context:  context,
+            builder: (Buiildcontext) {
               return StatefulBuilder(builder: (context, setState) {
                 return  Container(
                   height: heightA * 0.6,
                   width: widthA * 0.4,
+                  
+                  //color: Colors.blue,
                   child: Column(
                     children: [
                       Align(
                         alignment: Alignment.topCenter,
                         child: Container(
-                          color: Colors.blue,
                           alignment: Alignment.center,
                           height: heightA*0.1,
                           width: widthA,
-                          child: Text(
-                            "Filtros",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
-                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                margin:EdgeInsets.only(top:heightA*0.05) ,
+                                child:Text(
+                                "Filtros",
+                                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
+                              ), 
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: widthA*0.05),
+                                child:
+                                  Text(
+                                    "Curso "+filtroCurso,
+                                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
+                                  ) ,
+                              ),
+                              Container(
+                                child:
+                                  Text(
+                                    "Estudio "+filtroEstudio,
+                                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
+                                  ) ,
+                              ),
+                                ],
+                              ) 
+                          ],)
+                           
                         ),
                       ),
+
                       // Container que contiene el texto de titulo curso//
                       Container(
-                        margin: EdgeInsets.only(top: heightA*0.01),
+                        margin: EdgeInsets.only(top: heightA*0.005),
                         child: 
                           Text("Cursos", style: TextStyle(fontWeight:FontWeight.w500, fontSize: 20),),
                         ),
-                      Container(
-                        margin: EdgeInsets.only(top:heightA*0.05),
-                        child:ListView.builder(
-                          itemCount: globales.listaCursos.length,
-                          itemBuilder:(context, index){
-                            return Container(
-                              height: heightA*0.03,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-                              child: TextButton(
-                                // Aqui actualizo la variable para el filtro //
-                                onPressed: (){
-                                  globales.idCurso = globales.listaCursos[index].id;
-                                },
-                                child: Text(globales.listaCursos[index].nombre)),
-                            );
-                          } , ),
-                      ),
+                        
+                        SizedBox(
+                          height: heightA*0.2,
+                          child: 
+                            ListView.builder(
+                              itemCount: globales.listaCursos.length,
+                              itemBuilder:( context, index){
+                                return Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
+                                  child: TextButton(
+                                    // Aqui actualizo la variable para el filtro //
+                                    onPressed: (){
+                                      globales.idCurso = globales.listaCursos[index].id;
+                                      print(globales.idCurso);
+                                    },
+                                    child: Text(globales.listaCursos[index].nombre)),
+                                );
+                            } , ),
+
+                        ),
+                        
+                      
                       
                       // Container que contiene el texto de titulo estudio //
                       Container(
-                        margin: EdgeInsets.only(top: heightA*0.01),
+                        margin: EdgeInsets.only(top: heightA*0.015),
                         child: Text(
                           "Estudios",
                           style: TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 20),
                         ),
-                      ),
-                      Container(
-                        child: ListView(),
-                      )
-                    ],
+                        
+                      ),        
+                        SizedBox(
+                          height: heightA*0.2,
+                          child:
+                          ListView.builder(
+                          itemCount: globales.listaEstudios.length,
+                          itemBuilder:(context, index){
+                            return Container(
+                              height: 50,
+                              decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
+                              child: TextButton(
+                                
+                                // Aqui actualizo la variable para el filtro //
+                                onPressed: (){
+                                  globales.idEstudio = globales.listaEstudios[index].id;
+                                  print(globales.idEstudio);
+                                },
+                                child: Text(globales.listaEstudios[index].nombre, selectionColor: Colors.white)),
+                            );
+                          } , ),
+                        )
+                      ],
                   )
                 );
               },);
@@ -422,73 +477,3 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
   
   
 }
-/*
-// CLASE CREADA PARA EL DESPLIEGUE DE FILTROS // 
-class busquedaConFiltro extends SearchDelegate{
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-   IconButton(
-    onPressed:() {
-      close(context, null);
-    },
-    icon: Icon(Icons.arrow_back));
-  }
-
-  // Contiene el campo de texto donde se escribe
-  @override
-  Widget? buildLeading(BuildContext context) {
-    IconButton(
-      onPressed: (){
-        // Campo de texto para el filtro //
-        if(query.isEmpty){
-          close(context, null);
-        }else{
-          query='';
-        }
-    },
-      icon: Icon(Icons.clear));
-  }
-
-  // aqui se actualizan los resultados y se muestran //
-  // el usuario probablemente no vea los resultados aqui //
-  @override
-  Widget buildResults(BuildContext context) {
-    child:Text(
-      query,
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-    );
-
-    // esta linea va a cambiar, desde donde llame a esta funcion va a variar //
-    return buildResults(context);
-
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-
-    // esta lista tiene que estar rellenada de los datos nombre de cursos //
-    List<String> sugerencias=[
-      '2022-2023',
-      '2021-2022',
-      '2020-2021',
-    ];
-
-    return ListView.builder(
-      itemCount: sugerencias.length,
-      itemBuilder: (context, index) {
-        final sugerencia = sugerencias[index];
-        return ListTile(
-          title: Text(sugerencia),
-          // en este on tap es donde se recoge el valor que se marca como filtro //
-          onTap: (() {
-            query=sugerencia;
-
-            showResults(context);
-          }
-        ));
-      },
-    );
-  }
-
-  }
-  */
