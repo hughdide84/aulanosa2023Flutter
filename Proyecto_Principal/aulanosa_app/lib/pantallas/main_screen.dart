@@ -113,8 +113,7 @@ class HomePageState extends State<MyApp>{
         return AdminCursos();  
       case MenuItems_Admin.adminEmpresa:
         return AdminEmpresa();
-      case MenuItems_Admin.adminProductos:
-        return AdminProductos();
+      
       case MenuItems_Admin.adminProyectos:
         return AdminProyectos();
          

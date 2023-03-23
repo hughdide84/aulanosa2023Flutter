@@ -10,7 +10,7 @@ class MenuItems_Admin{
   //static const adminCrearUsuario = MenuItemm('Añadir Usuario', Icons.person_add_alt_1);
   static const adminEmpresa = MenuItemm('Empresas', Icons.business_center);
   static const adminAlumnos = MenuItemm('Alumnos', Icons.group);
-  static const adminProductos = MenuItemm('Productos', Icons.shopping_cart_rounded);
+
   static const adminProyectos = MenuItemm('Proyectos', Icons.assignment_rounded);
   static const adminAlumnosExternos = MenuItemm('Alumnos Externos', Icons.groups);
   static const adminCursos = MenuItemm('Cursos', Icons.grading_outlined);
@@ -19,7 +19,7 @@ class MenuItems_Admin{
     adminPrincipal,
     adminEmpresa,
     adminAlumnos,
-    adminProductos,
+    
     adminProyectos,
     adminAlumnosExternos,
     adminCursos

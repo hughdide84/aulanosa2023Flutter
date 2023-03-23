@@ -1,5 +1,6 @@
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/comun/widget/keyword_closed.dart';
+import 'package:aulanosa_app/comun/widget/password_text_form_field.dart';
 import 'package:aulanosa_app/objetosNecesarios/alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/usuario.dart';
@@ -83,9 +84,9 @@ class Login2 extends State<Login> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           //texto 'usuario'
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            child: const Text(
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
                               "Usuario",
                               style: TextStyle(
                                   fontSize: 25,
@@ -95,9 +96,11 @@ class Login2 extends State<Login> {
                           ),
 
                           TextFormField(
+                            textInputAction: TextInputAction.next,
                             style: const TextStyle(fontWeight: FontWeight.w500),
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.zero,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 4),
                               fillColor: textFormBackgroundColor,
                               filled: true,
                               border: OutlineInputBorder(
@@ -131,69 +134,44 @@ class Login2 extends State<Login> {
                     ),
 
                     //columna con el texto 'contraseña' y su respectivo cuadro de texto
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //texto 'contraseña'
-                        Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          child: const Text(
-                            "Contraseña",
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                    FractionallySizedBox(
+                      widthFactor: .75,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //texto 'contraseña'
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              "Contraseña",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
+                          PasswordTextFormField(
 
-                        Stack(
-                          children: [
-                            //cuadro de texto para la contraseña //
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 206, 206, 206),
-                                borderRadius: BorderRadius.horizontal(
-                                  left: Radius.circular(20),
-                                  right: Radius.circular(20),
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 4),
+                              fillColor: textFormBackgroundColor,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: const BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
                                 ),
                               ),
-                              height: size.height * 0.055,
-                              width: size.width * 0.7,
                             ),
-
-                            // Campo donde rellena el usuario los datos, en este caso la contraseña //
-                            Container(
-                              height: size.height * 0.05,
-                              width: size.width * 0.6,
-                              margin: EdgeInsets.only(left: size.width * 0.04),
-                              alignment: Alignment.center,
-                              child: TextFormField(
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 20),
-                                decoration: const InputDecoration(
-                                    border: InputBorder.none),
-                                onSaved: (value) {
-                                  contrasena = value!;
-                                },
-                                obscureText: verContrasena,
-                              ),
-                            ),
-
-                            // Container del icono del ojo para cambiar la visibilidad de la contraseña //
-                            Container(
-                                margin:
-                                    EdgeInsets.only(left: size.width * 0.59),
-                                child: IconButton(
-                                  iconSize: size.height * 0.03,
-                                  icon: const Icon(Icons.visibility),
-                                  // En este onPressed llamo a la función que cambia la visibilidad de la contraseña //
-                                  onPressed: () {
-                                    visionContrasena();
-                                  },
-                                ))
-                          ],
-                        ),
-                      ],
+                            onSaved: (value) {
+                              contrasena = value!;
+                            },
+                          ),
+                        ],
+                      ),
                     ),
 
                     // Espaciador entre containers //
@@ -223,8 +201,8 @@ class Login2 extends State<Login> {
                           } else if (globales.roll == "ADMIN") {
                             await metodosCompartidos().recuperarEmpresas();
                             await metodosCompartidos().recuperarCursos();
-                            await metodosCompartidos()
-                                .recuperarAlumnosExternos();
+                            await metodosCompartidos().recuperarAlumnosExternos();
+                            await metodosCompartidos().recuperarAlumnos();
 
                             Navigator.push(
                               context,
