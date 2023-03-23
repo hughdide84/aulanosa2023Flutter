@@ -228,16 +228,16 @@ class PrincipalAdminButtons {
     return <PrincipalAdminButtons>[
     
       PrincipalAdminButtons(
-          'Empresa','Empresas', Color.fromARGB(204, 33, 149, 243)),
+          'Empresa','Empresas', Color.fromARGB(255, 72, 122, 216)),
       PrincipalAdminButtons(
-          'Alumnos', 'Alumnos', Color.fromARGB(204, 33, 149, 243)),
+          'Alumnos', 'Alumnos', Color.fromARGB(255, 72, 122, 216)),
       
       PrincipalAdminButtons('Proyectos', 'Proyectos',
-          Color.fromARGB(204, 33, 149, 243)),
+          Color.fromARGB(255, 72, 122, 216)),
       PrincipalAdminButtons('Alumno externo', 'Alumnos externos',
-          Color.fromARGB(204, 33, 149, 243)),
+          Color.fromARGB(255, 72, 122, 216)),
       PrincipalAdminButtons(
-          'Cursos', 'Cursos', Color.fromARGB(204, 33, 149, 243)),
+          'Cursos', 'Cursos', Color.fromARGB(255, 72, 122, 216)),
     ];
   }
 }
