@@ -102,7 +102,7 @@ class _AdminProyectosState extends State<AdminProyectos> {
                                   child: ListView.builder(
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: 20,
+                                    itemCount: globales.listaAlumnosExternos.length,
                                     itemBuilder: ((context, index) {
                                       return Container(
                                         margin: EdgeInsets.only(left: 2, top: 5, right: 2),
@@ -120,7 +120,7 @@ class _AdminProyectosState extends State<AdminProyectos> {
                                           child: Container(
                                           margin: EdgeInsets.only(left: 5),
                                           // AQUI VA EL NOMBRE DEL ALUMNO //
-                                          child: Text(globales.listaAlumnos[index].nombre,
+                                          child: Text(globales.listaAlumnosExternos[index].nombre,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 24
@@ -133,7 +133,8 @@ class _AdminProyectosState extends State<AdminProyectos> {
                                     ),
                                 )
                               ],
-                              )
+                              ),
+                              
                           ],
                         ),
                       ),
@@ -142,14 +143,21 @@ class _AdminProyectosState extends State<AdminProyectos> {
                 ),
               
             ),
-            Container(
-              width: 20,
-              height: 20,
-              child:IconButton(
-              onPressed: (){
-              metodosCompartidos().recuperarAlumnos();
-              }, icon: Icon(Icons.abc)) ,)
-            
+            /*
+             Container(
+                width: 20,
+                height: 20,
+                color: Colors.blue,
+                child:IconButton(
+
+                onPressed: ()async{
+                  
+                    await metodosCompartidos().recuperarAlumnos();
+                
+                  
+                      },
+                  icon: Icon(Icons.abc)) ,)
+                  */
           ],
         ),
       )
@@ -157,7 +165,7 @@ class _AdminProyectosState extends State<AdminProyectos> {
     
   }
     
- // MUCHISIMA SUERTE A LAS PERSONAS QUE PILLEN ESTE PROYECTO EL AÑO QUE VIENE // 
+
  
 }
 

@@ -26,7 +26,8 @@ String urlIdEmpresa ="http://10.0.2.2:8080/api/empresa/alumno/";
 // Variable que guarda la direccion de la API para recuperar la info sobre estudios //
 String urlEstudios ="http://10.0.2.2:8080/api/estudios/all";
 
-
+// Variable para recuperar los alumnos //
+String urlAlumnos ="http://10.0.2.2:8080/api/alumno";
 
 class metodosCompartidos{
 
@@ -130,8 +131,6 @@ class metodosCompartidos{
     }catch(excepcion){
       print(excepcion);
     }
-    
-    
   }
 
   Future<void> recuperarEstudios() async{
@@ -155,7 +154,7 @@ class metodosCompartidos{
     Future<void> recuperarAlumnos()async{
       
       late List<Alumno> listaAlumnosIntermedia;
-      Uri myUri = Uri.parse("");
+      Uri myUri = Uri.parse('$urlAlumnos');
 
       final respuestaApi= await http.get(myUri);
 

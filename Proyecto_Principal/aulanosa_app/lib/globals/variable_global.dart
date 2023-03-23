@@ -51,7 +51,7 @@ late int idEstudio;
 
 // Variables previas a la actualizacion de datos en la lista de alumnos //
 // HECHO ASI PARA EVITAR LA CARGA DE TANTA INFORMACION EN EL LOGIN // 
-
+// ESTA PARTE HA QUEDADO SIN HACER GRACIAS A LOS CAMBIOS DE WPF EN LA API //
 // Variables default para curso, empresa y estudios //
 Curso curso = Curso(id: 0,estado: 'a', inicio: DateTime.now() , fin: DateTime.now() ,nombre: "default");
 
@@ -64,6 +64,8 @@ Alumno alumno1 = Alumno(carta: "a", curso: curso,empresa:empresa,idCurso: 0,idEm
 
 // Variable que recupera una lista de alumnos //
   List <Alumno> listaAlumnos= [
+    alumno1,
+    alumno1,
     alumno1,
   ];
 
