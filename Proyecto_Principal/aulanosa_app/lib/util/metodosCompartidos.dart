@@ -58,13 +58,7 @@ class metodosCompartidos{
       // Recoge la respuesta de la API y la convierto //
       // Asignandola a una de las variables que necesito //
       globales.listaCursos = Curso.devolverListaCursos(respuestaApi.body);
-      // Recorro la lista y voy cogiendo sus nombres //
-      /*
-      for(var curso in globales.listaCursos){
-        // Actualizo la variable global para los nombres de los cursos, usados en unos filtros //
-        globales.listaNombresCurso.add(curso.nombre);
-      }
-      */
+      globales.listaCursosProyecto=Curso.devolverListaCursos(respuestaApi.body);
     }catch(excepcion){
       print(excepcion);
 

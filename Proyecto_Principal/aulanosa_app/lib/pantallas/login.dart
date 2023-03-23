@@ -229,7 +229,7 @@ class Login2 extends State<Login>{
                     //boton de iniciar sesión
                     InkWell(
                       onTap: () async {
-
+                        
                         // ignore: unrelated_type_equality_checks
                         
                         formKey.currentState!.save();
@@ -240,7 +240,6 @@ class Login2 extends State<Login>{
                         if(globales.roll=="ALUMNO"){
                           await recuperarDatosAlumno(nombreUsuario);
                           await recuperarDatosCurso(alumnoUsuario.idCurso);
-                        
 
                           Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),);
 

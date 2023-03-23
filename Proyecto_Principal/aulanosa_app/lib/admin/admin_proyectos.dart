@@ -3,7 +3,7 @@ import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
+import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
 //Pagina para editar/mostrar AdminProyectos
 class AdminProyectos extends StatefulWidget {
@@ -58,7 +58,7 @@ class _AdminProyectosState extends State<AdminProyectos> {
                       onPressed:(() {
                        print(listaEstudios[index]);
                       }),
-                      child: Text(listaEstudios[index])
+                      child: Text(globales.listaEstudios[index].nombre)
                       );
                       })    
                 )
