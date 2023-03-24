@@ -195,8 +195,8 @@ class metodosCompartidos{
 
 
 // Actualiza la lista de empresas en funcion a los filtros //
-  Future <void>recuperarListaEmpresasFiltradas(int idCurso, int idEstudios) async{
 
+  Future <void>recuperarListaEmpresasFiltradas(int idCurso, int idEstudios) async{
     Uri myUri = Uri.parse('$urlListaEmpresa'+'$idCurso'+ '/' + '$idEstudios');
 
     final respuestaApi=await http.get(myUri);
