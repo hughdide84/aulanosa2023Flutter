@@ -560,7 +560,7 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                           child: InkWell(
                             onTap: () async {
                               setState(() {
-                                metodos.recuperarEmpresasFiltradas(
+                                metodos.recuperarListaEmpresasFiltradas(
                                   globales.idCurso, globales.idEstudio);
                               },);
                               Navigator.pop(context);
