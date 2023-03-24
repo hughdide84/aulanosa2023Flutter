@@ -6,7 +6,6 @@ import 'package:aulanosa_app/admin/admin_crear_usuario.dart';
 import 'package:aulanosa_app/admin/admin_cursos.dart';
 import 'package:aulanosa_app/admin/admin_empresa.dart';
 import 'package:aulanosa_app/admin/admin_principal.dart';
-import 'package:aulanosa_app/admin/admin_productos.dart';
 import 'package:aulanosa_app/admin/admin_proyectos.dart';
 import 'package:aulanosa_app/admin/drawer_admin.dart';
 import 'package:aulanosa_app/alumno/drawer_alumno.dart';
@@ -17,7 +16,6 @@ import 'package:aulanosa_app/alumno/screem_empresa_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_mensajeria_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_notas_alumno.dart';
 import 'package:aulanosa_app/alumno/screem_proyecto_alumno.dart';
-import 'package:aulanosa_app/pantallas/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../alumno/menu_principal_alumno.dart';
@@ -113,8 +111,6 @@ class HomePageState extends State<MyApp>{
         return AdminCursos();  
       case MenuItems_Admin.adminEmpresa:
         return AdminEmpresa();
-      case MenuItems_Admin.adminProductos:
-        return AdminProductos();
       case MenuItems_Admin.adminProyectos:
         return AdminProyectos();
          

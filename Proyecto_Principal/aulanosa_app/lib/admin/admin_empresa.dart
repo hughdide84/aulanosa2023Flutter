@@ -6,7 +6,6 @@ import 'package:aulanosa_app/util/metodosCompartidos.dart';
 import 'package:aulanosa_app/util/notificaciones.dart';
 import 'package:http/http.dart' as http;
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
-import 'package:aulanosa_app/pantallas/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 import 'package:aulanosa_app/util/notificaciones.dart';
