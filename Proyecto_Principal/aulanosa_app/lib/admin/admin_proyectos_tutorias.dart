@@ -77,7 +77,7 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
     listaEventos.add(mensaje16);
     listaEventos.add(mensaje17);
     listaEventos.add(mensaje18);
-    listaEventos.add(mensaje19);
+    listaEventos.add(mensaje19);  
   }
   
 

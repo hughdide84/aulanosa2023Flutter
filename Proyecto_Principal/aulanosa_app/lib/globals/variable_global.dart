@@ -3,6 +3,7 @@ import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
 import 'package:aulanosa_app/objetosNecesarios/estudio.dart';
+import 'package:aulanosa_app/objetosNecesarios/mensaje.dart';
 
 String roll="";
 
@@ -48,5 +49,5 @@ late int idCurso;
 // Variable para guardar el idEstudio
 late int idEstudio;
 
-
-
+// Variable para mensajes
+List<Mensaje>listaMensajes=[];

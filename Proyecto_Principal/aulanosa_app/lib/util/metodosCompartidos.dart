@@ -25,6 +25,9 @@ String urlIdEmpresa ="http://10.0.2.2:8080/api/empresa/alumno/";
 // Variable que guarda la direccion de la API para recuperar la info sobre estudios //
 String urlEstudios ="http://10.0.2.2:8080/api/estudios/all";
 
+// Variable que guarda la direccion de la API para recuperar info sobre mensajes //
+String urlMensajes ="http://10.0.2.2:8080";
+
 
 
 class metodosCompartidos{
@@ -149,5 +152,23 @@ class metodosCompartidos{
     }
     
   }
+
+  Future <void> recuperarMensajes() async{
+    
+    Uri myUri = Uri.parse('$urlMensajes');
+
+    final respuestaApi=await http.get(myUri);
+
+    try{
+      globales.listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
+
+    }catch(excepcion){
+      print(excepcion);
+     
+    }
+
+  }
+
+
 
 }
