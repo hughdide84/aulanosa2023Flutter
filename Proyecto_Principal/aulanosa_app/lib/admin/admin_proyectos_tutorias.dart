@@ -451,7 +451,9 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                 
               ),
             ),
-            FloatingActionButton(
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: FloatingActionButton(
         onPressed: () {
           print(hoy.month);
           setState(() {
@@ -460,7 +462,18 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
           });
         },
         child: Icon(Icons.add),
-      )
+      )),
+      Container(
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 48, 92, 174),
+          borderRadius: BorderRadius.circular(10)),
+        margin: EdgeInsets.only(top: 10),
+        child: TextButton(
+        onPressed: () {
+          //Llamamos a la BBDD para cargar todos los mensajes
+
+        },
+        child: Text("Refrescar calendario", style: TextStyle(color: Colors.white))))
           ],
         ),
       );
