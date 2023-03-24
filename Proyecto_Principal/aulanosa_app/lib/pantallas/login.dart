@@ -207,7 +207,8 @@ class Login2 extends State<Login> {
                             await metodosCompartidos().recuperarCursos();
                             await metodosCompartidos().recuperarAlumnosExternos();
                             await metodosCompartidos().recuperarAlumnos();
-                            await metodosCompartidos().recuperarEstudios() ;
+                            await metodosCompartidos().recuperarEstudios();
+                            await metodosCompartidos().recuperarMensajes();
 
                             Navigator.push(
                               context,
