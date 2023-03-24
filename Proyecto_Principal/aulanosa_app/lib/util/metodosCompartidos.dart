@@ -33,7 +33,7 @@ String urlMensajes ="http://10.0.2.2:8080/api/mensaje";
 
 // Variable que guarda la direccion de la API para recuperar info sobre Empresas filtradas// 
 // Primer idCurso, idEstudios // 
-String urlListaEmpresa ="http://10.0.2.2:8080/api/empresa/1/3";
+String urlListaEmpresa ="http://10.0.2.2:8080/api/empresa/";
 
 
 
@@ -197,14 +197,15 @@ class metodosCompartidos{
 // Actualiza la lista de empresas en funcion a los filtros //
   Future <void>recuperarListaEmpresasFiltradas(int idCurso, int idEstudios) async{
 
-    Uri myUri = Uri.parse('$urlListaEmpresa'+'$idCurso'+'$idEstudios');
+    Uri myUri = Uri.parse('$urlListaEmpresa'+'$idCurso'+ '/' + '$idEstudios');
 
     final respuestaApi=await http.get(myUri);
 
     try{
 
-      globales.listaEmpresas.clear();
+     // globales.listaEmpresas.clear();
       globales.listaEmpresas = Empresa.devolverListaEmpresas(respuestaApi.body);
+
 
     }catch(excepcion){
       print(excepcion);

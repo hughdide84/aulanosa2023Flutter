@@ -562,6 +562,8 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
                               setState(() {
                                 metodos.recuperarListaEmpresasFiltradas(
                                   globales.idCurso, globales.idEstudio);
+                                  print(globales.idCurso);
+                                  print(globales.idEstudio);
                               },);
                               Navigator.pop(context);
                               
