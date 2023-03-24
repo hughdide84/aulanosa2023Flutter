@@ -164,7 +164,7 @@ void dialogoEmergente(BuildContext context){
       )
     ),
     onPressed: (() {
-      Navigator.of(context).pop();
+      Navigator.of(context, rootNavigator: true).pop();
     }),
     child: Text('OK',
       style: TextStyle(
