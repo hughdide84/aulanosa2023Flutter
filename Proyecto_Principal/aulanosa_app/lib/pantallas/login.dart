@@ -101,7 +101,7 @@ class Login2 extends State<Login> {
 
                           TextFormField(
                             textInputAction: TextInputAction.next,
-                            style: const TextStyle(fontWeight: FontWeight.w500),
+                            style: const TextStyle(fontWeight: FontWeight.w500, fontSize:20),
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 4),
@@ -156,7 +156,7 @@ class Login2 extends State<Login> {
                           ),
                           PasswordTextFormField(
 
-                            style: const TextStyle(fontWeight: FontWeight.w500),
+                            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 4),
@@ -225,12 +225,12 @@ class Login2 extends State<Login> {
                               right: Radius.circular(20),
                             )),
                         alignment: Alignment.center,
-                        height: size.height * 0.08,
-                        width: size.width * 0.5,
+                        height: size.height * 0.082,
+                        width: size.width * 0.6,
                         child: const Text(
                           "Iniciar sesión",
                           style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 24,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
@@ -238,7 +238,7 @@ class Login2 extends State<Login> {
                     ),
 
                     // Espaciador entre containers //
-                    SizedBox(height: size.height * 0.025),
+                    SizedBox(height: size.height * 0.01),
 
                     //boton de cambio de contraseña //
                     InkWell(
@@ -253,11 +253,11 @@ class Login2 extends State<Login> {
                       child: Container(
                         alignment: Alignment.center,
                         height: size.height * 0.065,
-                        width: size.width * 0.45,
+                        width: size.width * 0.5,
                         child: const Text(
                           "Cambiar Contraseña",
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 20,
                               color: Colors.blue,
                               fontWeight: FontWeight.bold),
                         ),
@@ -391,7 +391,7 @@ class _HeaderSection extends StatelessWidget {
           ),
           //texto bienvenida
           const Text("Bienvenidos a Aula Nosa",
-              style: TextStyle(fontSize: 20, color: Colors.white)),
+              style: TextStyle(fontSize: 22, color: Colors.white)),
         ],
       ),
     );

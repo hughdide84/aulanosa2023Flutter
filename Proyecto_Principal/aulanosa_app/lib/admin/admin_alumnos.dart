@@ -146,7 +146,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                     color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
-            child: Text(globales.listaAlumnos[index].idEstudios.toString(),
+            child: Text(mostrarEstudios(listadoAlumnos[index]),
                 style: const TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -461,7 +461,7 @@ class DataSearch extends SearchDelegate {
                           width: 3),
                     ),
                     child: Text(
-                      estudios.toString(),
+                      estudiosNombre,
                       style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -539,7 +539,7 @@ class DataSearch extends SearchDelegate {
           nombre = suggestionList[index].nombre;
           empresaNombre = mostrarEmpresa(listadoAlumnos[index]);
           cursoNombre = mostrarCurso(listadoAlumnos[index]);
-          estudios = suggestionList[index].idEstudios;
+          estudiosNombre = mostrarEstudios(listadoAlumnos[index]);
 
           showResults(context);
         },
@@ -557,7 +557,7 @@ class DataSearch extends SearchDelegate {
     );
   }
 
-  void mostrarCursoEstudiosAlumno(Alumno alumno) {
+ /* void mostrarCursoEstudiosAlumno(Alumno alumno) {
     for (var curso in globales.listaCursos) {
       if (curso.id == alumno.idCurso) {
         cursoNombre = curso.nombre;
@@ -576,7 +576,7 @@ class DataSearch extends SearchDelegate {
       }
     }
   }
-
+*/
   
 }
 String mostrarCurso(Alumno alumno) {
@@ -595,4 +595,13 @@ String mostrarCurso(Alumno alumno) {
       }
     }
     return empresaNombre;
+  }
+
+   String mostrarEstudios(Alumno alumno) {
+    for (var estudio in globales.listaEstudios) {
+      if (estudio.id == alumno.idEstudios) {
+        estudiosNombre = estudio.nombre;
+      }
+    }
+    return estudiosNombre;
   }
