@@ -180,7 +180,7 @@ class Login2 extends State<Login> {
 
                     // Espaciador entre containers //
                     SizedBox(
-                      height: size.height * 0.065,
+                      height: size.height * 0.07,
                     ),
 
                     //boton de iniciar sesión
@@ -238,7 +238,7 @@ class Login2 extends State<Login> {
                     ),
 
                     // Espaciador entre containers //
-                    SizedBox(height: size.height * 0.01),
+                    SizedBox(height: size.height * 0.005),
 
                     //boton de cambio de contraseña //
                     InkWell(
@@ -253,11 +253,11 @@ class Login2 extends State<Login> {
                       child: Container(
                         alignment: Alignment.center,
                         height: size.height * 0.065,
-                        width: size.width * 0.5,
+                        width: size.width * 0.6,
                         child: const Text(
                           "Cambiar Contraseña",
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               color: Colors.blue,
                               fontWeight: FontWeight.bold),
                         ),
