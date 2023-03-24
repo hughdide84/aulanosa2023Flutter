@@ -154,21 +154,22 @@ class metodosCompartidos{
     
   }
 
-  Future <List<Mensaje>>recuperarMensajes() async{
-    List<Mensaje>listaMensajesRecuperados=[];
+  Future <void>recuperarMensajes() async{
+    
     Uri myUri = Uri.parse('$urlMensajes');
 
     final respuestaApi=await http.get(myUri);
 
     try{
-       listaMensajesRecuperados = Mensaje.devolverListaMensajes(respuestaApi.body);
-
+      List<Mensaje>listaMensajesRecuperados= Mensaje.devolverListaMensajes(respuestaApi.body);
+      globales.listaMensajes.clear();
+      globales.listaMensajes= listaMensajesRecuperados;
 
     }catch(excepcion){
       print(excepcion);
      
     }
-    return listaMensajesRecuperados;
+    
   }
 
 
