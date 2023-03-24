@@ -31,7 +31,7 @@ class Mensaje {
     return mensajeFromJson(datos);
   } 
   
-  static List<Mensaje> devolverListaAlumnos(String datos){
+  static List<Mensaje> devolverListaMensajes(String datos){
     return  mensajesFromJson(datos);
   } 
 
