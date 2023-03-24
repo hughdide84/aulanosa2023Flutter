@@ -7,6 +7,7 @@ import 'package:aulanosa_app/admin/admin_cursos.dart';
 import 'package:aulanosa_app/admin/admin_empresa.dart';
 import 'package:aulanosa_app/admin/admin_principal.dart';
 import 'package:aulanosa_app/admin/admin_proyectos.dart';
+import 'package:aulanosa_app/admin/admin_proyectos_tutorias.dart';
 import 'package:aulanosa_app/admin/drawer_admin.dart';
 import 'package:aulanosa_app/alumno/drawer_alumno.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
@@ -113,6 +114,8 @@ class HomePageState extends State<MyApp>{
         return AdminEmpresa();
       case MenuItems_Admin.adminProyectos:
         return AdminProyectos();
+      case MenuItems_Admin.adminProyectoTutorias:
+        return TutoriasAdmin();
          
 
         // Este default va controlado por la variable global del roll que he actualizado en el login //
@@ -239,6 +242,8 @@ class HomePageState extends State<MyApp>{
       }
       else if(globales.redireccion=="Cursos"){
       itemActual = MenuItems_Admin.adminCursos;
+      }else if(globales.redireccion=="Calendario"){
+      itemActual = MenuItems_Admin.adminProyectoTutorias;
       }else{
         //no deberia haber else, cuando todas las clases estén implementadas se debe borrar
         itemActual = MenuItems_Alumno.main_alumno;

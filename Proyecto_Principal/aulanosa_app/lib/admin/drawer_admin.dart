@@ -12,6 +12,7 @@ class MenuItems_Admin{
   static const adminAlumnos = MenuItemm('Alumnos', Icons.group);
   static const adminProyectos = MenuItemm('Proyectos', Icons.assignment_rounded);
   static const adminAlumnosExternos = MenuItemm('Alumnos Externos', Icons.groups);
+  static const adminProyectoTutorias = MenuItemm('Calendario', Icons.calendar_month);
   static const adminCursos = MenuItemm('Cursos', Icons.grading_outlined);
 
   static const all = <MenuItemm>[
@@ -20,6 +21,7 @@ class MenuItems_Admin{
     adminAlumnos,
     adminProyectos,
     adminAlumnosExternos,
+    adminProyectoTutorias,
     adminCursos
   
   ];
