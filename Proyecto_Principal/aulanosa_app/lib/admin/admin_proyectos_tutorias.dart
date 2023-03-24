@@ -51,91 +51,93 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
     DropdownButtonFormField(items: <DropdownMenuItem>[], onChanged: (value) {});
 
     void retornarLista(List<Mensaje> listadoMensajes, DateTime dia) {
+      print(DateTime(diaSeleccionado.day, diaSeleccionado.month,
+                  (DateTime.now().year).toInt()));
       List<Mensaje> listadoMensajesDia = [];
       for (int i = 0; i < listadoMensajes.length; i++) {
         if (diaSeleccionado.month == 1) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+          if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 2) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 3) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
 
         if (diaSeleccionado.month == 4) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 5) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 6) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 7) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 8) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 9) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 10) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
 
         if (diaSeleccionado.month == 11) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
         if (diaSeleccionado.month == 12) {
-          if (listadoMensajes[i].fecha ==
-              DateTime.utc((dia.day).toInt(), diaSeleccionado.month,
-                  (DateTime.now().year).toInt())) {
+           if (DateTime((listadoMensajes[i].fecha).day.toInt(), (listadoMensajes[i].fecha).month.toInt(), (listadoMensajes[i].fecha).year.toInt() ) ==
+              DateTime((dia.day).toInt(), diaSeleccionado.month,
+                  (diaSeleccionado.year).toInt())) {
             listadoMensajesDia.add(listadoMensajes[i]);
           }
         }
@@ -356,95 +358,96 @@ class TutoriasAdminState extends State<TutoriasAdmin> {
                     //Es el ultimo dia que tenemos para entregar esto, por lo que no tengais en cuenta los ifs anidados
                     //estamos cansados asi que cualquier cosa nos vale con tal de que funcione
                     //Pd: Animo con el calendario :)
+                    print(DateTime.utc(globales.listaMensajes[0].fecha.day ,globales.listaMensajes[0].fecha.month +  globales.listaMensajes[0].fecha.year).toString());
                     for (int i = 0; i < globales.listaMensajes.length; i++) {
                       if (diaSeleccionado.month == 1) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                           globales.listaMensajes[i].fecha) {
+                           DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 2) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                            DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 3) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 4) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 5) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 6) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 7) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 8) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 9) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 10) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 10) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 11) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
                       if (diaSeleccionado.month == 12) {
                         if (DateTime.utc((day.day).toInt(),
                                 diaSeleccionado.month, diaSeleccionado.year) ==
-                            globales.listaMensajes[i].fecha) {
+                             DateTime.utc(globales.listaMensajes[i].fecha.day, globales.listaMensajes[i].fecha.month, globales.listaMensajes[i].fecha.year)) {
                           eventos = eventos + 1;
                         }
                       }
