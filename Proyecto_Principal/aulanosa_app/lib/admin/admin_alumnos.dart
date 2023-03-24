@@ -177,8 +177,8 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
     return Column();
   }
 
-  //Metodo para crear la estructura de toda la pagina, esta funcion creara tanto la lista principal de alumnos externos como
-//la lista que contiene la informacion de cada alumno externo
+  //Metodo para crear la estructura de toda la pagina, esta funcion creara tanto la lista principal de alumnos como
+//la lista que contiene la informacion de cada alumno
   ListView listaAlumnos() {
     return ListView.builder(
       itemCount: globales.listaAlumnos.length,
@@ -186,11 +186,10 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
         //Obtengo en una variable el index que equivaldra a cada miembro de la lista, para poder controlar en cual estoy
         int numeroAlumnoExterno = index;
         return Padding(
-          //padding: const EdgeInsets.all(10.0),
           padding:
               const EdgeInsets.only(top: 8, left: 15, right: 15, bottom: 8),
 
-          //Mediante un GestureDetector, se podra acceder a la informacion de cada alumno externo abriendo un showDialog
+          //Mediante un GestureDetector, se podra acceder a la informacion de cada alumno abriendo un showDialog
           child: GestureDetector(
             child: Container(
               alignment: Alignment.center,
@@ -202,7 +201,6 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                   top: BorderSide.none,
                   left: BorderSide.none,
                   right: BorderSide.none,
-                  //bottom: BorderSide(color: Color.fromARGB(255, 105, 146, 221), width: 4),
                 ),
               ),
               child: Padding(
@@ -220,6 +218,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
               ),
             ),
             onTap: () {
+              //Al pulsar sobre un alumno se abrira un showDialog con toda la informacion de este
               showDialog(
                 context: context,
                 barrierDismissible: false,
@@ -245,9 +244,6 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                                   children: [
                                     Container(
                                       padding: const EdgeInsets.only(top: 10),
-
-                                      //Con esta funcion estamos determinando en funcion del index de la segunda lista que titulo debe llevar cada celda en funcion de la posicion
-                                      //esta asi pensado porque como el encabezado de la informacion siempre es el mismo de esta forma no nos complicamos y lo localizamos facilmente
                                       child: Text(
                                         determinarApartado(index),
                                         style: const TextStyle(
@@ -297,7 +293,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
     );
   }
 }
-
+//Clase para poder realizar la busqueda de alumnos
 class DataSearch extends SearchDelegate {
   String nombre = '';
   int empresa = 0;
@@ -557,7 +553,7 @@ class DataSearch extends SearchDelegate {
     );
   }
 
- /* void mostrarCursoEstudiosAlumno(Alumno alumno) {
+  /* void mostrarCursoEstudiosAlumno(Alumno alumno) {
     for (var curso in globales.listaCursos) {
       if (curso.id == alumno.idCurso) {
         cursoNombre = curso.nombre;
@@ -577,31 +573,31 @@ class DataSearch extends SearchDelegate {
     }
   }
 */
-  
 }
+
 String mostrarCurso(Alumno alumno) {
-    for (var curso in globales.listaCursos) {
-      if (curso.id == alumno.idCurso) {
-        cursoNombre = curso.nombre;
-      }
+  for (var curso in globales.listaCursos) {
+    if (curso.id == alumno.idCurso) {
+      cursoNombre = curso.nombre;
     }
-    return cursoNombre;
   }
+  return cursoNombre;
+}
 
-  String mostrarEmpresa(Alumno alumno) {
-    for (var empresa in globales.listaEmpresas) {
-      if (empresa.id == alumno.idEmpresa) {
-        empresaNombre = empresa.nombre;
-      }
+String mostrarEmpresa(Alumno alumno) {
+  for (var empresa in globales.listaEmpresas) {
+    if (empresa.id == alumno.idEmpresa) {
+      empresaNombre = empresa.nombre;
     }
-    return empresaNombre;
   }
+  return empresaNombre;
+}
 
-   String mostrarEstudios(Alumno alumno) {
-    for (var estudio in globales.listaEstudios) {
-      if (estudio.id == alumno.idEstudios) {
-        estudiosNombre = estudio.nombre;
-      }
+String mostrarEstudios(Alumno alumno) {
+  for (var estudio in globales.listaEstudios) {
+    if (estudio.id == alumno.idEstudios) {
+      estudiosNombre = estudio.nombre;
     }
-    return estudiosNombre;
   }
+  return estudiosNombre;
+}
