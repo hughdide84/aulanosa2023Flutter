@@ -2,6 +2,7 @@
 
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
+import 'package:aulanosa_app/pantallas/main_screen.dart';
 import 'package:aulanosa_app/util/metodosCompartidos.dart';
 import 'package:aulanosa_app/util/notificaciones.dart';
 import 'package:http/http.dart' as http;
@@ -371,6 +372,250 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
     );
   }
 
+  bool enFiltro = false;
+
+  Widget cuerpoFiltro() {
+    if (!enFiltro) {
+      return Container();
+    } else {
+      return Container(
+        height: heightA,
+        width: widthA,
+        color: Colors.grey[200],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            
+            Stack(
+              children: [
+
+                
+
+                Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  alignment: Alignment.center,
+                  height: heightA * 0.1,
+                  width: widthA,
+                  color: Color.fromARGB(255, 48, 92, 174),
+                  child: Stack(
+                    children: <Widget>[
+                      Text(
+                        "Filtros",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: Colors.white,
+                            decoration: TextDecoration.none),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(top:20, left: 10),
+                  child: IconButton(onPressed: (){
+                    setState(() {
+                      enFiltro = false;
+                    });
+                  }, icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30,)),
+                ),
+              ],
+
+            ),
+
+            FittedBox(
+              child: Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                alignment: Alignment.center,
+                child: Text(
+                  "Curso: " + filtroCurso,
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black),
+                ),
+              ),
+            ),
+
+            FittedBox(
+              child: Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                alignment: Alignment.center,
+                child: Text(
+                  "Estudio: " + filtroEstudio,
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black),
+                ),
+              ),
+            ),
+
+            // Container que contiene el texto de titulo curso//
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(top: 30),
+              child: Text(
+                "Cursos",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 48, 92, 174),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    decoration: TextDecoration.none),
+              ),
+            ),
+
+            SizedBox(
+              width: widthA * 0.8,
+              height: heightA * 0.2,
+              child: ListView.builder(
+                itemCount: globales.listaCursos.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(5),
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          width: 4, color: Color.fromARGB(255, 48, 92, 174)),
+                    ),
+                    child: TextButton(
+                      // Aqui actualizo la variable para el filtro //
+                      onPressed: () {
+                        setState(
+                          () {
+                            globales.idCurso = globales.listaCursos[index].id;
+                            print(globales.idCurso);
+                            filtroCurso = globales.listaCursos[index].nombre;
+                          },
+                        );
+                      },
+                      child: Text(globales.listaCursos[index].nombre),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            // Container que contiene el texto de titulo estudio //
+            Container(
+              margin: EdgeInsets.only(top: 30),
+              child: Text(
+                "Estudios",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 48, 92, 174),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    decoration: TextDecoration.none),
+              ),
+            ),
+
+            SizedBox(
+              width: widthA * 0.8,
+              height: heightA * 0.2,
+              child: ListView.builder(
+                itemCount: globales.listaEstudios.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(5),
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          width: 4, color: Color.fromARGB(255, 48, 92, 174)),
+                    ),
+                    child: TextButton(
+                      // Aqui actualizo la variable para el filtro //
+                      onPressed: () {
+                        setState(
+                          () {
+                            globales.idEstudio =
+                                globales.listaEstudios[index].id;
+                            print(globales.idEstudio);
+                            filtroEstudio =
+                                globales.listaEstudios[index].nombre;
+                          },
+                        );
+                      },
+                      child: Text(globales.listaEstudios[index].nombre),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            SizedBox(
+              height: 20,
+            ),
+
+            Material(
+              child: InkWell(
+                onTap: () async {
+                  setState(
+                    () {
+                      metodos.recuperarListaEmpresasFiltradas(
+                          globales.idCurso, globales.idEstudio);
+                      print(globales.idCurso);
+                      print(globales.idEstudio);
+
+                      
+                      enFiltro = false;
+                      globales.redireccion = "EmpresaF";
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyApp()),
+                      );
+                    },
+
+                    
+                    
+                  );
+
+                  // globales.redireccion = "Empresas";
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyApp()),
+                  // );
+
+                  // globales.redireccion="Empresas";
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyApp()),
+                  // );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 48, 92, 174),
+                  ),
+                  height: heightA * 0.07,
+                  width: widthA * 0.4,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, //Center Row contents horizontally,
+                    crossAxisAlignment: CrossAxisAlignment
+                        .center, //Center Row contents vertically,
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Filtrar",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     setState(() {
@@ -386,221 +631,246 @@ class _AdminEmpresaState extends State<AdminEmpresa> {
         title: Text('Información Empresas'),
         leading: MenuWidget(),
       ),
-      body: listaEmpresas(),
+      body: Container(
+        height: heightA,
+        width: widthA,
+        child: Stack(
+          children: [
+
+            listaEmpresas(),
+            cuerpoFiltro()
+
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //metodosCompartidos().recuperarEmpresasFiltradas(globales.idCurso, globales.idEstudio);
-          showDialog(
-            context: context,
-            builder: (context) {
-              return StatefulBuilder(
-                builder: (context, setState) {
-                  return Container(
-                    height: heightA,
-                    width: widthA,
-                    //color: Colors.pink,
+          setState(() {
+            enFiltro = true;
+          });
+          // showDialog(
+          //   context: context,
+          //   builder: (context) {
+          //     return StatefulBuilder(
+          //       builder: (context, setState) {
+          //         return Container(
+          //           height: heightA,
+          //           width: widthA,
+          //           //color: Colors.pink,
 
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 20, bottom: 20),
-                          alignment: Alignment.center,
-                          height: heightA * 0.1,
-                          width: widthA,
-                          color: Color.fromARGB(255, 48, 92, 174),
-                          child: Stack(
-                            children: <Widget>[
-                              Text(
-                                "Filtros",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    decoration: TextDecoration.none),
-                              ),
-                            ],
-                          ),
-                        ),
+          //           child: Column(
+          //             crossAxisAlignment: CrossAxisAlignment.center,
+          //             children: <Widget>[
+          //               Container(
+          //                 margin: EdgeInsets.only(top: 20, bottom: 20),
+          //                 alignment: Alignment.center,
+          //                 height: heightA * 0.1,
+          //                 width: widthA,
+          //                 color: Color.fromARGB(255, 48, 92, 174),
+          //                 child: Stack(
+          //                   children: <Widget>[
+          //                     Text(
+          //                       "Filtros",
+          //                       style: TextStyle(
+          //                           fontWeight: FontWeight.w500,
+          //                           fontSize: 20,
+          //                           color: Colors.white,
+          //                           decoration: TextDecoration.none),
+          //                     ),
+          //                   ],
+          //                 ),
+          //               ),
 
-                        FittedBox(
-                          child: Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Curso: " + filtroCurso,
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
+          //               FittedBox(
+          //                 child: Container(
+          //                   margin: EdgeInsets.only(left: 10, right: 10),
+          //                   alignment: Alignment.center,
+          //                   child: Text(
+          //                     "Curso: " + filtroCurso,
+          //                     style: TextStyle(
+          //                         decoration: TextDecoration.none,
+          //                         fontWeight: FontWeight.w500,
+          //                         fontSize: 20,
+          //                         color: Colors.white),
+          //                   ),
+          //                 ),
+          //               ),
 
-                        FittedBox(
-                          child: Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Estudio: " + filtroEstudio,
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
+          //               FittedBox(
+          //                 child: Container(
+          //                   margin: EdgeInsets.only(left: 10, right: 10),
+          //                   alignment: Alignment.center,
+          //                   child: Text(
+          //                     "Estudio: " + filtroEstudio,
+          //                     style: TextStyle(
+          //                         decoration: TextDecoration.none,
+          //                         fontWeight: FontWeight.w500,
+          //                         fontSize: 20,
+          //                         color: Colors.white),
+          //                   ),
+          //                 ),
+          //               ),
 
-                        // Container que contiene el texto de titulo curso//
-                        Container(
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 30),
-                          child: Text(
-                            "Cursos",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                decoration: TextDecoration.none),
-                          ),
-                        ),
+          //               // Container que contiene el texto de titulo curso//
+          //               Container(
+          //                 alignment: Alignment.center,
+          //                 margin: EdgeInsets.only(top: 30),
+          //                 child: Text(
+          //                   "Cursos",
+          //                   style: TextStyle(
+          //                       color: Colors.white,
+          //                       fontWeight: FontWeight.w500,
+          //                       fontSize: 20,
+          //                       decoration: TextDecoration.none),
+          //                 ),
+          //               ),
 
-                        SizedBox(
-                          width: widthA * 0.8,
-                          height: heightA * 0.2,
-                          child: ListView.builder(
-                            itemCount: globales.listaCursos.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.all(5),
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      width: 4,
-                                      color: Color.fromARGB(255, 48, 92, 174)),
-                                ),
-                                child: TextButton(
-                                  // Aqui actualizo la variable para el filtro //
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        globales.idCurso =
-                                            globales.listaCursos[index].id;
-                                        print(globales.idCurso);
-                                        filtroCurso =
-                                            globales.listaCursos[index].nombre;
-                                      },
-                                    );
-                                  },
-                                  child:
-                                      Text(globales.listaCursos[index].nombre),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+          //               SizedBox(
+          //                 width: widthA * 0.8,
+          //                 height: heightA * 0.2,
+          //                 child: ListView.builder(
+          //                   itemCount: globales.listaCursos.length,
+          //                   itemBuilder: (context, index) {
+          //                     return Container(
+          //                       margin: EdgeInsets.all(5),
+          //                       height: 50,
+          //                       decoration: BoxDecoration(
+          //                         color: Colors.white,
+          //                         border: Border.all(
+          //                             width: 4,
+          //                             color: Color.fromARGB(255, 48, 92, 174)),
+          //                       ),
+          //                       child: TextButton(
+          //                         // Aqui actualizo la variable para el filtro //
+          //                         onPressed: () {
+          //                           setState(
+          //                             () {
+          //                               globales.idCurso =
+          //                                   globales.listaCursos[index].id;
+          //                               print(globales.idCurso);
+          //                               filtroCurso =
+          //                                   globales.listaCursos[index].nombre;
+          //                             },
+          //                           );
+          //                         },
+          //                         child:
+          //                             Text(globales.listaCursos[index].nombre),
+          //                       ),
+          //                     );
+          //                   },
+          //                 ),
+          //               ),
 
-                        // Container que contiene el texto de titulo estudio //
-                        Container(
-                          margin: EdgeInsets.only(top: 30),
-                          child: Text(
-                            "Estudios",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                decoration: TextDecoration.none),
-                          ),
-                        ),
+          //               // Container que contiene el texto de titulo estudio //
+          //               Container(
+          //                 margin: EdgeInsets.only(top: 30),
+          //                 child: Text(
+          //                   "Estudios",
+          //                   style: TextStyle(
+          //                       color: Colors.white,
+          //                       fontWeight: FontWeight.w500,
+          //                       fontSize: 20,
+          //                       decoration: TextDecoration.none),
+          //                 ),
+          //               ),
 
-                        SizedBox(
-                          width: widthA * 0.8,
-                          height: heightA * 0.2,
-                          child: ListView.builder(
-                            itemCount: globales.listaEstudios.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.all(5),
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      width: 4,
-                                      color: Color.fromARGB(255, 48, 92, 174)),
-                                ),
-                                child: TextButton(
-                                  // Aqui actualizo la variable para el filtro //
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        globales.idEstudio =
-                                            globales.listaEstudios[index].id;
-                                        print(globales.idEstudio);
-                                        filtroEstudio = globales
-                                            .listaEstudios[index].nombre;
-                                      },
-                                    );
-                                  },
-                                  child: Text(
-                                      globales.listaEstudios[index].nombre),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+          //               SizedBox(
+          //                 width: widthA * 0.8,
+          //                 height: heightA * 0.2,
+          //                 child: ListView.builder(
+          //                   itemCount: globales.listaEstudios.length,
+          //                   itemBuilder: (context, index) {
+          //                     return Container(
+          //                       margin: EdgeInsets.all(5),
+          //                       height: 50,
+          //                       decoration: BoxDecoration(
+          //                         color: Colors.white,
+          //                         border: Border.all(
+          //                             width: 4,
+          //                             color: Color.fromARGB(255, 48, 92, 174)),
+          //                       ),
+          //                       child: TextButton(
+          //                         // Aqui actualizo la variable para el filtro //
+          //                         onPressed: () {
+          //                           setState(
+          //                             () {
+          //                               globales.idEstudio =
+          //                                   globales.listaEstudios[index].id;
+          //                               print(globales.idEstudio);
+          //                               filtroEstudio = globales
+          //                                   .listaEstudios[index].nombre;
+          //                             },
+          //                           );
+          //                         },
+          //                         child: Text(
+          //                             globales.listaEstudios[index].nombre),
+          //                       ),
+          //                     );
+          //                   },
+          //                 ),
+          //               ),
 
-                        SizedBox(
-                          height: 20,
-                        ),
+          //               SizedBox(
+          //                 height: 20,
+          //               ),
 
-                        Material(
-                          child: InkWell(
-                            onTap: () async {
-                              setState(() {
-                                metodos.recuperarListaEmpresasFiltradas(
-                                  globales.idCurso, globales.idEstudio);
-                                  print(globales.idCurso);
-                                  print(globales.idEstudio);
-                              },);
-                              Navigator.pop(context);
-                              
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 48, 92, 174),
-                              ),
-                              height: heightA * 0.07,
-                              width: widthA * 0.4,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .center, //Center Row contents horizontally,
-                                crossAxisAlignment: CrossAxisAlignment
-                                    .center, //Center Row contents vertically,
-                                children: [
-                                  Icon(
-                                    Icons.search,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Filtrar",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-          );
+          //               Material(
+          //                 child: InkWell(
+          //                   onTap: () async {
+          //                     setState(() {
+          //                       metodos.recuperarListaEmpresasFiltradas(
+          //                         globales.idCurso, globales.idEstudio);
+          //                         print(globales.idCurso);
+          //                         print(globales.idEstudio);
+          //                     },);
+
+          //                     globales.redireccion = "Empresas";
+          //                     Navigator.push(
+          //                       context,
+          //                       MaterialPageRoute(builder: (context) => MyApp()),
+          //                     );
+
+          //                     // globales.redireccion="Empresas";
+          //                     // Navigator.push(
+          //                     //   context,
+          //                     //   MaterialPageRoute(builder: (context) => MyApp()),
+          //                     // );
+
+          //                   },
+          //                   child: Container(
+          //                     decoration: BoxDecoration(
+          //                       color: Color.fromARGB(255, 48, 92, 174),
+          //                     ),
+          //                     height: heightA * 0.07,
+          //                     width: widthA * 0.4,
+          //                     child: Row(
+          //                       mainAxisAlignment: MainAxisAlignment
+          //                           .center, //Center Row contents horizontally,
+          //                       crossAxisAlignment: CrossAxisAlignment
+          //                           .center, //Center Row contents vertically,
+          //                       children: [
+          //                         Icon(
+          //                           Icons.search,
+          //                           color: Colors.white,
+          //                         ),
+          //                         Text(
+          //                           "Filtrar",
+          //                           style: TextStyle(
+          //                               color: Colors.white, fontSize: 18),
+          //                         )
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //               )
+          //             ],
+          //           ),
+          //         );
+          //       },
+          //     );
+          //   },
+          // );
         },
         child: Icon(Icons.add_chart_outlined),
       ),
