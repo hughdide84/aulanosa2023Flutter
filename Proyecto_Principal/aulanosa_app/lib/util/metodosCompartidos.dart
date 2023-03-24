@@ -7,6 +7,7 @@ import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
 import 'package:aulanosa_app/objetosNecesarios/estudio.dart';
 import 'package:aulanosa_app/objetosNecesarios/filtro_Empresa.dart';
+import 'package:aulanosa_app/objetosNecesarios/mensaje.dart';
 import 'package:http/http.dart' as http;
 import 'package:aulanosa_app/globals/variable_global.dart' as globales;
 
@@ -28,7 +29,7 @@ String urlIdEmpresa ="http://10.0.2.2:8080/api/empresa/alumno/";
 String urlEstudios ="http://10.0.2.2:8080/api/estudios/all";
 
 // Variable que guarda la direccion de la API para recuperar info sobre mensajes //
-String urlMensajes ="http://10.0.2.2:8080";
+String urlMensajes ="http://10.0.2.2:8080/api/mensaje";
 
 
 
@@ -170,20 +171,22 @@ class metodosCompartidos{
     
   }
 
-  Future <void> recuperarMensajes() async{
+  Future <void>recuperarMensajes() async{
     
     Uri myUri = Uri.parse('$urlMensajes');
 
     final respuestaApi=await http.get(myUri);
 
     try{
-      globales.listaEstudios = Estudio.devolverListaAlumnos(respuestaApi.body);
+      List<Mensaje>listaMensajesRecuperados= Mensaje.devolverListaMensajes(respuestaApi.body);
+      globales.listaMensajes.clear();
+      globales.listaMensajes= listaMensajesRecuperados;
 
     }catch(excepcion){
       print(excepcion);
      
     }
-
+    
   }
 
 

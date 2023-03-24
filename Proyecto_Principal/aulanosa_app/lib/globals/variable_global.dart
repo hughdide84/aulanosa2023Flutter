@@ -49,5 +49,12 @@ late int idCurso;
 // Variable para guardar el idEstudio
 late int idEstudio;
 
-// Variable para mensajes
-List<Mensaje>listaMensajes=[];
+
+// Variable mensaje que va a ser placeholder //
+Mensaje mensaje = Mensaje(id:0, idUsuario: 0, asunto: "Default", texto: "Default", fecha: DateTime.now());
+// Variable para mensajes 
+List<Mensaje>listaMensajes=[
+  mensaje,
+  mensaje,
+  mensaje,
+];
