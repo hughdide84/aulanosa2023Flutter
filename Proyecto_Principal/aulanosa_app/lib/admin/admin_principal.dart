@@ -234,7 +234,7 @@ class PrincipalAdminButtons {
       
       PrincipalAdminButtons('Proyectos', 'Proyectos',
           Color.fromARGB(255, 72, 122, 216)),
-      PrincipalAdminButtons('Alumno externo', 'Alumnos externos',
+      PrincipalAdminButtons('Alumnos externos', 'Alumnos externos',
           Color.fromARGB(255, 72, 122, 216)),
       PrincipalAdminButtons(
           'Cursos', 'Cursos', Color.fromARGB(255, 72, 122, 216)),

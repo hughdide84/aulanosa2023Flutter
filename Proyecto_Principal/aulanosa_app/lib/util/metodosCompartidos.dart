@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:aulanosa_app/admin/admin_alumnos.dart';
+import 'package:aulanosa_app/objetosNecesarios/alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/alumnos_externos.dart';
 import 'package:aulanosa_app/objetosNecesarios/curso.dart';
 import 'package:aulanosa_app/objetosNecesarios/empresa.dart';
@@ -76,6 +78,21 @@ class metodosCompartidos{
 
     try{
       globales.listaAlumnosExternos = AlumnoExterno.devolverListaAlumnosExternos(respuestaApi.body);
+
+    }catch(excepcion){
+      print(excepcion);
+
+    }
+  }
+
+   // Metodo para recuperar informacion alumnos //
+   Future<void> recuperarAlumnos() async{
+    Uri myUri = Uri.parse('$urlListaAlumnos');
+
+    final respuestaApi = await http.get(myUri);
+
+    try{
+      globales.listaAlumnos = Alumno.devolverListaAlumnos(respuestaApi.body);
 
     }catch(excepcion){
       print(excepcion);
