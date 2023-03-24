@@ -1,3 +1,4 @@
+import 'package:aulanosa_app/admin/admin_proyectos_tutorias.dart';
 import 'package:aulanosa_app/alumno/menu_principal_alumno.dart';
 import 'package:aulanosa_app/objetosNecesarios/menu_widget.dart';
 import 'package:aulanosa_app/pantallas/main_screen.dart';
@@ -149,9 +150,9 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
               //A la espera de poder recoger datos que nos indiquen los próximos eventos
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.7,
                 child: ListView.builder(
-                    itemCount: cartas.length,
+                    itemCount: 7,
                     itemBuilder: ((context, index) {
                       return Card(
                         shape: RoundedRectangleBorder(
@@ -161,7 +162,7 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                           children: [
                             //Dia y mes
                             Container(
-                                width: MediaQuery.of(context).size.width * 0.2,
+                                width: MediaQuery.of(context).size.width * 0.3,
                                 margin: EdgeInsets.only(left: 5),
                                 decoration: BoxDecoration(
                                     color: Colors.grey[200],
@@ -174,13 +175,21 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                                     child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          cartas[index].dia +
-                                              '\n' +
-                                              cartas[index].mes,
+                                          globales.listaMensajes[index].fecha
+                                                  .day
+                                                  .toString() +
+                                              "/" +
+                                              globales.listaMensajes[index]
+                                                  .fecha.month
+                                                  .toString() +
+                                              "/" +
+                                              globales.listaMensajes[index]
+                                                  .fecha.year
+                                                  .toString(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.red,
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.bold),
                                         )),
                                   ),
@@ -189,24 +198,25 @@ class _AdminPrincipalState extends State<AdminPrincipal> {
                             //Descripcion
                             Container(
                               height: MediaQuery.of(context).size.height * 0.1,
-                              width: MediaQuery.of(context).size.width * 0.6,
+                              width: MediaQuery.of(context).size.width * 0.5,
                               margin: EdgeInsets.all(5),
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    cartas[index].descripcion,
-                                    textAlign: TextAlign.center,
-                                  )),
+                                      globales.listaMensajes[index].asunto,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 16))),
                             ),
 
                             //Icono tipo calendario
                             Container(
-                              margin: EdgeInsets.all(5),
-                              child: FittedBox(
-                                child: Icon(Icons.calendar_month,
-                                    color: Color.fromARGB(255, 72, 122, 216)),
-                              ),
-                            )
+                                margin: EdgeInsets.all(5),
+                                child: FittedBox(
+                                  child: IconButton(
+                                      icon: Icon(Icons.calendar_month),
+                                      onPressed: () {},
+                                      color: Color.fromARGB(255, 72, 122, 216)),
+                                ))
                           ],
                         ),
                       );
