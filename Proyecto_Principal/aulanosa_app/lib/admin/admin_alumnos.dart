@@ -15,16 +15,18 @@ class AdminAlumnos extends StatefulWidget {
 
 class _AdminAlumnosState extends State<AdminAlumnos> {
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context){  return WillPopScope(
+    onWillPop: () async => false,
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 48, 92, 174),
           title: const Text('Alumnos'),
           leading: MenuWidget(),
         ),
-        backgroundColor: const Color.fromARGB(255, 105, 146, 221),
-        body: listaAlumnos(),
-      );
-
+          backgroundColor: const Color.fromARGB(255, 105, 146, 221),
+          body: listaAlumnos(),
+      ));
+  }
   //Metodo para determinar que apartado tiene que mostrar dentro de cada alumno externo
   String determinarApartado(int index) {
     if (index == 0) {
