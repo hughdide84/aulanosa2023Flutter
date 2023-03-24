@@ -128,11 +128,13 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                     color: const Color.fromARGB(255, 105, 146, 221), width: 3)),
-            child: Text(mostrarCurso(listadoAlumnos[index]),
-                style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold))),
+            child: FittedBox(
+              child: Text(mostrarCurso(listadoAlumnos[index]),
+                  style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            )),
       ]);
     } else if (tituloCarta == "Estudios") {
       return Column(children: [
@@ -408,12 +410,14 @@ class DataSearch extends SearchDelegate {
                           color: const Color.fromARGB(255, 105, 146, 221),
                           width: 3),
                     ),
-                    child: Text(
-                      cursoNombre,
-                      style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                    child: FittedBox(
+                      child: Text(
+                        cursoNombre,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ],
