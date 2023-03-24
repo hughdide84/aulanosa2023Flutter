@@ -182,14 +182,13 @@ class metodosCompartidos{
     final respuestaApi=await http.get(myUri);
 
     try{
-      List<Mensaje>listaMensajesRecuperados= Mensaje.devolverListaMensajes(respuestaApi.body);
-      globales.listaMensajes.clear();
-      globales.listaMensajes= listaMensajesRecuperados;
-
+      globales.listaMensajes= Mensaje.devolverListaMensajes(respuestaApi.body);
+    
     }catch(excepcion){
       print(excepcion);
      
     }
+
     
   }
 
