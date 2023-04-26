@@ -73,7 +73,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
             ),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 105, 146, 221),
+        backgroundColor: Colors.grey[200],
         body: listaAlumnos(),
       );
 
@@ -198,7 +198,7 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[200],
+                color: Color.fromARGB(255, 72, 122, 216),
                 border: const Border(
                   top: BorderSide.none,
                   left: BorderSide.none,
@@ -211,8 +211,14 @@ class _AdminAlumnosState extends State<AdminAlumnos> {
                   child: Text(
                     globales.listaAlumnos[index].nombre,
                     style: const TextStyle(
+                      shadows: <Shadow>[
+                  Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 10.0,
+                      color: Colors.black),
+                ],
                       fontSize: 30,
-                      color: Color.fromARGB(255, 72, 122, 216),
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

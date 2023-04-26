@@ -90,6 +90,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
         child: Text(
           globales.listaAlumnosExternos[index].nombre,
           style: const TextStyle(
+            
               fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       );
@@ -278,7 +279,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[200],
+                color: Color.fromARGB(255, 72, 122, 216),
                 border: const Border(
                   top: BorderSide.none,
                   left: BorderSide.none,
@@ -291,16 +292,16 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
                 child: FittedBox(
                   child: Text(
                     globales.listaAlumnosExternos[index].nombre,
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontSize: 30,
-                      color: Color.fromARGB(255, 72, 122, 216),
+                      color: Colors.grey[200],
                       fontWeight: FontWeight.bold,
-                      // shadows: <Shadow>[
-                      //   Shadow(
-                      //       offset: Offset(2, 2),
-                      //       blurRadius: 10.0,
-                      //       color: Colors.black),
-                      // ],
+                      shadows: <Shadow>[
+                        Shadow(
+                            offset: Offset(2, 2),
+                            blurRadius: 10.0,
+                            color: Colors.black),
+                      ],
                     ),
                   ),
                 ),
@@ -402,7 +403,7 @@ class _AlumnosExternosState extends State<AlumnosExternos> {
           ),
         ],
       ),
-      backgroundColor: const Color.fromARGB(255, 105, 146, 221),
+      backgroundColor: Colors.grey[200],
       body: listaAlumnosExternos());
 }
 

@@ -26,8 +26,6 @@ String estadoCurso="Sin Info";
 // Variable global que contiene la lista de empresas //
 late List<Empresa> listaEmpresas;
 
-// Variable global que contiene la lista de empresas //
-late List<Empresa> listaEmpresasFiltradas;
 
 // Variable global que contiene la lista de alumnos externos //
 late List<AlumnoExterno> listaAlumnosExternos;
